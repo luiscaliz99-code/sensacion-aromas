@@ -114,68 +114,73 @@
 
         .product-img-container {
             width: 100%;
-            height: 220px;
+            height: 220px; /* Altura fija para todas las imágenes */
             background: #f1f1f1;
             overflow: hidden;
         }
 
- /* Estilos generales de productos */
-    .container {
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 2rem 1rem;
-    }
+        /* Ajuste husto para nga sumurot iti kadakkel dagiti dadduma */
+        .product-img-container img {
+            width: 100%;     
+            height: 100%;    
+            object-fit: cover; 
+        }
 
-    .category-section {
-        margin-bottom: 3rem;
-    }
+        .product-info {
+            padding: 1.2rem;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
 
-    .category-title {
-        font-size: 1.5rem;
-        color: var(--text-dark);
-        margin-bottom: 1.5rem;
-        border-left: 5px solid var(--primary-color);
-        padding-left: 10px;
-        text-transform: uppercase;
-    }
+        .product-name {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text-dark);
+        }
 
-    .products-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-        gap: 20px;
-    }
+        .product-desc {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            margin-bottom: 1rem;
+            flex-grow: 1;
+        }
 
-    .product-card {
-        background: var(--white);
-        border-radius: 12px;
-        overflow: hidden;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-    }
+        .product-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: auto;
+        }
 
-    .product-img-container {
-        width: 100%;
-        height: 220px; /* Altura fija para todas las imágenes */
-        background: #f1f1f1;
-        overflow: hidden;
-    }
+        .product-price {
+            font-weight: 600;
+            color: var(--primary-color);
+        }
 
-    /* ¡Esta es la parte clave para que la imagen no se salga! */
-    .product-img-container img {
-        width: 100%;     /* Ocupa todo el ancho del contenedor */
-        height: 100%;    /* Ocupa toda la altura fija del contenedor */
-        object-fit: cover; /* Ajusta la imagen para que llene el espacio sin deformarse */
-    }
+        .btn-order {
+            background-color: var(--whatsapp-color);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
 
-    .product-info {
-        padding: 1.2rem;
-        display: flex;
-        flex-direction: column;
-        flex-grow: 1;
-    }
-    /* ... resto de estilos ... */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: var(--text-light);
+            font-size: 0.9rem;
+            background-color: var(--white);
+            margin-top: 2rem;
+        }
+    </style>
 </head>
 <body>
 
@@ -197,25 +202,23 @@
         <section class="category-section">
             <h2 class="category-title">Perfumería Árabe</h2>
             <div class="products-grid">
-                <!-- Nuevo Perfume Árabe -->
+                
+                <!-- Bharara Beauty -->
                 <div class="product-card">
                     <div class="product-img-container">
-                      <div class="product-card">
-        <div class="product-img-container">
-            <img src="bharara_beauty.webp" alt="Bharara Beauty">
-        </div>
-        <div class="product-info">
-            <h3 class="product-name">Bharara Beauty</h3>
-            <p class="product-desc">Notas aromáticas y descripción de la fragancia.</p>
-            <div class="product-footer">
-                <span class="product-price">Consultar</span>
-                <a href="https://wa.me/50583743021?text=Hola,%20estoy%20interesado/a%20en%20el%20perfume%20Bharara%20Beauty" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Pedir</a>
-            </div>
-        </div>
-    </div>
+                        <img src="bharara_beauty.webp" alt="Bharara Beauty">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">Bharara Beauty</h3>
+                        <p class="product-desc">Notas aromáticas y descripción de la fragancia.</p>
+                        <div class="product-footer">
+                            <span class="product-price">Consultar</span>
+                            <a href="https://wa.me/50583743021?text=Hola,%20estoy%20interesado/a%20en%20el%20perfume%20Bharara%20Beauty" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Pedir</a>
                         </div>
                     </div>
                 </div>
+
+                <!-- Stallion 53 -->
                 <div class="product-card">
                     <div class="product-img-container">
                         <img src="STALLION-53_1500x.webp" alt="Stallion 53">
@@ -230,6 +233,7 @@
                     </div>
                 </div>
 
+                <!-- Armaf Odyssey Bahamas -->
                 <div class="product-card">
                     <div class="product-img-container">
                         <img src="armaf-odyssey-bahamas_1000x.webp" alt="Armaf Odyssey Bahamas">
@@ -244,6 +248,7 @@
                     </div>
                 </div>
 
+                <!-- Hawas Ice Men -->
                 <div class="product-card">
                     <div class="product-img-container">
                         <img src="hawas-ice-men_1000x.webp" alt="Hawas Ice Men">
@@ -258,6 +263,7 @@
                     </div>
                 </div>
 
+                <!-- Hawas Tropical -->
                 <div class="product-card">
                     <div class="product-img-container">
                         <img src="haway-tropical-tropical.webp" alt="Hawas Tropical">
