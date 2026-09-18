@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sensación Aromas Originales | Catálogo Digital</title>
+    <!-- Google Fonts & FontAwesome para iconos -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #d63384;
+            --primary-dark: #b02a6b;
+            --accent-color: #fff0f5;
+            --text-dark: #333333;
+            --text-light: #777777;
+            --bg-light: #f9f9f9;
+            --white: #ffffff;
+            --whatsapp-color: #25d366;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        header {
+            background: linear-gradient(135deg, #111111, #333333);
+            color: var(--white);
+            text-align: center;
+            padding: 2.5rem 1rem;
+            border-bottom: 4px solid var(--primary-color);
+        }
+
+        header h1 {
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+            color: #fff;
+            letter-spacing: 1px;
+        }
+
+        header h1 span {
+            color: var(--primary-color);
+        }
+
+        header p {
+            font-size: 1rem;
+            color: #cccccc;
+            max-width: 600px;
+            margin: 0 auto 1.5rem auto;
+        }
+
+        .header-wa-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background-color: var(--whatsapp-color);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background 0.3s ease;
+        }
+
+        .header-wa-btn:hover {
+            background-color: #1ebe5d;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+
+        .category-section {
+            margin-bottom: 3rem;
+        }
+
+        .category-title {
+            font-size: 1.5rem;
+            color: var(--text-dark);
+            border-left: 5px solid var(--primary-color);
+            padding-left: 12px;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .product-card {
+            background: var(--white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+
+        .product-img-container {
+            width: 100%;
+            height: 200px;
+            background-color: #f1f1f1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-light);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .product-img-container i {
+            font-size: 3rem;
+            color: #d1d1d1;
+        }
+
+        .product-info {
+            padding: 1.2rem;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .product-name {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text-dark);
+        }
+
+        .product-desc {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            margin-bottom: 1rem;
+            flex-grow: 1;
+        }
+
+        .product-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: auto;
+        }
+
+        .product-price {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .btn-order {
+            background-color: var(--whatsapp-color);
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            text-decoration: none;
+            transition: background 0.2s;
+        }
+
+        .btn-order:hover {
+            background-color: #1ebe5d;
+        }
+
+        footer {
+            background-color: #111111;
+            color: white;
+            text-align: center;
+            padding: 2rem 1rem;
+            margin-top: 3rem;
+            font-size: 0.9rem;
+        }
+
+        footer p span {
+            color: var(--primary-color);
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.8rem;
+            }
+            .products-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Sensación <span>Aromas Originales</span></h1>
+        <p>Tu destino ideal para fragancias exclusivas, cosméticos y cuidado personal 100% originales.</p>
+        <a href="https://wa.me/50583743021?text=Hola,%20vengo%20de%20su%20catálogo%20web%20y%20quiero%20más%20información." class="header-wa-btn" target="_blank">
+            <i class="fab fa-whatsapp"></i> Escríbenos al WhatsApp
+        </a>
+    </header>
+
+    <div class="container">
+
+        <!-- 1. Perfumería Diseñador -->
+        <section class="category-section">
+            <h2 class="category-title">Perfumería Diseñador</h2>
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="product-img-container">
+                        <i class="fas fa-spray-can"></i>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">Perfume de Diseñador (Ej. Carolina Herrera / Dior)</h3>
+                        <p class="product-desc">Fragancias originales para dama y caballero. Envase de alta fijación.</p>
+                        <div class="product-footer">
+                            <span class="product-price">Consultar</span>
+                            <a href="https://wa.me/50583743021?text=Hola,%20estoy%20interesado/a%20en%20Perfumería%20Diseñador" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Pedir</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. Perfumería Árabe -->
+        <section class="category-section">
+            <h2 class="category-title">Perfumería Árabe</h2>
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="product-img-container">
+                        <i class="fas fa-wine-bottle"></i>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">Perfumes Árabes (Lattafa / Armaf / Afnan)</h3>
+                        <p class="product-desc">Exclusivas notas orientales con excelente proyección y duración prolongada.</p>
+                        <div class="product-footer">
+                            <span class="product-price">Consultar</span>
+                            <a href="https://wa.me/50583743021?text=Hola,%20estoy%20interesado/a%20en%20Perfumería%20Árabe" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Pedir</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. Perfumería de Celebridad -->
+        <section class="category-section">
+            <h2 class="category-title">Perfumería de Celebridad</h2>
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="product-img-container">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">Fragancias de Celebridades</h3>
+                        <p class="product-desc">Aromas icónicos, juveniles y encantadores.</p>
+                        <div class="product-footer">
+                            <span class="product-price">Consultar</span>
+                            <a href="https://wa.me/50583743021?text=Hola,%20estoy%20interesado/a%20en%20Perfumería%20de%20Celebridad" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Pedir</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. Body Mist Victoria's Secret -->
+        <section class="category-section">
+            <h2 class="category-title">Body Mist Victoria's Secret</h2>
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="product-img-container">
+                        <i class="fas fa-wind"></i>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">Body Mist Victoria's Secret 250ml</h3>
+                        <p class="product-desc">Variedad de fragancias frescas y florales clásicas.</p>
+                        <div class="product-footer">
+                            <span class="product-price">Consultar</span>
+                            <a href="https://wa.me/50583743021?text=Hola,%20estoy%20interesado/a%20en%20Body%20Mist%20Victoria's%20Secret" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Pedir</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. Body Mist Pink -->
+        <section class="category-section">
+            <h2 class="category-title">Body Mist Pink</h2>
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="product-img-container">
+                        <i class="fas fa-spray-can"></i>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">Body Mist Pink (Victoria's Secret)</h3>
+                        <p class="product-desc">Aromas vibrantes, juveniles y deportivos.</p>
+                        <div class="product-footer">
+                            <span class="product-price">Consultar</span>
+                            <a href="https://wa.me/50583743021?text=Hola,%20estoy%20interesado/a%20en%20Body%20Mist%20Pink" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Pedir</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. Body Mist Bath & Body Works -->
+        <section class="category-section">
+            <h2 class="category-title">Body Mist Bath & Body Works</h2>
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="product-img-container">
+                        <i class="fas fa-water"></i>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">Body Mist Bath & Body Works</h3>
+                        <p class="product-desc">Fragancias corporales dulces, frutales y frescas.</p>
+                        <div class="product-footer">
+                            <span class="product-price">Consultar</span>
+                            <a href="https://wa.me/50583743021?text=Hola,%20estoy%20interesado/a%20en%20Body%20Mist%20Bath%20and%20Body%20Works" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Pedir</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 7. Cremas eos -->
+        <section class="category-section">
+            <h2 class="category-title">Cremas eos</h2>
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="product-img-container">
+                        <i class="fas fa-pump-soap"></i>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">Crema Corporal eos</h3>
+                        <p class="product-desc">Hidratación profunda con manteca de karité de rápida absorción.</p>
+                        <div class="product-footer">
+                            <span class="product-price">Consultar</span>
+                            <a href="https://wa.me/50583743021?text=Hola,%20estoy%20interesado/a%20en%20Cremas%20eos" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Pedir</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 8 & 9. Exfoliantes -->
+        <section class="category-section">
+            <h2 class="category-title">Exfoliantes Corporales</h2>
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="product-img-container">
+                        <i class="fas fa-spa"></i>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">Exfoliante Victoria's Secret</h3>
+                        <p class="product-desc">Renueva tu piel dejándola suave y perfumada.</p>
+                        <div class="product-footer">
+                            <span class="product-price">Consultar</span>
+                            <a href="https://wa.me/50583743021?text=Hola,%20estoy%20interesado/a%20en%20Exfoliantes%20Victoria's%20Secret" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Pedir</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img-container">
+                        <i class="fas fa-spa"></i>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">Exfoliante Pink</h3>
+                        <p class="product-desc">Exfoliante corporal energizante y suave con la piel.</p>
+                        <div class="product-footer">
+                            <span class="product-price">Consultar</span>
+                            <a href="https://wa.me/50583743021?text=Hola,%20estoy%20interesado/a%20en%20Exfoliantes%20Pink" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Pedir</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 10 & 11. Geles de ducha -->
+        <section class="category-section">
+            <h2 class="category-title">Geles de Ducha</h2>
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="product-img-container">
+                        <i class="fas fa-shower"></i>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">Gel de Ducha Victoria's Secret</h3>
+                        <p class="product-desc">Limpieza perfumada para tu ducha diaria.</p>
+                        <div class="product-footer">
+                            <span class="product-price">Consultar</span>
+                            <a href="https://wa.me/50583743021?text=Hola,%20estoy%20interesado/a%20en%20Gel%20de%20ducha%20Victoria's%20Secret" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Pedir</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img-container">
+                        <i class="fas fa-shower"></i>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">Gel de Ducha Pink</h3>
+                        <p class="product-desc">Espuma rica y fragante para consentir tu piel.</p>
+                        <div class="product-footer">
+                            <span class="product-price">Consultar</span>
+                            <a href="https://wa.me/50583743021?text=Hola,%20estoy%20interesado/a%20en%20Gel%20de%20ducha%20Pink" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Pedir</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 12 & 13. Sol de Janeiro -->
+        <section class="category-section">
+            <h2 class="category-title">Línea Sol de Janeiro</h2>
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="product-img-container">
+                        <i class="fas fa-sun"></i>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">Body Cheirosa Sol de Janeiro</h3>
+                        <p class="product-desc">Perfume corporal con icónicos aromas tropicales y gourmand (Cheirosa 62, 68, etc.).</p>
+                        <div class="product-footer">
+                            <span class="product-price">Consultar</span>
+                            <a href="https://wa.me/50583743021?text=Hola,%20estoy%20interesado/a%20en%20Body%20Cheirosa%20Sol%20de%20Janeiro" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Pedir</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img-container">
+                        <i class="fas fa-gift"></i>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">Jet Set Sol de Janeiro</h3>
+                        <p class="product-desc">Set de viaje con los productos favoritos de la marca.</p>
+                        <div class="product-footer">
+                            <span class="product-price">Consultar</span>
+                            <a href="https://wa.me/50583743021?text=Hola,%20estoy%20interesado/a%20en%20Jet%20Set%20Sol%20de%20Janeiro" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Pedir</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 14. Aceites corporales pink -->
+        <section class="category-section">
+            <h2 class="category-title">Cuidado Corporal Pink</h2>
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="product-img-container">
+                        <i class="fas fa-oil-can"></i>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">Aceites Corporales Pink</h3>
+                        <p class="product-desc">Nutrición y brillo radiante para tu piel.</p>
+                        <div class="product-footer">
+                            <span class="product-price">Consultar</span>
+                            <a href="https://wa.me/50583743021?text=Hola,%20estoy%20interesado/a%20en%20Aceites%20corporales%20Pink" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Pedir</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 15, 16, 17, 18. Masglo -->
+        <section class="category-section">
+            <h2 class="category-title">Línea de Uñas Masglo</h2>
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="product-img-container">
+                        <i class="fas fa-paint-brush"></i>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">Pintura de Uñas Masglo</h3>
+                        <p class="product-desc">Esmaltes con gran variedad de tonos y larga duración.</p>
+                        <div class="product-footer">
+                            <span class="product-price">Consultar</span>
+                            <a href="https://wa.me/50583743021?text=Hola,%20estoy%20interesado/a%20en%20Pinturas%20de%20uñas%20Masglo" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Pedir</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img-container">
+                        <i class="fas fa-hand-holding-medical"></i>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">Tratamientos de Uñas Masglo</h3>
+                        <p class="product-desc">Cuidado especializado para fortalecer y sanar tus uñas.</p>
+                        <div class="product-footer">
+                            <span class="product-price">Consultar</span>
+                            <a href="https://wa.me/50583743021?text=Hola,%20estoy%20interesado/a%20en%20Tratamientos%20de%20uñas%20Masglo" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Pedir</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img-container">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">Bases Masglo</h3>
+                        <p class="product-desc">Bases protectoras y niveladoras para una manicura perfecta.</p>
+                        <div class="product-footer">
+                            <span class="product-price">Consultar</span>
+                            <a href="https://wa.me/50583743021?text=Hola,%20estoy%20interesado/a%20en%20Bases%20Masglo" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Pedir</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img-container">
+                        <i class="fas fa-magic"></i>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">Brillos Masglo</h3>
+                        <p class="product-desc">Brillo secante y protector para alargar la vida de tu esmalte.</p>
+                        <div class="product-footer">
+                            <span class="product-price">Consultar</span>
+                            <a href="https://wa.me/50583743021?text=Hola,%20estoy%20interesado/a%20en%20Brillos%20Masglo" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Pedir</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 19. Lencería Victoria's Secret -->
+        <section class="category-section">
+            <h2 class="category-title">Lencería Victoria's Secret</h2>
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="product-img-container">
+                        <i class="fas fa-tshirt"></i>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">Lencería Victoria's Secret</h3>
+                        <p class="product-desc">Diseños exclusivos, elegantes y cómodos.</p>
+                        <div class="product-footer">
+                            <span class="product-price">Consultar</span>
+                            <a href="https://wa.me/50583743021?text=Hola,%20estoy%20interesado/a%20en%20Lencería%20Victoria's%20Secret" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Pedir</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2026 <span>Sensación Aromas Originales</span>. Todos los derechos reservados.</p>
+    </footer>
+
+</body>
+</html>
