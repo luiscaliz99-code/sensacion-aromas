@@ -8,6 +8,51 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        <style>
+/* Estilos para la Cabecera y el Logo */
+.main-header {
+    background-color: #ffffff;
+    padding: 15px 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.header-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.logo-container {
+    display: block;
+    width: 60px;
+    height: 60px;
+    flex-shrink: 0;
+}
+
+.logo-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.store-name {
+    font-size: 1.5rem;
+    color: #333333;
+    margin: 0;
+    font-weight: bold;
+}
+
+.store-subtitle {
+    font-size: 0.9rem;
+    color: #666666;
+    margin: 0;
+}
+</style>
         :root {
             --primary-color: #d63384;
             --primary-dark: #b02a6b;
@@ -218,6 +263,18 @@
     </style>
 </head>
 <body>
+    <!-- Cabecera de la tienda con Logo -->
+    <header class="main-header">
+        <div class="header-container">
+            <a href="#" class="logo-container">
+                <img src="logo.png" alt="Sensación Aromas Originales Logo" class="logo-img">
+            </a>
+            <div class="store-title-container">
+                <h1 class="store-name">Sensación Aromas Originales</h1>
+                <p class="store-subtitle">Fragancias auténticas y exclusivas</p>
+            </div>
+        </div>
+    </header>
 
     <header>
         <h1>Sensación <span>Aromas Originales</span></h1>
