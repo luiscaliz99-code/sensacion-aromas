@@ -329,16 +329,10 @@
             scroll-margin-top: 90px;
         }
 
-        .category-header-wrapper {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1.2rem;
-        }
-
         .category-title {
             font-size: 1.8rem;
             color: var(--text-dark);
+            margin-bottom: 1.2rem;
             border-left: 5px solid var(--primary-color);
             padding-left: 14px;
             text-transform: uppercase;
@@ -349,48 +343,23 @@
             font-weight: 700;
         }
 
-        /* Controles de Flechas para el Carrusel */
-        .carousel-nav-btns {
-            display: flex;
-            gap: 8px;
-        }
-
-        .carousel-btn {
-            background-color: var(--bg-dark);
-            color: var(--gold-color);
-            border: 1px solid rgba(197, 155, 39, 0.4);
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            box-shadow: 0 3px 8px rgba(0,0,0,0.15);
-        }
-
-        .carousel-btn:hover {
-            background-color: var(--primary-color);
-            color: #ffffff;
-            border-color: var(--primary-color);
-            transform: scale(1.08);
-        }
-
-        /* Estilo Carrusel / Slider horizontal */
+        /* Contenedor del Carrusel con Flechas Flotantes a los Lados */
         .slider-wrapper {
             position: relative;
+            display: flex;
+            align-items: center;
         }
 
         .slider-container {
             display: flex;
             overflow-x: auto;
             gap: 22px;
-            padding-bottom: 15px;
+            padding: 10px 5px 15px 5px;
             scroll-snap-type: x mandatory;
             scrollbar-width: thin;
             scrollbar-color: var(--primary-color) #e2e8f0;
             scroll-behavior: smooth;
+            width: 100%;
         }
 
         .slider-container::-webkit-scrollbar {
@@ -400,6 +369,41 @@
         .slider-container::-webkit-scrollbar-thumb {
             background: var(--primary-color);
             border-radius: 4px;
+        }
+
+        /* Botones de Flechas Flotantes Estilizadas */
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: #ffffff;
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 10;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+            transition: all 0.2s ease;
+            font-size: 1.1rem;
+        }
+
+        .carousel-btn:hover {
+            background-color: var(--primary-color);
+            color: #ffffff;
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .carousel-btn-left {
+            left: -20px;
+        }
+
+        .carousel-btn-right {
+            right: -20px;
         }
 
         .product-card {
@@ -786,16 +790,11 @@
 
             <!-- LO MÁS VENDIDO -->
             <section id="mas-vendidos" class="category-section search-section">
-                <div class="category-header-wrapper">
-                    <h2 class="category-title">Los Más Vendidos</h2>
-                    <div class="carousel-nav-btns">
-                        <button class="carousel-btn" onclick="scrollSlider('slider-mas-vendidos', -300)"><i class="fas fa-chevron-left"></i></button>
-                        <button class="carousel-btn" onclick="scrollSlider('slider-mas-vendidos', 300)"><i class="fas fa-chevron-right"></i></button>
-                    </div>
-                </div>
+                <h2 class="category-title">Los Más Vendidos</h2>
                 <p style="color: var(--text-light); font-size: 0.9rem; margin-bottom: 1.2rem;">Explora los perfumes más vendidos de nuestra tienda deslizando hacia los lados</p>
                 
                 <div class="slider-wrapper">
+                    <button class="carousel-btn carousel-btn-left" onclick="scrollSlider('slider-mas-vendidos', -300)"><i class="fas fa-chevron-left"></i></button>
                     <div class="slider-container" id="slider-mas-vendidos">
                         <div class="product-card" data-name="bharara beauty">
                             <div class="product-img-container"><img src="bharara_beauty.webp" alt="Bharara Beauty"></div>
@@ -845,20 +844,16 @@
                             </div>
                         </div>
                     </div>
+                    <button class="carousel-btn carousel-btn-right" onclick="scrollSlider('slider-mas-vendidos', 300)"><i class="fas fa-chevron-right"></i></button>
                 </div>
             </section>
 
             <!-- 1. PERFUMERÍA ÁRABE -->
             <section id="arabes" class="category-section search-section">
-                <div class="category-header-wrapper">
-                    <h2 class="category-title">Perfumería Árabe</h2>
-                    <div class="carousel-nav-btns">
-                        <button class="carousel-btn" onclick="scrollSlider('slider-arabes', -300)"><i class="fas fa-chevron-left"></i></button>
-                        <button class="carousel-btn" onclick="scrollSlider('slider-arabes', 300)"><i class="fas fa-chevron-right"></i></button>
-                    </div>
-                </div>
+                <h2 class="category-title">Perfumería Árabe</h2>
                 
                 <div class="slider-wrapper">
+                    <button class="carousel-btn carousel-btn-left" onclick="scrollSlider('slider-arabes', -300)"><i class="fas fa-chevron-left"></i></button>
                     <div class="slider-container" id="slider-arabes">
                         
                         <div class="product-card" data-name="stallion 53">
@@ -958,19 +953,15 @@
                         </div>
 
                     </div>
+                    <button class="carousel-btn carousel-btn-right" onclick="scrollSlider('slider-arabes', 300)"><i class="fas fa-chevron-right"></i></button>
                 </div>
             </section>
 
             <!-- 2. PERFUMERÍA DE DISEÑADOR -->
             <section id="disenador" class="category-section search-section">
-                <div class="category-header-wrapper">
-                    <h2 class="category-title">Perfumería de Diseñador</h2>
-                    <div class="carousel-nav-btns">
-                        <button class="carousel-btn" onclick="scrollSlider('slider-disenador', -300)"><i class="fas fa-chevron-left"></i></button>
-                        <button class="carousel-btn" onclick="scrollSlider('slider-disenador', 300)"><i class="fas fa-chevron-right"></i></button>
-                    </div>
-                </div>
+                <h2 class="category-title">Perfumería de Diseñador</h2>
                 <div class="slider-wrapper">
+                    <button class="carousel-btn carousel-btn-left" onclick="scrollSlider('slider-disenador', -300)"><i class="fas fa-chevron-left"></i></button>
                     <div class="slider-container" id="slider-disenador">
                         <div class="product-card" data-name="proximamente diseñador">
                             <div class="product-img-container"><img src="logo-tienda.png" alt="Próximamente"></div>
@@ -984,19 +975,15 @@
                             </div>
                         </div>
                     </div>
+                    <button class="carousel-btn carousel-btn-right" onclick="scrollSlider('slider-disenador', 300)"><i class="fas fa-chevron-right"></i></button>
                 </div>
             </section>
 
             <!-- 3. PERFUMERÍA NICHO -->
             <section id="nicho" class="category-section search-section">
-                <div class="category-header-wrapper">
-                    <h2 class="category-title">Perfumería Nicho</h2>
-                    <div class="carousel-nav-btns">
-                        <button class="carousel-btn" onclick="scrollSlider('slider-nicho', -300)"><i class="fas fa-chevron-left"></i></button>
-                        <button class="carousel-btn" onclick="scrollSlider('slider-nicho', 300)"><i class="fas fa-chevron-right"></i></button>
-                    </div>
-                </div>
+                <h2 class="category-title">Perfumería Nicho</h2>
                 <div class="slider-wrapper">
+                    <button class="carousel-btn carousel-btn-left" onclick="scrollSlider('slider-nicho', -300)"><i class="fas fa-chevron-left"></i></button>
                     <div class="slider-container" id="slider-nicho">
                         <div class="product-card" data-name="proximamente nicho">
                             <div class="product-img-container"><img src="logo-tienda.png" alt="Próximamente"></div>
@@ -1010,19 +997,15 @@
                             </div>
                         </div>
                     </div>
+                    <button class="carousel-btn carousel-btn-right" onclick="scrollSlider('slider-nicho', 300)"><i class="fas fa-chevron-right"></i></button>
                 </div>
             </section>
 
             <!-- 4. PERFUMERÍA DE CELEBRIDAD -->
             <section id="celebridad" class="category-section search-section">
-                <div class="category-header-wrapper">
-                    <h2 class="category-title">Perfumería de Celebridad</h2>
-                    <div class="carousel-nav-btns">
-                        <button class="carousel-btn" onclick="scrollSlider('slider-celebridad', -300)"><i class="fas fa-chevron-left"></i></button>
-                        <button class="carousel-btn" onclick="scrollSlider('slider-celebridad', 300)"><i class="fas fa-chevron-right"></i></button>
-                    </div>
-                </div>
+                <h2 class="category-title">Perfumería de Celebridad</h2>
                 <div class="slider-wrapper">
+                    <button class="carousel-btn carousel-btn-left" onclick="scrollSlider('slider-celebridad', -300)"><i class="fas fa-chevron-left"></i></button>
                     <div class="slider-container" id="slider-celebridad">
                         <div class="product-card" data-name="proximamente celebridad">
                             <div class="product-img-container"><img src="logo-tienda.png" alt="Próximamente"></div>
@@ -1036,19 +1019,15 @@
                             </div>
                         </div>
                     </div>
+                    <button class="carousel-btn carousel-btn-right" onclick="scrollSlider('slider-celebridad', 300)"><i class="fas fa-chevron-right"></i></button>
                 </div>
             </section>
 
             <!-- 5. BODY MISTS -->
             <section id="bodymists" class="category-section search-section">
-                <div class="category-header-wrapper">
-                    <h2 class="category-title">Body Mists</h2>
-                    <div class="carousel-nav-btns">
-                        <button class="carousel-btn" onclick="scrollSlider('slider-bodymists', -300)"><i class="fas fa-chevron-left"></i></button>
-                        <button class="carousel-btn" onclick="scrollSlider('slider-bodymists', 300)"><i class="fas fa-chevron-right"></i></button>
-                    </div>
-                </div>
+                <h2 class="category-title">Body Mists</h2>
                 <div class="slider-wrapper">
+                    <button class="carousel-btn carousel-btn-left" onclick="scrollSlider('slider-bodymists', -300)"><i class="fas fa-chevron-left"></i></button>
                     <div class="slider-container" id="slider-bodymists">
                         <div class="product-card" data-name="victoria secret bath body works body mist">
                             <div class="product-img-container"><img src="logo-tienda.png" alt="Próximamente"></div>
@@ -1062,19 +1041,15 @@
                             </div>
                         </div>
                     </div>
+                    <button class="carousel-btn carousel-btn-right" onclick="scrollSlider('slider-bodymists', 300)"><i class="fas fa-chevron-right"></i></button>
                 </div>
             </section>
 
             <!-- 6. ESMALTES COLOMBIANOS MASGLO -->
             <section id="masglo" class="category-section search-section">
-                <div class="category-header-wrapper">
-                    <h2 class="category-title">Esmaltes Colombianos Masglo</h2>
-                    <div class="carousel-nav-btns">
-                        <button class="carousel-btn" onclick="scrollSlider('slider-masglo', -300)"><i class="fas fa-chevron-left"></i></button>
-                        <button class="carousel-btn" onclick="scrollSlider('slider-masglo', 300)"><i class="fas fa-chevron-right"></i></button>
-                    </div>
-                </div>
+                <h2 class="category-title">Esmaltes Colombianos Masglo</h2>
                 <div class="slider-wrapper">
+                    <button class="carousel-btn carousel-btn-left" onclick="scrollSlider('slider-masglo', -300)"><i class="fas fa-chevron-left"></i></button>
                     <div class="slider-container" id="slider-masglo">
                         <div class="product-card" data-name="masglo esmalte base top coat">
                             <div class="product-img-container"><img src="logo-tienda.png" alt="Próximamente"></div>
@@ -1088,6 +1063,7 @@
                             </div>
                         </div>
                     </div>
+                    <button class="carousel-btn carousel-btn-right" onclick="scrollSlider('slider-masglo', 300)"><i class="fas fa-chevron-right"></i></button>
                 </div>
             </section>
 
@@ -1096,14 +1072,9 @@
                 <h2 class="category-title">Cuidado Personal</h2>
                 
                 <div id="exfoliantes" style="margin-bottom: 2.5rem; scroll-margin-top: 90px;">
-                    <div class="category-header-wrapper">
-                        <h3 style="font-size: 1.3rem; color: var(--primary-dark); font-family: 'Cormorant Garamond', serif; font-weight: 700;"><i class="fas fa-spa"></i> Exfoliantes para el cuerpo</h3>
-                        <div class="carousel-nav-btns">
-                            <button class="carousel-btn" onclick="scrollSlider('slider-exfoliantes', -300)"><i class="fas fa-chevron-left"></i></button>
-                            <button class="carousel-btn" onclick="scrollSlider('slider-exfoliantes', 300)"><i class="fas fa-chevron-right"></i></button>
-                        </div>
-                    </div>
+                    <h3 style="font-size: 1.3rem; color: var(--primary-dark); margin-bottom: 1rem; font-family: 'Cormorant Garamond', serif; font-weight: 700;"><i class="fas fa-spa"></i> Exfoliantes para el cuerpo</h3>
                     <div class="slider-wrapper">
+                        <button class="carousel-btn carousel-btn-left" onclick="scrollSlider('slider-exfoliantes', -300)"><i class="fas fa-chevron-left"></i></button>
                         <div class="slider-container" id="slider-exfoliantes">
                             <div class="product-card" data-name="exfoliante corporal scrub">
                                 <div class="product-img-container"><img src="logo-tienda.png" alt="Exfoliantes"></div>
@@ -1117,18 +1088,14 @@
                                 </div>
                             </div>
                         </div>
+                        <button class="carousel-btn carousel-btn-right" onclick="scrollSlider('slider-exfoliantes', 300)"><i class="fas fa-chevron-right"></i></button>
                     </div>
                 </div>
 
                 <div id="geles" style="margin-bottom: 2.5rem; scroll-margin-top: 90px;">
-                    <div class="category-header-wrapper">
-                        <h3 style="font-size: 1.3rem; color: var(--primary-dark); font-family: 'Cormorant Garamond', serif; font-weight: 700;"><i class="fas fa-shower"></i> Gel de duchas</h3>
-                        <div class="carousel-nav-btns">
-                            <button class="carousel-btn" onclick="scrollSlider('slider-geles', -300)"><i class="fas fa-chevron-left"></i></button>
-                            <button class="carousel-btn" onclick="scrollSlider('slider-geles', 300)"><i class="fas fa-chevron-right"></i></button>
-                        </div>
-                    </div>
+                    <h3 style="font-size: 1.3rem; color: var(--primary-dark); margin-bottom: 1rem; font-family: 'Cormorant Garamond', serif; font-weight: 700;"><i class="fas fa-shower"></i> Gel de duchas</h3>
                     <div class="slider-wrapper">
+                        <button class="carousel-btn carousel-btn-left" onclick="scrollSlider('slider-geles', -300)"><i class="fas fa-chevron-left"></i></button>
                         <div class="slider-container" id="slider-geles">
                             <div class="product-card" data-name="gel de duchas shower gel">
                                 <div class="product-img-container"><img src="logo-tienda.png" alt="Gel de duchas"></div>
@@ -1142,18 +1109,14 @@
                                 </div>
                             </div>
                         </div>
+                        <button class="carousel-btn carousel-btn-right" onclick="scrollSlider('slider-geles', 300)"><i class="fas fa-chevron-right"></i></button>
                     </div>
                 </div>
 
                 <div id="aceites" style="margin-bottom: 2rem; scroll-margin-top: 90px;">
-                    <div class="category-header-wrapper">
-                        <h3 style="font-size: 1.3rem; color: var(--primary-dark); font-family: 'Cormorant Garamond', serif; font-weight: 700;"><i class="fas fa-oil-can"></i> Aceites corporales</h3>
-                        <div class="carousel-nav-btns">
-                            <button class="carousel-btn" onclick="scrollSlider('slider-aceites', -300)"><i class="fas fa-chevron-left"></i></button>
-                            <button class="carousel-btn" onclick="scrollSlider('slider-aceites', 300)"><i class="fas fa-chevron-right"></i></button>
-                        </div>
-                    </div>
+                    <h3 style="font-size: 1.3rem; color: var(--primary-dark); margin-bottom: 1rem; font-family: 'Cormorant Garamond', serif; font-weight: 700;"><i class="fas fa-oil-can"></i> Aceites corporales</h3>
                     <div class="slider-wrapper">
+                        <button class="carousel-btn carousel-btn-left" onclick="scrollSlider('slider-aceites', -300)"><i class="fas fa-chevron-left"></i></button>
                         <div class="slider-container" id="slider-aceites">
                             <div class="product-card" data-name="aceite corporal oil">
                                 <div class="product-img-container"><img src="logo-tienda.png" alt="Aceites corporales"></div>
@@ -1167,6 +1130,7 @@
                                 </div>
                             </div>
                         </div>
+                        <button class="carousel-btn carousel-btn-right" onclick="scrollSlider('slider-aceites', 300)"><i class="fas fa-chevron-right"></i></button>
                     </div>
                 </div>
 
@@ -1250,7 +1214,6 @@
             parent.classList.toggle('open');
         }
 
-        /* Función para mover los carruseles con los botones de flecha */
         function scrollSlider(sliderId, distance) {
             let slider = document.getElementById(sliderId);
             if (slider) {
