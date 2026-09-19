@@ -357,26 +357,28 @@
             border-color: var(--primary-color);
         }
 
+        /* Contenedor optimizado para que las imágenes se vean completas */
         .product-img-container {
             width: 100%;
-            height: 210px;
-            background: #f8fafc;
+            height: 220px;
+            background: #ffffff;
             overflow: hidden;
             position: relative;
             display: flex;
             align-items: center;
             justify-content: center;
+            padding: 12px;
         }
 
         .product-img-container img {
             max-width: 100%;     
             max-height: 100%;    
-            object-fit: contain; 
+            object-fit: contain; /* Evita que la imagen se recorte o deforme */
             transition: transform 0.4s ease;
         }
 
         .product-card:hover .product-img-container img {
-            transform: scale(1.08);
+            transform: scale(1.06);
         }
 
         .product-info {
@@ -702,62 +704,41 @@
                 <p style="color: var(--text-light); font-size: 0.9rem; margin-bottom: 1.2rem;">Explora los perfumes más vendidos de nuestra tienda deslizando hacia los lados</p>
                 
                 <div class="slider-container">
-                    <div class="product-card" data-name="club de nuit women">
-                        <div class="product-img-container"><img src="logo-tienda.png" alt="Club De Nuit Women"></div>
+                    <!-- Producto 1 (Con imagen de Bharara Beauty) -->
+                    <div class="product-card" data-name="bharara beauty">
+                        <div class="product-img-container"><img src="bharara_beauty.webp" alt="Bharara Beauty"></div>
                         <div class="product-info">
-                            <h3 class="product-name">Club De Nuit Women</h3>
-                            <p class="product-desc">Alta fijación y elegancia.</p>
+                            <h3 class="product-name">Bharara Beauty</h3>
+                            <p class="product-desc">Notas aromáticas y alta fijación.</p>
                             <div class="product-footer">
-                                <span class="product-price">C$1,665</span>
-                                <a href="https://wa.me/50583743021?text=Hola,%20quiero%20el%20perfume%20Club%20De%20Nuit%20Women" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Pedir</a>
+                                <span class="product-price">Consultar</span>
+                                <a href="https://wa.me/50583743021?text=Hola,%20quiero%20consultar%20sobre%20Bharara%20Beauty" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Pedir</a>
                             </div>
                         </div>
                     </div>
 
-                    <div class="product-card" data-name="club de nuit iconic">
-                        <div class="product-img-container"><img src="logo-tienda.png" alt="Club de Nuit Iconic"></div>
+                    <!-- Producto 2 (Con imagen de Orientica Oud) -->
+                    <div class="product-card" data-name="orientica oud">
+                        <div class="product-img-container"><img src="orientica-oud-.webp" alt="Orientica Oud"></div>
                         <div class="product-info">
-                            <h3 class="product-name">Club de Nuit Iconic</h3>
-                            <p class="product-desc">Fragancia icónica masculina.</p>
+                            <h3 class="product-name">Orientica Oud</h3>
+                            <p class="product-desc">Elegancia y misterio oriental.</p>
                             <div class="product-footer">
-                                <span class="product-price">C$2,050</span>
-                                <a href="https://wa.me/50583743021?text=Hola,%20quiero%20Club%20de%20Nuit%20Iconic" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Pedir</a>
+                                <span class="product-price">Consultar</span>
+                                <a href="https://wa.me/50583743021?text=Hola,%20quiero%20consultar%20sobre%20Orientica%20Oud" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Pedir</a>
                             </div>
                         </div>
                     </div>
 
-                    <div class="product-card" data-name="odyssey white edition">
-                        <div class="product-img-container"><img src="logo-tienda.png" alt="Odyssey White Edition"></div>
+                    <!-- Producto 3 (Con imagen de Hawas Ice Men) -->
+                    <div class="product-card" data-name="hawas ice men">
+                        <div class="product-img-container"><img src="hawas-ice-men_1000x.webp" alt="Hawas Ice Men"></div>
                         <div class="product-info">
-                            <h3 class="product-name">Odyssey White Edition</h3>
-                            <p class="product-desc">Frescura y distinción.</p>
+                            <h3 class="product-name">Hawas Ice Men</h3>
+                            <p class="product-desc">Notas ultra frescas y vibrantes.</p>
                             <div class="product-footer">
-                                <span class="product-price">C$1,792</span>
-                                <a href="https://wa.me/50583743021?text=Hola,%20quiero%20Odyssey%20White%20Edition" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Pedir</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="product-card" data-name="amber oud aqua dubai">
-                        <div class="product-img-container"><img src="logo-tienda.png" alt="Amber Oud Aqua Dubai"></div>
-                        <div class="product-info">
-                            <h3 class="product-name">Amber Oud Aqua Dubai</h3>
-                            <p class="product-desc">Notas exclusivas y envolventes.</p>
-                            <div class="product-footer">
-                                <span class="product-price">C$2,523</span>
-                                <a href="https://wa.me/50583743021?text=Hola,%20quiero%20Amber%20Oud%20Aqua%20Dubai" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Pedir</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="product-card" data-name="yara tous">
-                        <div class="product-img-container"><img src="logo-tienda.png" alt="Yara Tous"></div>
-                        <div class="product-info">
-                            <h3 class="product-name">Yara Tous</h3>
-                            <p class="product-desc">Dulzor tropical y elegante.</p>
-                            <div class="product-footer">
-                                <span class="product-price">C$1,665</span>
-                                <a href="https://wa.me/50583743021?text=Hola,%20quiero%20Yara%20Tous" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Pedir</a>
+                                <span class="product-price">Consultar</span>
+                                <a href="https://wa.me/50583743021?text=Hola,%20quiero%20consultar%20sobre%20Hawas%20Ice%20Men" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Pedir</a>
                             </div>
                         </div>
                     </div>
