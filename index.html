@@ -343,18 +343,17 @@
             font-weight: 700;
         }
 
-        /* Contenedor del Carrusel con la Flecha Flotante a la Derecha */
+        /* Contenedor del Carrusel con la Flecha Visible y Flotante a la Derecha */
         .slider-wrapper {
             position: relative;
-            display: flex;
-            align-items: center;
+            width: 100%;
         }
 
         .slider-container {
             display: flex;
             overflow-x: auto;
             gap: 22px;
-            padding: 10px 5px 15px 5px;
+            padding: 10px 60px 15px 5px; /* Margen derecho amplio para que la flecha no tape productos */
             scroll-snap-type: x mandatory;
             scrollbar-width: thin;
             scrollbar-color: var(--primary-color) #e2e8f0;
@@ -371,32 +370,32 @@
             border-radius: 4px;
         }
 
-        /* Botón de Flecha Flotante Exclusivo a la Derecha */
+        /* Botón de Flecha Flotante Garantizado a la Derecha */
         .carousel-btn-right {
             position: absolute;
-            right: -18px;
-            top: 50%;
+            right: 10px;
+            top: 45%;
             transform: translateY(-50%);
             background-color: #ffffff;
             color: var(--primary-color);
             border: 2px solid var(--primary-color);
-            width: 46px;
-            height: 46px;
+            width: 48px;
+            height: 48px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            z-index: 10;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.18);
+            z-index: 50; /* Z-index alto para asegurar que siempre esté por encima de todo */
+            box-shadow: 0 4px 18px rgba(0,0,0,0.25);
             transition: all 0.2s ease;
-            font-size: 1.2rem;
+            font-size: 1.3rem;
         }
 
         .carousel-btn-right:hover {
             background-color: var(--primary-color);
             color: #ffffff;
-            transform: translateY(-50%) scale(1.1);
+            transform: translateY(-50%) scale(1.12);
         }
 
         .product-card {
@@ -836,7 +835,7 @@
                             </div>
                         </div>
                     </div>
-                    <button class="carousel-btn-right" onclick="scrollSlider('slider-mas-vendidos', 300)"><i class="fas fa-chevron-right"></i></button>
+                    <button class="carousel-btn-right" onclick="scrollSlider('slider-mas-vendidos', 300)" title="Ver más productos"><i class="fas fa-chevron-right"></i></button>
                 </div>
             </section>
 
@@ -944,7 +943,7 @@
                         </div>
 
                     </div>
-                    <button class="carousel-btn-right" onclick="scrollSlider('slider-arabes', 300)"><i class="fas fa-chevron-right"></i></button>
+                    <button class="carousel-btn-right" onclick="scrollSlider('slider-arabes', 300)" title="Ver más productos"><i class="fas fa-chevron-right"></i></button>
                 </div>
             </section>
 
@@ -965,7 +964,7 @@
                             </div>
                         </div>
                     </div>
-                    <button class="carousel-btn-right" onclick="scrollSlider('slider-disenador', 300)"><i class="fas fa-chevron-right"></i></button>
+                    <button class="carousel-btn-right" onclick="scrollSlider('slider-disenador', 300)" title="Ver más productos"><i class="fas fa-chevron-right"></i></button>
                 </div>
             </section>
 
@@ -986,7 +985,7 @@
                             </div>
                         </div>
                     </div>
-                    <button class="carousel-btn-right" onclick="scrollSlider('slider-nicho', 300)"><i class="fas fa-chevron-right"></i></button>
+                    <button class="carousel-btn-right" onclick="scrollSlider('slider-nicho', 300)" title="Ver más productos"><i class="fas fa-chevron-right"></i></button>
                 </div>
             </section>
 
@@ -1007,7 +1006,7 @@
                             </div>
                         </div>
                     </div>
-                    <button class="carousel-btn-right" onclick="scrollSlider('slider-celebridad', 300)"><i class="fas fa-chevron-right"></i></button>
+                    <button class="carousel-btn-right" onclick="scrollSlider('slider-celebridad', 300)" title="Ver más productos"><i class="fas fa-chevron-right"></i></button>
                 </div>
             </section>
 
@@ -1028,7 +1027,7 @@
                             </div>
                         </div>
                     </div>
-                    <button class="carousel-btn-right" onclick="scrollSlider('slider-bodymists', 300)"><i class="fas fa-chevron-right"></i></button>
+                    <button class="carousel-btn-right" onclick="scrollSlider('slider-bodymists', 300)" title="Ver más productos"><i class="fas fa-chevron-right"></i></button>
                 </div>
             </section>
 
@@ -1049,7 +1048,7 @@
                             </div>
                         </div>
                     </div>
-                    <button class="carousel-btn-right" onclick="scrollSlider('slider-masglo', 300)"><i class="fas fa-chevron-right"></i></button>
+                    <button class="carousel-btn-right" onclick="scrollSlider('slider-masglo', 300)" title="Ver más productos"><i class="fas fa-chevron-right"></i></button>
                 </div>
             </section>
 
@@ -1073,7 +1072,7 @@
                                 </div>
                             </div>
                         </div>
-                        <button class="carousel-btn-right" onclick="scrollSlider('slider-exfoliantes', 300)"><i class="fas fa-chevron-right"></i></button>
+                        <button class="carousel-btn-right" onclick="scrollSlider('slider-exfoliantes', 300)" title="Ver más productos"><i class="fas fa-chevron-right"></i></button>
                     </div>
                 </div>
 
@@ -1093,7 +1092,7 @@
                                 </div>
                             </div>
                         </div>
-                        <button class="carousel-btn-right" onclick="scrollSlider('slider-geles', 300)"><i class="fas fa-chevron-right"></i></button>
+                        <button class="carousel-btn-right" onclick="scrollSlider('slider-geles', 300)" title="Ver más productos"><i class="fas fa-chevron-right"></i></button>
                     </div>
                 </div>
 
@@ -1113,7 +1112,7 @@
                                 </div>
                             </div>
                         </div>
-                        <button class="carousel-btn-right" onclick="scrollSlider('slider-aceites', 300)"><i class="fas fa-chevron-right"></i></button>
+                        <button class="carousel-btn-right" onclick="scrollSlider('slider-aceites', 300)" title="Ver más productos"><i class="fas fa-chevron-right"></i></button>
                     </div>
                 </div>
 
