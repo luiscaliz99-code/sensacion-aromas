@@ -343,7 +343,7 @@
             font-weight: 700;
         }
 
-        /* Contenedor del Carrusel con la Flecha Visible y Flotante a la Derecha */
+        /* Contenedor del Carrusel */
         .slider-wrapper {
             position: relative;
             width: 100%;
@@ -353,7 +353,7 @@
             display: flex;
             overflow-x: auto;
             gap: 22px;
-            padding: 10px 60px 15px 5px; /* Margen derecho amplio para que la flecha no tape productos */
+            padding: 10px 60px 15px 5px;
             scroll-snap-type: x mandatory;
             scrollbar-width: thin;
             scrollbar-color: var(--primary-color) #e2e8f0;
@@ -370,39 +370,13 @@
             border-radius: 4px;
         }
 
-        /* Botón de Flecha Flotante Garantizado a la Derecha */
-        .carousel-btn-right {
-            position: absolute;
-            right: 10px;
-            top: 45%;
-            transform: translateY(-50%);
-            background-color: #ffffff;
-            color: var(--primary-color);
-            border: 2px solid var(--primary-color);
-            width: 48px;
-            height: 48px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            z-index: 50; /* Z-index alto para asegurar que siempre esté por encima de todo */
-            box-shadow: 0 4px 18px rgba(0,0,0,0.25);
-            transition: all 0.2s ease;
-            font-size: 1.3rem;
-        }
-
-        .carousel-btn-right:hover {
-            background-color: var(--primary-color);
-            color: #ffffff;
-            transform: translateY(-50%) scale(1.12);
-        }
-
+        /* Tarjeta con posición relativa para que la flecha flote exactamente en su borde derecho individual */
         .product-card {
             flex: 0 0 250px;
             background: var(--bg-card);
             border-radius: 14px;
-            overflow: hidden;
+            overflow: visible; /* Permite que la flecha sobresalga individualmente */
+            position: relative;
             box-shadow: 0 4px 15px rgba(0,0,0,0.06);
             display: flex;
             flex-direction: column;
@@ -418,6 +392,34 @@
             border-color: var(--primary-color);
         }
 
+        /* Flecha flotante individual por ítem */
+        .item-next-btn {
+            position: absolute;
+            right: -18px;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: #ffffff;
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 50;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            transition: all 0.2s ease;
+            font-size: 1.1rem;
+        }
+
+        .item-next-btn:hover {
+            background-color: var(--primary-color);
+            color: #ffffff;
+            transform: translateY(-50%) scale(1.12);
+        }
+
         .product-img-container {
             width: 100%;
             height: 220px;
@@ -428,6 +430,8 @@
             align-items: center;
             justify-content: center;
             padding: 12px;
+            border-top-left-radius: 14px;
+            border-top-right-radius: 14px;
         }
 
         .product-img-container img {
@@ -797,6 +801,7 @@
                                     <a href="https://wa.me/50583743021?text=Hola,%20quiero%20consultar%20sobre%20Bharara%20Beauty" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Pedir</a>
                                 </div>
                             </div>
+                            <button class="item-next-btn" onclick="scrollNextCard(this)" title="Siguiente producto"><i class="fas fa-chevron-right"></i></button>
                         </div>
 
                         <div class="product-card" data-name="hawas ice men">
@@ -809,6 +814,7 @@
                                     <a href="https://wa.me/50583743021?text=Hola,%20quiero%20consultar%20sobre%20Hawas%20Ice%20Men" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Pedir</a>
                                 </div>
                             </div>
+                            <button class="item-next-btn" onclick="scrollNextCard(this)" title="Siguiente producto"><i class="fas fa-chevron-right"></i></button>
                         </div>
 
                         <div class="product-card" data-name="orientica oud">
@@ -821,6 +827,7 @@
                                     <a href="https://wa.me/50583743021?text=Hola,%20quiero%20consultar%20sobre%20Orientica%20Oud" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Pedir</a>
                                 </div>
                             </div>
+                            <button class="item-next-btn" onclick="scrollNextCard(this)" title="Siguiente producto"><i class="fas fa-chevron-right"></i></button>
                         </div>
 
                         <div class="product-card" data-name="armaf odyssey bahamas">
@@ -833,9 +840,9 @@
                                     <a href="https://wa.me/50583743021?text=Hola,%20quiero%20consultar%20sobre%20Armaf%20Odyssey%20Bahamas" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Pedir</a>
                                 </div>
                             </div>
+                            <button class="item-next-btn" onclick="scrollNextCard(this)" title="Siguiente producto"><i class="fas fa-chevron-right"></i></button>
                         </div>
                     </div>
-                    <button class="carousel-btn-right" onclick="scrollSlider('slider-mas-vendidos', 300)" title="Ver más productos"><i class="fas fa-chevron-right"></i></button>
                 </div>
             </section>
 
@@ -856,6 +863,7 @@
                                     <a href="https://wa.me/50583743021?text=Hola,%20quiero%20consultar%20sobre%20Stallion%2053" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Pedir</a>
                                 </div>
                             </div>
+                            <button class="item-next-btn" onclick="scrollNextCard(this)" title="Siguiente producto"><i class="fas fa-chevron-right"></i></button>
                         </div>
 
                         <div class="product-card" data-name="armaf odyssey bahamas">
@@ -868,6 +876,7 @@
                                     <a href="https://wa.me/50583743021?text=Hola,%20quiero%20consultar%20sobre%20Armaf%20Odyssey%20Bahamas" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Pedir</a>
                                 </div>
                             </div>
+                            <button class="item-next-btn" onclick="scrollNextCard(this)" title="Siguiente producto"><i class="fas fa-chevron-right"></i></button>
                         </div>
 
                         <div class="product-card" data-name="bharara beauty">
@@ -880,6 +889,7 @@
                                     <a href="https://wa.me/50583743021?text=Hola,%20quiero%20consultar%20sobre%20Bharara%20Beauty" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Pedir</a>
                                 </div>
                             </div>
+                            <button class="item-next-btn" onclick="scrollNextCard(this)" title="Siguiente producto"><i class="fas fa-chevron-right"></i></button>
                         </div>
 
                         <div class="product-card" data-name="hawas ice men">
@@ -892,6 +902,7 @@
                                     <a href="https://wa.me/50583743021?text=Hola,%20quiero%20consultar%20sobre%20Hawas%20Ice%20Men" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Pedir</a>
                                 </div>
                             </div>
+                            <button class="item-next-btn" onclick="scrollNextCard(this)" title="Siguiente producto"><i class="fas fa-chevron-right"></i></button>
                         </div>
 
                         <div class="product-card" data-name="haway tropical">
@@ -904,6 +915,7 @@
                                     <a href="https://wa.me/50583743021?text=Hola,%20quiero%20consultar%20sobre%20Haway%20Tropical" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Pedir</a>
                                 </div>
                             </div>
+                            <button class="item-next-btn" onclick="scrollNextCard(this)" title="Siguiente producto"><i class="fas fa-chevron-right"></i></button>
                         </div>
 
                         <div class="product-card" data-name="orientica oud">
@@ -916,6 +928,7 @@
                                     <a href="https://wa.me/50583743021?text=Hola,%20quiero%20consultar%20sobre%20Orientica%20Oud" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Pedir</a>
                                 </div>
                             </div>
+                            <button class="item-next-btn" onclick="scrollNextCard(this)" title="Siguiente producto"><i class="fas fa-chevron-right"></i></button>
                         </div>
 
                         <div class="product-card" data-name="orientica royal">
@@ -928,6 +941,7 @@
                                     <a href="https://wa.me/50583743021?text=Hola,%20quiero%20consultar%20sobre%20Orientica%20Royal" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Pedir</a>
                                 </div>
                             </div>
+                            <button class="item-next-btn" onclick="scrollNextCard(this)" title="Siguiente producto"><i class="fas fa-chevron-right"></i></button>
                         </div>
 
                         <div class="product-card" data-name="orientica velvet">
@@ -940,10 +954,10 @@
                                     <a href="https://wa.me/50583743021?text=Hola,%20quiero%20consultar%20sobre%20Orientica%20Velvet" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Pedir</a>
                                 </div>
                             </div>
+                            <button class="item-next-btn" onclick="scrollNextCard(this)" title="Siguiente producto"><i class="fas fa-chevron-right"></i></button>
                         </div>
 
                     </div>
-                    <button class="carousel-btn-right" onclick="scrollSlider('slider-arabes', 300)" title="Ver más productos"><i class="fas fa-chevron-right"></i></button>
                 </div>
             </section>
 
@@ -962,9 +976,9 @@
                                     <a href="https://wa.me/50583743021?text=Hola,%20consulto%20sobre%20perfumes%20de%20diseñador" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Pedir</a>
                                 </div>
                             </div>
+                            <button class="item-next-btn" onclick="scrollNextCard(this)" title="Siguiente producto"><i class="fas fa-chevron-right"></i></button>
                         </div>
                     </div>
-                    <button class="carousel-btn-right" onclick="scrollSlider('slider-disenador', 300)" title="Ver más productos"><i class="fas fa-chevron-right"></i></button>
                 </div>
             </section>
 
@@ -983,9 +997,9 @@
                                     <a href="https://wa.me/50583743021?text=Hola,%20consulto%20sobre%20perfumes%20nicho" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Pedir</a>
                                 </div>
                             </div>
+                            <button class="item-next-btn" onclick="scrollNextCard(this)" title="Siguiente producto"><i class="fas fa-chevron-right"></i></button>
                         </div>
                     </div>
-                    <button class="carousel-btn-right" onclick="scrollSlider('slider-nicho', 300)" title="Ver más productos"><i class="fas fa-chevron-right"></i></button>
                 </div>
             </section>
 
@@ -1004,9 +1018,9 @@
                                     <a href="https://wa.me/50583743021?text=Hola,%20consulto%20sobre%20perfumes%20de%20celebridad" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Pedir</a>
                                 </div>
                             </div>
+                            <button class="item-next-btn" onclick="scrollNextCard(this)" title="Siguiente producto"><i class="fas fa-chevron-right"></i></button>
                         </div>
                     </div>
-                    <button class="carousel-btn-right" onclick="scrollSlider('slider-celebridad', 300)" title="Ver más productos"><i class="fas fa-chevron-right"></i></button>
                 </div>
             </section>
 
@@ -1025,9 +1039,9 @@
                                     <a href="https://wa.me/50583743021?text=Hola,%20quiero%20ver%20body%20mists" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Pedir</a>
                                 </div>
                             </div>
+                            <button class="item-next-btn" onclick="scrollNextCard(this)" title="Siguiente producto"><i class="fas fa-chevron-right"></i></button>
                         </div>
                     </div>
-                    <button class="carousel-btn-right" onclick="scrollSlider('slider-bodymists', 300)" title="Ver más productos"><i class="fas fa-chevron-right"></i></button>
                 </div>
             </section>
 
@@ -1046,9 +1060,9 @@
                                     <a href="https://wa.me/50583743021?text=Hola,%20quiero%20consultar%20sobre%20esmaltes%20Masglo" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Pedir</a>
                                 </div>
                             </div>
+                            <button class="item-next-btn" onclick="scrollNextCard(this)" title="Siguiente producto"><i class="fas fa-chevron-right"></i></button>
                         </div>
                     </div>
-                    <button class="carousel-btn-right" onclick="scrollSlider('slider-masglo', 300)" title="Ver más productos"><i class="fas fa-chevron-right"></i></button>
                 </div>
             </section>
 
@@ -1070,9 +1084,9 @@
                                         <a href="https://wa.me/50583743021?text=Hola,%20quiero%20ver%20exfoliantes%20corporales" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Pedir</a>
                                     </div>
                                 </div>
+                                <button class="item-next-btn" onclick="scrollNextCard(this)" title="Siguiente producto"><i class="fas fa-chevron-right"></i></button>
                             </div>
                         </div>
-                        <button class="carousel-btn-right" onclick="scrollSlider('slider-exfoliantes', 300)" title="Ver más productos"><i class="fas fa-chevron-right"></i></button>
                     </div>
                 </div>
 
@@ -1090,9 +1104,9 @@
                                         <a href="https://wa.me/50583743021?text=Hola,%20quiero%20ver%20gel%20de%20duchas" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Pedir</a>
                                     </div>
                                 </div>
+                                <button class="item-next-btn" onclick="scrollNextCard(this)" title="Siguiente producto"><i class="fas fa-chevron-right"></i></button>
                             </div>
                         </div>
-                        <button class="carousel-btn-right" onclick="scrollSlider('slider-geles', 300)" title="Ver más productos"><i class="fas fa-chevron-right"></i></button>
                     </div>
                 </div>
 
@@ -1110,9 +1124,9 @@
                                         <a href="https://wa.me/50583743021?text=Hola,%20quiero%20ver%20aceites%20corporales" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Pedir</a>
                                     </div>
                                 </div>
+                                <button class="item-next-btn" onclick="scrollNextCard(this)" title="Siguiente producto"><i class="fas fa-chevron-right"></i></button>
                             </div>
                         </div>
-                        <button class="carousel-btn-right" onclick="scrollSlider('slider-aceites', 300)" title="Ver más productos"><i class="fas fa-chevron-right"></i></button>
                     </div>
                 </div>
 
@@ -1196,10 +1210,14 @@
             parent.classList.toggle('open');
         }
 
-        function scrollSlider(sliderId, distance) {
-            let slider = document.getElementById(sliderId);
-            if (slider) {
-                slider.scrollBy({ left: distance, behavior: 'smooth' });
+        /* Función inteligente que desliza al siguiente ítem exacto de manera individual */
+        function scrollNextCard(button) {
+            let card = button.closest('.product-card');
+            let container = card.closest('.slider-container');
+            if (card && container) {
+                // Calcula el ancho exacto de la tarjeta más el espacio de separación (gap = 22px)
+                let cardWidth = card.offsetWidth + 22;
+                container.scrollBy({ left: cardWidth, behavior: 'smooth' });
             }
         }
 
