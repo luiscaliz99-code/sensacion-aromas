@@ -162,9 +162,11 @@
         .cart-icon-container {
             position: relative;
             color: #ffffff;
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             cursor: pointer;
             text-decoration: none;
+            background: transparent;
+            border: none;
         }
 
         .cart-badge {
@@ -343,17 +345,12 @@
             font-weight: 700;
         }
 
-        /* Contenedor del Carrusel */
-        .slider-wrapper {
-            position: relative;
-            width: 100%;
-        }
-
+        /* Carrusel / Slider limpio */
         .slider-container {
             display: flex;
             overflow-x: auto;
             gap: 22px;
-            padding: 10px 60px 15px 5px;
+            padding: 10px 5px 15px 5px;
             scroll-snap-type: x mandatory;
             scrollbar-width: thin;
             scrollbar-color: var(--primary-color) #e2e8f0;
@@ -370,13 +367,11 @@
             border-radius: 4px;
         }
 
-        /* Tarjeta con posición relativa para que la flecha flote exactamente en su borde derecho individual */
         .product-card {
             flex: 0 0 250px;
             background: var(--bg-card);
             border-radius: 14px;
-            overflow: visible; /* Permite que la flecha sobresalga individualmente */
-            position: relative;
+            overflow: hidden;
             box-shadow: 0 4px 15px rgba(0,0,0,0.06);
             display: flex;
             flex-direction: column;
@@ -392,34 +387,6 @@
             border-color: var(--primary-color);
         }
 
-        /* Flecha flotante individual por ítem */
-        .item-next-btn {
-            position: absolute;
-            right: -18px;
-            top: 50%;
-            transform: translateY(-50%);
-            background-color: #ffffff;
-            color: var(--primary-color);
-            border: 2px solid var(--primary-color);
-            width: 42px;
-            height: 42px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            z-index: 50;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-            transition: all 0.2s ease;
-            font-size: 1.1rem;
-        }
-
-        .item-next-btn:hover {
-            background-color: var(--primary-color);
-            color: #ffffff;
-            transform: translateY(-50%) scale(1.12);
-        }
-
         .product-img-container {
             width: 100%;
             height: 220px;
@@ -430,8 +397,6 @@
             align-items: center;
             justify-content: center;
             padding: 12px;
-            border-top-left-radius: 14px;
-            border-top-right-radius: 14px;
         }
 
         .product-img-container img {
@@ -469,9 +434,15 @@
 
         .product-footer {
             display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-top: auto;
+        }
+
+        .product-price-row {
+            display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-top: auto;
         }
 
         .product-price {
@@ -484,22 +455,215 @@
         .btn-order {
             background-color: var(--whatsapp-color);
             color: white;
-            padding: 6px 14px;
-            border-radius: 8px;
+            padding: 5px 10px;
+            border-radius: 6px;
             text-decoration: none;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             font-weight: 500;
             display: inline-flex;
             align-items: center;
-            gap: 6px;
+            gap: 5px;
             transition: all 0.2s;
-            box-shadow: 0 2px 6px rgba(37, 211, 102, 0.2);
             font-family: 'Montserrat', sans-serif;
         }
 
         .btn-order:hover {
             background-color: #1ebd56;
-            transform: scale(1.05);
+        }
+
+        .btn-add-cart {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 7px 12px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            transition: background 0.2s, transform 0.2s;
+            width: 100%;
+        }
+
+        .btn-add-cart:hover {
+            background-color: var(--primary-dark);
+            transform: scale(1.02);
+        }
+
+        /* Panel Lateral del Carrito */
+        .cart-drawer-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 1200;
+            display: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .cart-drawer-overlay.open {
+            display: block;
+            opacity: 1;
+        }
+
+        .cart-drawer {
+            position: fixed;
+            top: 0;
+            right: -400px;
+            width: 380px;
+            max-width: 100%;
+            height: 100%;
+            background: #ffffff;
+            z-index: 1300;
+            box-shadow: -5px 0 25px rgba(0,0,0,0.2);
+            transition: right 0.3s ease-in-out;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .cart-drawer.open {
+            right: 0;
+        }
+
+        .cart-header {
+            background: var(--bg-dark);
+            color: #ffffff;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(197, 155, 39, 0.3);
+        }
+
+        .cart-header h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.4rem;
+            color: var(--gold-color);
+        }
+
+        .close-cart-btn {
+            background: transparent;
+            border: none;
+            color: #ffffff;
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+
+        .cart-body {
+            padding: 20px;
+            overflow-y: auto;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 12px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .cart-item-info {
+            flex: 1;
+        }
+
+        .cart-item-title {
+            font-weight: 700;
+            font-size: 0.95rem;
+            color: var(--text-dark);
+            margin-bottom: 3px;
+        }
+
+        .cart-item-price {
+            font-size: 0.85rem;
+            color: var(--text-light);
+        }
+
+        .cart-item-controls {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .qty-btn {
+            background: #eee;
+            border: none;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .qty-btn:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .cart-item-qty {
+            font-weight: 600;
+            font-size: 0.9rem;
+            width: 20px;
+            text-align: center;
+        }
+
+        .remove-item {
+            color: #ff4d4d;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 0.9rem;
+            margin-left: 8px;
+        }
+
+        .cart-footer {
+            padding: 20px;
+            background: #f9f9f9;
+            border-top: 1px solid #ddd;
+        }
+
+        .cart-total {
+            display: flex;
+            justify-content: space-between;
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--text-dark);
+        }
+
+        .btn-whatsapp-checkout {
+            background-color: var(--whatsapp-color);
+            color: white;
+            border: none;
+            width: 100%;
+            padding: 12px;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
+            transition: background 0.2s;
+            text-decoration: none;
+        }
+
+        .btn-whatsapp-checkout:hover {
+            background-color: #1ebd56;
         }
 
         #no-results {
@@ -725,16 +889,37 @@
         </ul>
 
         <div class="header-right-actions">
-            <a href="#mas-vendidos" class="cart-icon-container" title="Carrito">
+            <button class="cart-icon-container" onclick="toggleCartDrawer()" title="Ver Carrito">
                 <i class="fas fa-shopping-cart"></i>
-                <span class="cart-badge">0</span>
-            </a>
+                <span class="cart-badge" id="cartBadge">0</span>
+            </button>
             <div class="header-social">
                 <a href="https://www.facebook.com/profile.php?id=61576096020955" target="_blank"><i class="fab fa-facebook-f"></i></a>
                 <a href="https://www.instagram.com/sensancion_a?stkn=OXJqb3ZqdTdha3g5" target="_blank"><i class="fab fa-instagram"></i></a>
             </div>
         </div>
     </header>
+
+    <!-- Drawer / Modal del Carrito de Compras -->
+    <div class="cart-drawer-overlay" id="cartOverlay" onclick="toggleCartDrawer()"></div>
+    <div class="cart-drawer" id="cartDrawer">
+        <div class="cart-header">
+            <h3>Tu Carrito de Pedidos</h3>
+            <button class="close-cart-btn" onclick="toggleCartDrawer()"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="cart-body" id="cartItemsContainer">
+            <p style="color: var(--text-light); text-align: center; margin-top: 30px;">Tu carrito está vacío.</p>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total estimado:</span>
+                <span id="cartTotalText">$0.00</span>
+            </div>
+            <button class="btn-whatsapp-checkout" onclick="checkoutWhatsApp()">
+                <i class="fab fa-whatsapp" style="font-size: 1.2rem;"></i> Enviar Pedido por WhatsApp
+            </button>
+        </div>
+    </div>
 
     <div class="app-layout">
         
@@ -789,58 +974,64 @@
                 <h2 class="category-title">Los Más Vendidos</h2>
                 <p style="color: var(--text-light); font-size: 0.9rem; margin-bottom: 1.2rem;">Explora los perfumes más vendidos de nuestra tienda deslizando hacia los lados</p>
                 
-                <div class="slider-wrapper">
-                    <div class="slider-container" id="slider-mas-vendidos">
-                        <div class="product-card" data-name="bharara beauty">
-                            <div class="product-img-container"><img src="bharara_beauty.webp" alt="Bharara Beauty"></div>
-                            <div class="product-info">
-                                <h3 class="product-name">Bharara Beauty</h3>
-                                <p class="product-desc">Notas aromáticas y alta fijación.</p>
-                                <div class="product-footer">
-                                    <span class="product-price">Consultar</span>
-                                    <a href="https://wa.me/50583743021?text=Hola,%20quiero%20consultar%20sobre%20Bharara%20Beauty" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Pedir</a>
+                <div class="slider-container">
+                    <div class="product-card" data-name="bharara beauty" data-price="45.00">
+                        <div class="product-img-container"><img src="bharara_beauty.webp" alt="Bharara Beauty"></div>
+                        <div class="product-info">
+                            <h3 class="product-name">Bharara Beauty</h3>
+                            <p class="product-desc">Notas aromáticas y alta fijación.</p>
+                            <div class="product-footer">
+                                <div class="product-price-row">
+                                    <span class="product-price">$45.00</span>
+                                    <a href="https://wa.me/50583743021?text=Hola,%20quiero%20consultar%20sobre%20Bharara%20Beauty" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Consultar</a>
                                 </div>
+                                <button class="btn-add-cart" onclick="addToCart('Bharara Beauty', 45.00)"><i class="fas fa-cart-plus"></i> Agregar al Carrito</button>
                             </div>
-                            <button class="item-next-btn" onclick="scrollNextCard(this)" title="Siguiente producto"><i class="fas fa-chevron-right"></i></button>
                         </div>
+                    </div>
 
-                        <div class="product-card" data-name="hawas ice men">
-                            <div class="product-img-container"><img src="hawas-ice-men_1000x.webp" alt="Hawas Ice Men"></div>
-                            <div class="product-info">
-                                <h3 class="product-name">Hawas Ice Men</h3>
-                                <p class="product-desc">Notas ultra frescas y vibrantes.</p>
-                                <div class="product-footer">
-                                    <span class="product-price">Consultar</span>
-                                    <a href="https://wa.me/50583743021?text=Hola,%20quiero%20consultar%20sobre%20Hawas%20Ice%20Men" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Pedir</a>
+                    <div class="product-card" data-name="hawas ice men" data-price="50.00">
+                        <div class="product-img-container"><img src="hawas-ice-men_1000x.webp" alt="Hawas Ice Men"></div>
+                        <div class="product-info">
+                            <h3 class="product-name">Hawas Ice Men</h3>
+                            <p class="product-desc">Notas ultra frescas y vibrantes.</p>
+                            <div class="product-footer">
+                                <div class="product-price-row">
+                                    <span class="product-price">$50.00</span>
+                                    <a href="https://wa.me/50583743021?text=Hola,%20quiero%20consultar%20sobre%20Hawas%20Ice%20Men" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Consultar</a>
                                 </div>
+                                <button class="btn-add-cart" onclick="addToCart('Hawas Ice Men', 50.00)"><i class="fas fa-cart-plus"></i> Agregar al Carrito</button>
                             </div>
-                            <button class="item-next-btn" onclick="scrollNextCard(this)" title="Siguiente producto"><i class="fas fa-chevron-right"></i></button>
                         </div>
+                    </div>
 
-                        <div class="product-card" data-name="orientica oud">
-                            <div class="product-img-container"><img src="orientica-oud-.webp" alt="Orientica Oud"></div>
-                            <div class="product-info">
-                                <h3 class="product-name">Orientica Oud</h3>
-                                <p class="product-desc">Elegancia y misterio oriental.</p>
-                                <div class="product-footer">
-                                    <span class="product-price">Consultar</span>
-                                    <a href="https://wa.me/50583743021?text=Hola,%20quiero%20consultar%20sobre%20Orientica%20Oud" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Pedir</a>
+                    <div class="product-card" data-name="orientica oud" data-price="55.00">
+                        <div class="product-img-container"><img src="orientica-oud-.webp" alt="Orientica Oud"></div>
+                        <div class="product-info">
+                            <h3 class="product-name">Orientica Oud</h3>
+                            <p class="product-desc">Elegancia y misterio oriental.</p>
+                            <div class="product-footer">
+                                <div class="product-price-row">
+                                    <span class="product-price">$55.00</span>
+                                    <a href="https://wa.me/50583743021?text=Hola,%20quiero%20consultar%20sobre%20Orientica%20Oud" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Consultar</a>
                                 </div>
+                                <button class="btn-add-cart" onclick="addToCart('Orientica Oud', 55.00)"><i class="fas fa-cart-plus"></i> Agregar al Carrito</button>
                             </div>
-                            <button class="item-next-btn" onclick="scrollNextCard(this)" title="Siguiente producto"><i class="fas fa-chevron-right"></i></button>
                         </div>
+                    </div>
 
-                        <div class="product-card" data-name="armaf odyssey bahamas">
-                            <div class="product-img-container"><img src="armaf-odyssey-bahamas_1000x.webp" alt="Armaf Odyssey Bahamas"></div>
-                            <div class="product-info">
-                                <h3 class="product-name">Armaf Odyssey Bahamas</h3>
-                                <p class="product-desc">Aroma tropical fresco y duradero.</p>
-                                <div class="product-footer">
-                                    <span class="product-price">Consultar</span>
-                                    <a href="https://wa.me/50583743021?text=Hola,%20quiero%20consultar%20sobre%20Armaf%20Odyssey%20Bahamas" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Pedir</a>
+                    <div class="product-card" data-name="armaf odyssey bahamas" data-price="42.00">
+                        <div class="product-img-container"><img src="armaf-odyssey-bahamas_1000x.webp" alt="Armaf Odyssey Bahamas"></div>
+                        <div class="product-info">
+                            <h3 class="product-name">Armaf Odyssey Bahamas</h3>
+                            <p class="product-desc">Aroma tropical fresco y duradero.</p>
+                            <div class="product-footer">
+                                <div class="product-price-row">
+                                    <span class="product-price">$42.00</span>
+                                    <a href="https://wa.me/50583743021?text=Hola,%20quiero%20consultar%20sobre%20Armaf%20Odyssey%20Bahamas" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Consultar</a>
                                 </div>
+                                <button class="btn-add-cart" onclick="addToCart('Armaf Odyssey Bahamas', 42.00)"><i class="fas fa-cart-plus"></i> Agregar al Carrito</button>
                             </div>
-                            <button class="item-next-btn" onclick="scrollNextCard(this)" title="Siguiente producto"><i class="fas fa-chevron-right"></i></button>
                         </div>
                     </div>
                 </div>
@@ -849,134 +1040,147 @@
             <!-- 1. PERFUMERÍA ÁRABE -->
             <section id="arabes" class="category-section search-section">
                 <h2 class="category-title">Perfumería Árabe</h2>
-                
-                <div class="slider-wrapper">
-                    <div class="slider-container" id="slider-arabes">
-                        
-                        <div class="product-card" data-name="stallion 53">
-                            <div class="product-img-container"><img src="STALLION-53_1500x.webp" alt="Stallion 53"></div>
-                            <div class="product-info">
-                                <h3 class="product-name">Stallion 53</h3>
-                                <p class="product-desc">Exclusiva fragancia con gran carácter y fijación.</p>
-                                <div class="product-footer">
-                                    <span class="product-price">Consultar</span>
-                                    <a href="https://wa.me/50583743021?text=Hola,%20quiero%20consultar%20sobre%20Stallion%2053" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Pedir</a>
+                <div class="slider-container">
+                    
+                    <div class="product-card" data-name="stallion 53" data-price="60.00">
+                        <div class="product-img-container"><img src="STALLION-53_1500x.webp" alt="Stallion 53"></div>
+                        <div class="product-info">
+                            <h3 class="product-name">Stallion 53</h3>
+                            <p class="product-desc">Exclusiva fragancia con gran carácter y fijación.</p>
+                            <div class="product-footer">
+                                <div class="product-price-row">
+                                    <span class="product-price">$60.00</span>
+                                    <a href="https://wa.me/50583743021?text=Hola,%20quiero%20consultar%20sobre%20Stallion%2053" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Consultar</a>
                                 </div>
+                                <button class="btn-add-cart" onclick="addToCart('Stallion 53', 60.00)"><i class="fas fa-cart-plus"></i> Agregar al Carrito</button>
                             </div>
-                            <button class="item-next-btn" onclick="scrollNextCard(this)" title="Siguiente producto"><i class="fas fa-chevron-right"></i></button>
                         </div>
-
-                        <div class="product-card" data-name="armaf odyssey bahamas">
-                            <div class="product-img-container"><img src="armaf-odyssey-bahamas_1000x.webp" alt="Armaf Odyssey Bahamas"></div>
-                            <div class="product-info">
-                                <h3 class="product-name">Armaf Odyssey Bahamas</h3>
-                                <p class="product-desc">Notas tropicales, frescas y de alta proyección.</p>
-                                <div class="product-footer">
-                                    <span class="product-price">Consultar</span>
-                                    <a href="https://wa.me/50583743021?text=Hola,%20quiero%20consultar%20sobre%20Armaf%20Odyssey%20Bahamas" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Pedir</a>
-                                </div>
-                            </div>
-                            <button class="item-next-btn" onclick="scrollNextCard(this)" title="Siguiente producto"><i class="fas fa-chevron-right"></i></button>
-                        </div>
-
-                        <div class="product-card" data-name="bharara beauty">
-                            <div class="product-img-container"><img src="bharara_beauty.webp" alt="Bharara Beauty"></div>
-                            <div class="product-info">
-                                <h3 class="product-name">Bharara Beauty</h3>
-                                <p class="product-desc">Notas aromáticas y alta fijación.</p>
-                                <div class="product-footer">
-                                    <span class="product-price">Consultar</span>
-                                    <a href="https://wa.me/50583743021?text=Hola,%20quiero%20consultar%20sobre%20Bharara%20Beauty" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Pedir</a>
-                                </div>
-                            </div>
-                            <button class="item-next-btn" onclick="scrollNextCard(this)" title="Siguiente producto"><i class="fas fa-chevron-right"></i></button>
-                        </div>
-
-                        <div class="product-card" data-name="hawas ice men">
-                            <div class="product-img-container"><img src="hawas-ice-men_1000x.webp" alt="Hawas Ice Men"></div>
-                            <div class="product-info">
-                                <h3 class="product-name">Hawas Ice Men</h3>
-                                <p class="product-desc">Notas ultra frescas y vibrantes.</p>
-                                <div class="product-footer">
-                                    <span class="product-price">Consultar</span>
-                                    <a href="https://wa.me/50583743021?text=Hola,%20quiero%20consultar%20sobre%20Hawas%20Ice%20Men" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Pedir</a>
-                                </div>
-                            </div>
-                            <button class="item-next-btn" onclick="scrollNextCard(this)" title="Siguiente producto"><i class="fas fa-chevron-right"></i></button>
-                        </div>
-
-                        <div class="product-card" data-name="haway tropical">
-                            <div class="product-img-container"><img src="haway-tropical-tropical.webp" alt="Haway Tropical"></div>
-                            <div class="product-info">
-                                <h3 class="product-name">Haway Tropical</h3>
-                                <p class="product-desc">Aroma frutal, fresco y cautivador.</p>
-                                <div class="product-footer">
-                                    <span class="product-price">Consultar</span>
-                                    <a href="https://wa.me/50583743021?text=Hola,%20quiero%20consultar%20sobre%20Haway%20Tropical" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Pedir</a>
-                                </div>
-                            </div>
-                            <button class="item-next-btn" onclick="scrollNextCard(this)" title="Siguiente producto"><i class="fas fa-chevron-right"></i></button>
-                        </div>
-
-                        <div class="product-card" data-name="orientica oud">
-                            <div class="product-img-container"><img src="orientica-oud-.webp" alt="Orientica Oud"></div>
-                            <div class="product-info">
-                                <h3 class="product-name">Orientica Oud</h3>
-                                <p class="product-desc">Elegancia y misterio oriental.</p>
-                                <div class="product-footer">
-                                    <span class="product-price">Consultar</span>
-                                    <a href="https://wa.me/50583743021?text=Hola,%20quiero%20consultar%20sobre%20Orientica%20Oud" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Pedir</a>
-                                </div>
-                            </div>
-                            <button class="item-next-btn" onclick="scrollNextCard(this)" title="Siguiente producto"><i class="fas fa-chevron-right"></i></button>
-                        </div>
-
-                        <div class="product-card" data-name="orientica royal">
-                            <div class="product-img-container"><img src="orientica-royal.webp" alt="Orientica Royal"></div>
-                            <div class="product-info">
-                                <h3 class="product-name">Orientica Royal</h3>
-                                <p class="product-desc">Sofisticación y notas de lujo inigualables.</p>
-                                <div class="product-footer">
-                                    <span class="product-price">Consultar</span>
-                                    <a href="https://wa.me/50583743021?text=Hola,%20quiero%20consultar%20sobre%20Orientica%20Royal" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Pedir</a>
-                                </div>
-                            </div>
-                            <button class="item-next-btn" onclick="scrollNextCard(this)" title="Siguiente producto"><i class="fas fa-chevron-right"></i></button>
-                        </div>
-
-                        <div class="product-card" data-name="orientica velvet">
-                            <div class="product-img-container"><img src="orientica-velvet.webp" alt="Orientica Velvet"></div>
-                            <div class="product-info">
-                                <h3 class="product-name">Orientica Velvet</h3>
-                                <p class="product-desc">Textura aromática suave, cálida y envolvente.</p>
-                                <div class="product-footer">
-                                    <span class="product-price">Consultar</span>
-                                    <a href="https://wa.me/50583743021?text=Hola,%20quiero%20consultar%20sobre%20Orientica%20Velvet" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Pedir</a>
-                                </div>
-                            </div>
-                            <button class="item-next-btn" onclick="scrollNextCard(this)" title="Siguiente producto"><i class="fas fa-chevron-right"></i></button>
-                        </div>
-
                     </div>
+
+                    <div class="product-card" data-name="armaf odyssey bahamas" data-price="42.00">
+                        <div class="product-img-container"><img src="armaf-odyssey-bahamas_1000x.webp" alt="Armaf Odyssey Bahamas"></div>
+                        <div class="product-info">
+                            <h3 class="product-name">Armaf Odyssey Bahamas</h3>
+                            <p class="product-desc">Notas tropicales, frescas y de alta proyección.</p>
+                            <div class="product-footer">
+                                <div class="product-price-row">
+                                    <span class="product-price">$42.00</span>
+                                    <a href="https://wa.me/50583743021?text=Hola,%20quiero%20consultar%20sobre%20Armaf%20Odyssey%20Bahamas" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Consultar</a>
+                                </div>
+                                <button class="btn-add-cart" onclick="addToCart('Armaf Odyssey Bahamas', 42.00)"><i class="fas fa-cart-plus"></i> Agregar al Carrito</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="product-card" data-name="bharara beauty" data-price="45.00">
+                        <div class="product-img-container"><img src="bharara_beauty.webp" alt="Bharara Beauty"></div>
+                        <div class="product-info">
+                            <h3 class="product-name">Bharara Beauty</h3>
+                            <p class="product-desc">Notas aromáticas y alta fijación.</p>
+                            <div class="product-footer">
+                                <div class="product-price-row">
+                                    <span class="product-price">$45.00</span>
+                                    <a href="https://wa.me/50583743021?text=Hola,%20quiero%20consultar%20sobre%20Bharara%20Beauty" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Consultar</a>
+                                </div>
+                                <button class="btn-add-cart" onclick="addToCart('Bharara Beauty', 45.00)"><i class="fas fa-cart-plus"></i> Agregar al Carrito</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="product-card" data-name="hawas ice men" data-price="50.00">
+                        <div class="product-img-container"><img src="hawas-ice-men_1000x.webp" alt="Hawas Ice Men"></div>
+                        <div class="product-info">
+                            <h3 class="product-name">Hawas Ice Men</h3>
+                            <p class="product-desc">Notas ultra frescas y vibrantes.</p>
+                            <div class="product-footer">
+                                <div class="product-price-row">
+                                    <span class="product-price">$50.00</span>
+                                    <a href="https://wa.me/50583743021?text=Hola,%20quiero%20consultar%20sobre%20Hawas%20Ice%20Men" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Consultar</a>
+                                </div>
+                                <button class="btn-add-cart" onclick="addToCart('Hawas Ice Men', 50.00)"><i class="fas fa-cart-plus"></i> Agregar al Carrito</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="product-card" data-name="haway tropical" data-price="48.00">
+                        <div class="product-img-container"><img src="haway-tropical-tropical.webp" alt="Haway Tropical"></div>
+                        <div class="product-info">
+                            <h3 class="product-name">Haway Tropical</h3>
+                            <p class="product-desc">Aroma frutal, fresco y cautivador.</p>
+                            <div class="product-footer">
+                                <div class="product-price-row">
+                                    <span class="product-price">$48.00</span>
+                                    <a href="https://wa.me/50583743021?text=Hola,%20quiero%20consultar%20sobre%20Haway%20Tropical" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Consultar</a>
+                                </div>
+                                <button class="btn-add-cart" onclick="addToCart('Haway Tropical', 48.00)"><i class="fas fa-cart-plus"></i> Agregar al Carrito</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="product-card" data-name="orientica oud" data-price="55.00">
+                        <div class="product-img-container"><img src="orientica-oud-.webp" alt="Orientica Oud"></div>
+                        <div class="product-info">
+                            <h3 class="product-name">Orientica Oud</h3>
+                            <p class="product-desc">Elegancia y misterio oriental.</p>
+                            <div class="product-footer">
+                                <div class="product-price-row">
+                                    <span class="product-price">$55.00</span>
+                                    <a href="https://wa.me/50583743021?text=Hola,%20quiero%20consultar%20sobre%20Orientica%20Oud" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Consultar</a>
+                                </div>
+                                <button class="btn-add-cart" onclick="addToCart('Orientica Oud', 55.00)"><i class="fas fa-cart-plus"></i> Agregar al Carrito</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="product-card" data-name="orientica royal" data-price="58.00">
+                        <div class="product-img-container"><img src="orientica-royal.webp" alt="Orientica Royal"></div>
+                        <div class="product-info">
+                            <h3 class="product-name">Orientica Royal</h3>
+                            <p class="product-desc">Sofisticación y notas de lujo inigualables.</p>
+                            <div class="product-footer">
+                                <div class="product-price-row">
+                                    <span class="product-price">$58.00</span>
+                                    <a href="https://wa.me/50583743021?text=Hola,%20quiero%20consultar%20sobre%20Orientica%20Royal" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Consultar</a>
+                                </div>
+                                <button class="btn-add-cart" onclick="addToCart('Orientica Royal', 58.00)"><i class="fas fa-cart-plus"></i> Agregar al Carrito</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="product-card" data-name="orientica velvet" data-price="52.00">
+                        <div class="product-img-container"><img src="orientica-velvet.webp" alt="Orientica Velvet"></div>
+                        <div class="product-info">
+                            <h3 class="product-name">Orientica Velvet</h3>
+                            <p class="product-desc">Textura aromática suave, cálida y envolvente.</p>
+                            <div class="product-footer">
+                                <div class="product-price-row">
+                                    <span class="product-price">$52.00</span>
+                                    <a href="https://wa.me/50583743021?text=Hola,%20quiero%20consultar%20sobre%20Orientica%20Velvet" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Consultar</a>
+                                </div>
+                                <button class="btn-add-cart" onclick="addToCart('Orientica Velvet', 52.00)"><i class="fas fa-cart-plus"></i> Agregar al Carrito</button>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </section>
 
             <!-- 2. PERFUMERÍA DE DISEÑADOR -->
             <section id="disenador" class="category-section search-section">
                 <h2 class="category-title">Perfumería de Diseñador</h2>
-                <div class="slider-wrapper">
-                    <div class="slider-container" id="slider-disenador">
-                        <div class="product-card" data-name="proximamente diseñador">
-                            <div class="product-img-container"><img src="logo-tienda.png" alt="Próximamente"></div>
-                            <div class="product-info">
-                                <h3 class="product-name">Próximamente</h3>
-                                <p class="product-desc">Nuevas fragancias de diseñador en camino.</p>
-                                <div class="product-footer">
+                <div class="slider-container">
+                    <div class="product-card" data-name="proximamente diseñador" data-price="0.00">
+                        <div class="product-img-container"><img src="logo-tienda.png" alt="Próximamente"></div>
+                        <div class="product-info">
+                            <h3 class="product-name">Próximamente</h3>
+                            <p class="product-desc">Nuevas fragancias de diseñador en camino.</p>
+                            <div class="product-footer">
+                                <div class="product-price-row">
                                     <span class="product-price">Consultar</span>
-                                    <a href="https://wa.me/50583743021?text=Hola,%20consulto%20sobre%20perfumes%20de%20diseñador" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Pedir</a>
+                                    <a href="https://wa.me/50583743021?text=Hola,%20consulto%20sobre%20perfumes%20de%20diseñador" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Consultar</a>
                                 </div>
+                                <button class="btn-add-cart" onclick="addToCart('Próximamente Diseñador', 0.00)"><i class="fas fa-cart-plus"></i> Agregar al Carrito</button>
                             </div>
-                            <button class="item-next-btn" onclick="scrollNextCard(this)" title="Siguiente producto"><i class="fas fa-chevron-right"></i></button>
                         </div>
                     </div>
                 </div>
@@ -985,19 +1189,19 @@
             <!-- 3. PERFUMERÍA NICHO -->
             <section id="nicho" class="category-section search-section">
                 <h2 class="category-title">Perfumería Nicho</h2>
-                <div class="slider-wrapper">
-                    <div class="slider-container" id="slider-nicho">
-                        <div class="product-card" data-name="proximamente nicho">
-                            <div class="product-img-container"><img src="logo-tienda.png" alt="Próximamente"></div>
-                            <div class="product-info">
-                                <h3 class="product-name">Próximamente</h3>
-                                <p class="product-desc">Colección de alta perfumería exclusiva.</p>
-                                <div class="product-footer">
+                <div class="slider-container">
+                    <div class="product-card" data-name="proximamente nicho" data-price="0.00">
+                        <div class="product-img-container"><img src="logo-tienda.png" alt="Próximamente"></div>
+                        <div class="product-info">
+                            <h3 class="product-name">Próximamente</h3>
+                            <p class="product-desc">Colección de alta perfumería exclusiva.</p>
+                            <div class="product-footer">
+                                <div class="product-price-row">
                                     <span class="product-price">Consultar</span>
-                                    <a href="https://wa.me/50583743021?text=Hola,%20consulto%20sobre%20perfumes%20nicho" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Pedir</a>
+                                    <a href="https://wa.me/50583743021?text=Hola,%20consulto%20sobre%20perfumes%20nicho" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Consultar</a>
                                 </div>
+                                <button class="btn-add-cart" onclick="addToCart('Próximamente Nicho', 0.00)"><i class="fas fa-cart-plus"></i> Agregar al Carrito</button>
                             </div>
-                            <button class="item-next-btn" onclick="scrollNextCard(this)" title="Siguiente producto"><i class="fas fa-chevron-right"></i></button>
                         </div>
                     </div>
                 </div>
@@ -1006,19 +1210,19 @@
             <!-- 4. PERFUMERÍA DE CELEBRIDAD -->
             <section id="celebridad" class="category-section search-section">
                 <h2 class="category-title">Perfumería de Celebridad</h2>
-                <div class="slider-wrapper">
-                    <div class="slider-container" id="slider-celebridad">
-                        <div class="product-card" data-name="proximamente celebridad">
-                            <div class="product-img-container"><img src="logo-tienda.png" alt="Próximamente"></div>
-                            <div class="product-info">
-                                <h3 class="product-name">Próximamente</h3>
-                                <p class="product-desc">Fragancias de tus artistas favoritos.</p>
-                                <div class="product-footer">
+                <div class="slider-container">
+                    <div class="product-card" data-name="proximamente celebridad" data-price="0.00">
+                        <div class="product-img-container"><img src="logo-tienda.png" alt="Próximamente"></div>
+                        <div class="product-info">
+                            <h3 class="product-name">Próximamente</h3>
+                            <p class="product-desc">Fragancias de tus artistas favoritos.</p>
+                            <div class="product-footer">
+                                <div class="product-price-row">
                                     <span class="product-price">Consultar</span>
-                                    <a href="https://wa.me/50583743021?text=Hola,%20consulto%20sobre%20perfumes%20de%20celebridad" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Pedir</a>
+                                    <a href="https://wa.me/50583743021?text=Hola,%20consulto%20sobre%20perfumes%20de%20celebridad" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Consultar</a>
                                 </div>
+                                <button class="btn-add-cart" onclick="addToCart('Próximamente Celebridad', 0.00)"><i class="fas fa-cart-plus"></i> Agregar al Carrito</button>
                             </div>
-                            <button class="item-next-btn" onclick="scrollNextCard(this)" title="Siguiente producto"><i class="fas fa-chevron-right"></i></button>
                         </div>
                     </div>
                 </div>
@@ -1027,19 +1231,19 @@
             <!-- 5. BODY MISTS -->
             <section id="bodymists" class="category-section search-section">
                 <h2 class="category-title">Body Mists</h2>
-                <div class="slider-wrapper">
-                    <div class="slider-container" id="slider-bodymists">
-                        <div class="product-card" data-name="victoria secret bath body works body mist">
-                            <div class="product-img-container"><img src="logo-tienda.png" alt="Próximamente"></div>
-                            <div class="product-info">
-                                <h3 class="product-name">Colección Body Mists</h3>
-                                <p class="product-desc">Victoria's Secret, Bath & Body Works y más.</p>
-                                <div class="product-footer">
-                                    <span class="product-price">Consultar</span>
-                                    <a href="https://wa.me/50583743021?text=Hola,%20quiero%20ver%20body%20mists" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Pedir</a>
+                <div class="slider-container">
+                    <div class="product-card" data-name="victoria secret bath body works body mist" data-price="25.00">
+                        <div class="product-img-container"><img src="logo-tienda.png" alt="Próximamente"></div>
+                        <div class="product-info">
+                            <h3 class="product-name">Colección Body Mists</h3>
+                            <p class="product-desc">Victoria's Secret, Bath & Body Works y más.</p>
+                            <div class="product-footer">
+                                <div class="product-price-row">
+                                    <span class="product-price">$25.00</span>
+                                    <a href="https://wa.me/50583743021?text=Hola,%20quiero%20ver%20body%20mists" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Consultar</a>
                                 </div>
+                                <button class="btn-add-cart" onclick="addToCart('Colección Body Mists', 25.00)"><i class="fas fa-cart-plus"></i> Agregar al Carrito</button>
                             </div>
-                            <button class="item-next-btn" onclick="scrollNextCard(this)" title="Siguiente producto"><i class="fas fa-chevron-right"></i></button>
                         </div>
                     </div>
                 </div>
@@ -1048,19 +1252,19 @@
             <!-- 6. ESMALTES COLOMBIANOS MASGLO -->
             <section id="masglo" class="category-section search-section">
                 <h2 class="category-title">Esmaltes Colombianos Masglo</h2>
-                <div class="slider-wrapper">
-                    <div class="slider-container" id="slider-masglo">
-                        <div class="product-card" data-name="masglo esmalte base top coat">
-                            <div class="product-img-container"><img src="logo-tienda.png" alt="Próximamente"></div>
-                            <div class="product-info">
-                                <h3 class="product-name">Línea Masglo</h3>
-                                <p class="product-desc">Esmaltes, bases fortalecedoras y top coats.</p>
-                                <div class="product-footer">
-                                    <span class="product-price">Consultar</span>
-                                    <a href="https://wa.me/50583743021?text=Hola,%20quiero%20consultar%20sobre%20esmaltes%20Masglo" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Pedir</a>
+                <div class="slider-container">
+                    <div class="product-card" data-name="masglo esmalte base top coat" data-price="12.00">
+                        <div class="product-img-container"><img src="logo-tienda.png" alt="Próximamente"></div>
+                        <div class="product-info">
+                            <h3 class="product-name">Línea Masglo</h3>
+                            <p class="product-desc">Esmaltes, bases fortalecedoras y top coats.</p>
+                            <div class="product-footer">
+                                <div class="product-price-row">
+                                    <span class="product-price">$12.00</span>
+                                    <a href="https://wa.me/50583743021?text=Hola,%20quiero%20consultar%20sobre%20esmaltes%20Masglo" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Consultar</a>
                                 </div>
+                                <button class="btn-add-cart" onclick="addToCart('Línea Masglo', 12.00)"><i class="fas fa-cart-plus"></i> Agregar al Carrito</button>
                             </div>
-                            <button class="item-next-btn" onclick="scrollNextCard(this)" title="Siguiente producto"><i class="fas fa-chevron-right"></i></button>
                         </div>
                     </div>
                 </div>
@@ -1072,19 +1276,19 @@
                 
                 <div id="exfoliantes" style="margin-bottom: 2.5rem; scroll-margin-top: 90px;">
                     <h3 style="font-size: 1.3rem; color: var(--primary-dark); margin-bottom: 1rem; font-family: 'Cormorant Garamond', serif; font-weight: 700;"><i class="fas fa-spa"></i> Exfoliantes para el cuerpo</h3>
-                    <div class="slider-wrapper">
-                        <div class="slider-container" id="slider-exfoliantes">
-                            <div class="product-card" data-name="exfoliante corporal scrub">
-                                <div class="product-img-container"><img src="logo-tienda.png" alt="Exfoliantes"></div>
-                                <div class="product-info">
-                                    <h3 class="product-name">Exfoliantes Corporales</h3>
-                                    <p class="product-desc">Suavidad y renovación para tu piel.</p>
-                                    <div class="product-footer">
-                                        <span class="product-price">Consultar</span>
-                                        <a href="https://wa.me/50583743021?text=Hola,%20quiero%20ver%20exfoliantes%20corporales" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Pedir</a>
+                    <div class="slider-container">
+                        <div class="product-card" data-name="exfoliante corporal scrub" data-price="20.00">
+                            <div class="product-img-container"><img src="logo-tienda.png" alt="Exfoliantes"></div>
+                            <div class="product-info">
+                                <h3 class="product-name">Exfoliantes Corporales</h3>
+                                <p class="product-desc">Suavidad y renovación para tu piel.</p>
+                                <div class="product-footer">
+                                    <div class="product-price-row">
+                                        <span class="product-price">$20.00</span>
+                                        <a href="https://wa.me/50583743021?text=Hola,%20quiero%20ver%20exfoliantes%20corporales" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Consultar</a>
                                     </div>
+                                    <button class="btn-add-cart" onclick="addToCart('Exfoliantes Corporales', 20.00)"><i class="fas fa-cart-plus"></i> Agregar al Carrito</button>
                                 </div>
-                                <button class="item-next-btn" onclick="scrollNextCard(this)" title="Siguiente producto"><i class="fas fa-chevron-right"></i></button>
                             </div>
                         </div>
                     </div>
@@ -1092,19 +1296,19 @@
 
                 <div id="geles" style="margin-bottom: 2.5rem; scroll-margin-top: 90px;">
                     <h3 style="font-size: 1.3rem; color: var(--primary-dark); margin-bottom: 1rem; font-family: 'Cormorant Garamond', serif; font-weight: 700;"><i class="fas fa-shower"></i> Gel de duchas</h3>
-                    <div class="slider-wrapper">
-                        <div class="slider-container" id="slider-geles">
-                            <div class="product-card" data-name="gel de duchas shower gel">
-                                <div class="product-img-container"><img src="logo-tienda.png" alt="Gel de duchas"></div>
-                                <div class="product-info">
-                                    <h3 class="product-name">Geles de Ducha</h3>
-                                    <p class="product-desc">Limpieza perfumada y espumosa.</p>
-                                    <div class="product-footer">
-                                        <span class="product-price">Consultar</span>
-                                        <a href="https://wa.me/50583743021?text=Hola,%20quiero%20ver%20gel%20de%20duchas" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Pedir</a>
+                    <div class="slider-container">
+                        <div class="product-card" data-name="gel de duchas shower gel" data-price="18.00">
+                            <div class="product-img-container"><img src="logo-tienda.png" alt="Gel de duchas"></div>
+                            <div class="product-info">
+                                <h3 class="product-name">Geles de Ducha</h3>
+                                <p class="product-desc">Limpieza perfumada y espumosa.</p>
+                                <div class="product-footer">
+                                    <div class="product-price-row">
+                                        <span class="product-price">$18.00</span>
+                                        <a href="https://wa.me/50583743021?text=Hola,%20quiero%20ver%20gel%20de%20duchas" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Consultar</a>
                                     </div>
+                                    <button class="btn-add-cart" onclick="addToCart('Geles de Ducha', 18.00)"><i class="fas fa-cart-plus"></i> Agregar al Carrito</button>
                                 </div>
-                                <button class="item-next-btn" onclick="scrollNextCard(this)" title="Siguiente producto"><i class="fas fa-chevron-right"></i></button>
                             </div>
                         </div>
                     </div>
@@ -1112,19 +1316,19 @@
 
                 <div id="aceites" style="margin-bottom: 2rem; scroll-margin-top: 90px;">
                     <h3 style="font-size: 1.3rem; color: var(--primary-dark); margin-bottom: 1rem; font-family: 'Cormorant Garamond', serif; font-weight: 700;"><i class="fas fa-oil-can"></i> Aceites corporales</h3>
-                    <div class="slider-wrapper">
-                        <div class="slider-container" id="slider-aceites">
-                            <div class="product-card" data-name="aceite corporal oil">
-                                <div class="product-img-container"><img src="logo-tienda.png" alt="Aceites corporales"></div>
-                                <div class="product-info">
-                                    <h3 class="product-name">Aceites Corporales</h3>
-                                    <p class="product-desc">Hidratación profunda y brillo sedoso.</p>
-                                    <div class="product-footer">
-                                        <span class="product-price">Consultar</span>
-                                        <a href="https://wa.me/50583743021?text=Hola,%20quiero%20ver%20aceites%20corporales" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Pedir</a>
+                    <div class="slider-container">
+                        <div class="product-card" data-name="aceite corporal oil" data-price="22.00">
+                            <div class="product-img-container"><img src="logo-tienda.png" alt="Aceites corporales"></div>
+                            <div class="product-info">
+                                <h3 class="product-name">Aceites Corporales</h3>
+                                <p class="product-desc">Hidratación profunda y brillo sedoso.</p>
+                                <div class="product-footer">
+                                    <div class="product-price-row">
+                                        <span class="product-price">$22.00</span>
+                                        <a href="https://wa.me/50583743021?text=Hola,%20quiero%20ver%20aceites%20corporales" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Consultar</a>
                                     </div>
+                                    <button class="btn-add-cart" onclick="addToCart('Aceites Corporales', 22.00)"><i class="fas fa-cart-plus"></i> Agregar al Carrito</button>
                                 </div>
-                                <button class="item-next-btn" onclick="scrollNextCard(this)" title="Siguiente producto"><i class="fas fa-chevron-right"></i></button>
                             </div>
                         </div>
                     </div>
@@ -1194,8 +1398,10 @@
         </div>
     </footer>
 
-    <!-- Scripts Interactivos -->
+    <!-- Scripts del Carrito de Compras -->
     <script>
+        let cart = [];
+
         function toggleSidebar() {
             if (window.innerWidth <= 900) {
                 document.body.classList.toggle('sidebar-open');
@@ -1210,49 +1416,103 @@
             parent.classList.toggle('open');
         }
 
-        /* Función inteligente que desliza al siguiente ítem exacto de manera individual */
-        function scrollNextCard(button) {
-            let card = button.closest('.product-card');
-            let container = card.closest('.slider-container');
-            if (card && container) {
-                // Calcula el ancho exacto de la tarjeta más el espacio de separación (gap = 22px)
-                let cardWidth = card.offsetWidth + 22;
-                container.scrollBy({ left: cardWidth, behavior: 'smooth' });
-            }
+        function toggleCartDrawer() {
+            document.getElementById('cartDrawer').classList.toggle('open');
+            document.getElementById('cartOverlay').classList.toggle('open');
         }
 
-        function filterProducts() {
-            let input = document.getElementById('searchInput').value.toLowerCase();
-            let cards = document.querySelectorAll('.product-card');
-            let sections = document.querySelectorAll('.category-section');
-            let noResults = document.getElementById('no-results');
-            let foundCount = 0;
-
-            cards.forEach(card => {
-                let name = card.getAttribute('data-name');
-                if (name.includes(input)) {
-                    card.style.display = "flex";
-                    foundCount++;
+        function addToCart(name, price) {
+            let existingItem = cart.find(item => item.name === name);
+            if (existingItem) {
+                if (existingItem.qty < 2) {
+                    existingItem.qty++;
                 } else {
-                    card.style.display = "none";
+                    alert("Solo puedes agregar un máximo de 2 unidades por producto.");
+                    return;
                 }
-            });
-
-            sections.forEach(section => {
-                let cardsInSec = section.querySelectorAll('.product-card');
-                let hasVisible = Array.from(cardsInSec).some(c => c.style.display !== "none");
-                if (hasVisible) {
-                    section.style.display = "block";
-                } else {
-                    section.style.display = "none";
-                }
-            });
-
-            if (foundCount === 0) {
-                noResults.style.display = "block";
             } else {
-                noResults.style.display = "none";
+                cart.push({ name: name, price: price, qty: 1 });
             }
+            updateCartUI();
+            toggleCartDrawer();
+        }
+
+        function changeQty(index, delta) {
+            cart[index].qty += delta;
+            if (cart[index].qty > 2) {
+                cart[index].qty = 2;
+            }
+            if (cart[index].qty <= 0) {
+                cart.splice(index, 1);
+            }
+            updateCartUI();
+        }
+
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            updateCartUI();
+        }
+
+        function updateCartUI() {
+            let container = document.getElementById('cartItemsContainer');
+            let badge = document.getElementById('cartBadge');
+            let totalText = document.getElementById('cartTotalText');
+
+            container.innerHTML = '';
+            let totalItems = 0;
+            let totalPrice = 0;
+
+            if (cart.length === 0) {
+                container.innerHTML = '<p style="color: var(--text-light); text-align: center; margin-top: 30px;">Tu carrito está vacío.</p>';
+                badge.innerText = '0';
+                totalText.innerText = '$0.00';
+                return;
+            }
+
+            cart.forEach((item, index) => {
+                totalItems += item.qty;
+                totalPrice += item.price * item.qty;
+
+                let itemDiv = document.createElement('div');
+                itemDiv.className = 'cart-item';
+                itemDiv.innerHTML = `
+                    <div class="cart-item-info">
+                        <div class="cart-item-title">${item.name}</div>
+                        <div class="cart-item-price">$${item.price.toFixed(2)} c/u</div>
+                    </div>
+                    <div class="cart-item-controls">
+                        <button class="qty-btn" onclick="changeQty(${index}, -1)">-</button>
+                        <span class="cart-item-qty">${item.qty}</span>
+                        <button class="qty-btn" onclick="changeQty(${index}, 1)">+</button>
+                        <button class="remove-item" onclick="removeFromCart(${index})"><i class="fas fa-trash"></i></button>
+                    </div>
+                `;
+                container.appendChild(itemDiv);
+            });
+
+            badge.innerText = totalItems;
+            totalText.innerText = `$${totalPrice.toFixed(2)}`;
+        }
+
+        function checkoutWhatsApp() {
+            if (cart.length === 0) {
+                alert("Tu carrito está vacío.");
+                return;
+            }
+
+            let message = "Hola, ¡quiero realizar el siguiente pedido desde el catálogo de Sensación Aromas Originales!%0A%0A";
+            let total = 0;
+
+            cart.forEach(item => {
+                let subtotal = item.price * item.qty;
+                total += subtotal;
+                message += `• *${item.name}* (Cant: ${item.qty}) - $${subtotal.toFixed(2)}%0A`;
+            });
+
+            message += `%0A*Total estimado:* $${total.toFixed(2)}`;
+
+            let url = `https://wa.me/50583743021?text=${message}`;
+            window.open(url, '_blank');
         }
     </script>
 </body>
