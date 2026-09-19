@@ -311,7 +311,7 @@
             padding-bottom: 5px;
         }
 
-        /* Estilo Carrusel / Slider horizontal para "Lo Más Vendido" y cuadrículas generales */
+        /* Estilo Carrusel / Slider horizontal para "Lo Más Vendido" */
         .slider-container {
             display: flex;
             overflow-x: auto;
@@ -338,7 +338,7 @@
         }
 
         .product-card {
-            flex: 0 0 250px; /* Ancho fijo ideal para deslizar en carrusel */
+            flex: 0 0 250px;
             background: var(--bg-card);
             border-radius: 14px;
             overflow: hidden;
@@ -373,7 +373,7 @@
         .product-img-container img {
             max-width: 100%;     
             max-height: 100%;    
-            object-fit: contain; /* Evita que la imagen se recorte o deforme */
+            object-fit: contain; 
             transition: transform 0.4s ease;
         }
 
@@ -412,7 +412,7 @@
         .product-price {
             font-weight: 600;
             color: var(--primary-dark);
-            font-size: 1rem;
+            font-size: 0.95rem;
         }
 
         .btn-order {
@@ -622,7 +622,7 @@
 </head>
 <body>
 
-    <!-- Cabecera Superior: Botón Menú, Logo y Buscador -->
+    <!-- Cabecera Superior -->
     <header class="main-header">
         <div class="header-left-group">
             <button class="sidebar-toggle-btn" onclick="toggleSidebar()" title="Ocultar/Mostrar menú">
@@ -675,7 +675,6 @@
                     <a href="#masglo"><i class="fas fa-hand-sparkles"></i> Esmaltes Masglo</a>
                 </li>
                 
-                <!-- Menú Desplegable de Cuidado Personal -->
                 <li class="sidebar-item has-submenu" id="cuidadoMenu">
                     <a href="javascript:void(0);" class="submenu-toggle" onclick="toggleSubmenu(event)">
                         <span><i class="fas fa-pump-soap"></i> Cuidado Personal</span>
@@ -698,13 +697,12 @@
                 <p>No se encontraron productos con ese nombre.</p>
             </div>
 
-            <!-- APARTADO DE LO MÁS VENDIDO EN CARRUSEL HORIZONTAL -->
+            <!-- APARTADO DE LO MÁS VENDIDO (Con logo provisional y sin precio) -->
             <section id="mas-vendidos" class="category-section search-section">
                 <h2 class="category-title">Los Más Vendidos</h2>
                 <p style="color: var(--text-light); font-size: 0.9rem; margin-bottom: 1.2rem;">Explora los perfumes más vendidos de nuestra tienda deslizando hacia los lados</p>
                 
                 <div class="slider-container">
-                    <!-- Producto 1 (Con imagen de Bharara Beauty) -->
                     <div class="product-card" data-name="bharara beauty">
                         <div class="product-img-container"><img src="bharara_beauty.webp" alt="Bharara Beauty"></div>
                         <div class="product-info">
@@ -717,7 +715,6 @@
                         </div>
                     </div>
 
-                    <!-- Producto 2 (Con imagen de Orientica Oud) -->
                     <div class="product-card" data-name="orientica oud">
                         <div class="product-img-container"><img src="orientica-oud-.webp" alt="Orientica Oud"></div>
                         <div class="product-info">
@@ -730,7 +727,6 @@
                         </div>
                     </div>
 
-                    <!-- Producto 3 (Con imagen de Hawas Ice Men) -->
                     <div class="product-card" data-name="hawas ice men">
                         <div class="product-img-container"><img src="hawas-ice-men_1000x.webp" alt="Hawas Ice Men"></div>
                         <div class="product-info">
@@ -745,10 +741,11 @@
                 </div>
             </section>
 
-            <!-- 1. PERFUMERÍA ÁRABE -->
+            <!-- 1. PERFUMERÍA ÁRABE (Todos los modelos con imágenes completas y sin precios) -->
             <section id="arabes" class="category-section search-section">
                 <h2 class="category-title">Perfumería Árabe</h2>
                 <div class="products-grid">
+                    <!-- 1 -->
                     <div class="product-card" data-name="bharara beauty">
                         <div class="product-img-container"><img src="bharara_beauty.webp" alt="Bharara Beauty"></div>
                         <div class="product-info">
@@ -760,6 +757,7 @@
                             </div>
                         </div>
                     </div>
+                    <!-- 2 -->
                     <div class="product-card" data-name="orientica oud">
                         <div class="product-img-container"><img src="orientica-oud-.webp" alt="Orientica Oud"></div>
                         <div class="product-info">
@@ -771,6 +769,7 @@
                             </div>
                         </div>
                     </div>
+                    <!-- 3 -->
                     <div class="product-card" data-name="hawas ice men">
                         <div class="product-img-container"><img src="hawas-ice-men_1000x.webp" alt="Hawas Ice Men"></div>
                         <div class="product-info">
@@ -779,6 +778,150 @@
                             <div class="product-footer">
                                 <span class="product-price">Consultar</span>
                                 <a href="https://wa.me/50583743021?text=Hola,%20quiero%20Hawas%20Ice%20Men" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Pedir</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 4 -->
+                    <div class="product-card" data-name="lattafa asad">
+                        <div class="product-img-container"><img src="logo-tienda.png" alt="Lattafa Asad"></div>
+                        <div class="product-info">
+                            <h3 class="product-name">Lattafa Asad</h3>
+                            <p class="product-desc">Notas especiadas, ámbar y vainilla profunda.</p>
+                            <div class="product-footer">
+                                <span class="product-price">Consultar</span>
+                                <a href="https://wa.me/50583743021?text=Hola,%20quiero%20Lattafa%20Asad" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Pedir</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 5 -->
+                    <div class="product-card" data-name="lattafa kamrah">
+                        <div class="product-img-container"><img src="logo-tienda.png" alt="Lattafa Khamrah"></div>
+                        <div class="product-info">
+                            <h3 class="product-name">Lattafa Khamrah</h3>
+                            <p class="product-desc">Dulce, avainillada con toques de canela y dátiles.</p>
+                            <div class="product-footer">
+                                <span class="product-price">Consultar</span>
+                                <a href="https://wa.me/50583743021?text=Hola,%20quiero%20Lattafa%20Khamrah" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Pedir</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 6 -->
+                    <div class="product-card" data-name="armaf club de nuit intense">
+                        <div class="product-img-container"><img src="logo-tienda.png" alt="Club de Nuit Intense"></div>
+                        <div class="product-info">
+                            <h3 class="product-name">Armaf Club de Nuit Intense</h3>
+                            <p class="product-desc">Fragancia cítrica, amaderada y de gran proyección.</p>
+                            <div class="product-footer">
+                                <span class="product-price">Consultar</span>
+                                <a href="https://wa.me/50583743021?text=Hola,%20quiero%20Armaf%20Club%20de%20Nuit" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Pedir</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 7 -->
+                    <div class="product-card" data-name="afnan 9pm">
+                        <div class="product-img-container"><img src="logo-tienda.png" alt="Afnan 9PM"></div>
+                        <div class="product-info">
+                            <h3 class="product-name">Afnan 9PM</h3>
+                            <p class="product-desc">Aroma nocturno seductor con vainilla y manzana.</p>
+                            <div class="product-footer">
+                                <span class="product-price">Consultar</span>
+                                <a href="https://wa.me/50583743021?text=Hola,%20quiero%20Afnan%209PM" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Pedir</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 8 -->
+                    <div class="product-card" data-name="rasasi hawas">
+                        <div class="product-img-container"><img src="logo-tienda.png" alt="Rasasi Hawas"></div>
+                        <div class="product-info">
+                            <h3 class="product-name">Rasasi Hawas</h3>
+                            <p class="product-desc">Fresca acuática con notas frutales y ámbar gris.</p>
+                            <div class="product-footer">
+                                <span class="product-price">Consultar</span>
+                                <a href="https://wa.me/50583743021?text=Hola,%20quiero%20Rasasi%20Hawas" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Pedir</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 9 -->
+                    <div class="product-card" data-name="al haramain amber oud">
+                        <div class="product-img-container"><img src="logo-tienda.png" alt="Amber Oud Gold"></div>
+                        <div class="product-info">
+                            <h3 class="product-name">Al Haramain Amber Oud</h3>
+                            <p class="product-desc">Frutal, dulce, amaderada y sumamente lujosa.</p>
+                            <div class="product-footer">
+                                <span class="product-price">Consultar</span>
+                                <a href="https://wa.me/50583743021?text=Hola,%20quiero%20Amber%20Oud" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Pedir</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 10 -->
+                    <div class="product-card" data-name="orientica velour">
+                        <div class="product-img-container"><img src="logo-tienda.png" alt="Orientica Velour"></div>
+                        <div class="product-info">
+                            <h3 class="product-name">Orientica Velour</h3>
+                            <p class="product-desc">Notas orientales exclusivas y aterciopeladas.</p>
+                            <div class="product-footer">
+                                <span class="product-price">Consultar</span>
+                                <a href="https://wa.me/50583743021?text=Hola,%20quiero%20Orientica%20Velour" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Pedir</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 11 -->
+                    <div class="product-card" data-name="bharara king">
+                        <div class="product-img-container"><img src="logo-tienda.png" alt="Bharara King"></div>
+                        <div class="product-info">
+                            <h3 class="product-name">Bharara King</h3>
+                            <p class="product-desc">Dulce, amaderado con un toque cítrico y limpio.</p>
+                            <div class="product-footer">
+                                <span class="product-price">Consultar</span>
+                                <a href="https://wa.me/50583743021?text=Hola,%20quiero%20Bharara%20King" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Pedir</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 12 -->
+                    <div class="product-card" data-name="lattafa yara">
+                        <div class="product-img-container"><img src="logo-tienda.png" alt="Lattafa Yara"></div>
+                        <div class="product-info">
+                            <h3 class="product-name">Lattafa Yara</h3>
+                            <p class="product-desc">Cremosa, avainillada con notas florales y tropicales.</p>
+                            <div class="product-footer">
+                                <span class="product-price">Consultar</span>
+                                <a href="https://wa.me/50583743021?text=Hola,%20quiero%20Lattafa%20Yara" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Pedir</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 13 -->
+                    <div class="product-card" data-name="lattafa fakhar">
+                        <div class="product-img-container"><img src="logo-tienda.png" alt="Lattafa Fakhar"></div>
+                        <div class="product-info">
+                            <h3 class="product-name">Lattafa Fakhar</h3>
+                            <p class="product-desc">Elegante, floral especiada con gran estela.</p>
+                            <div class="product-footer">
+                                <span class="product-price">Consultar</span>
+                                <a href="https://wa.me/50583743021?text=Hola,%20quiero%20Lattafa%20Fakhar" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Pedir</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 14 -->
+                    <div class="product-card" data-name="armaf odyssey">
+                        <div class="product-img-container"><img src="logo-tienda.png" alt="Armaf Odyssey"></div>
+                        <div class="product-info">
+                            <h3 class="product-name">Armaf Odyssey</h3>
+                            <p class="product-desc">Misteriosa, oscura y amaderada con especias.</p>
+                            <div class="product-footer">
+                                <span class="product-price">Consultar</span>
+                                <a href="https://wa.me/50583743021?text=Hola,%20quiero%20Armaf%20Odyssey" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Pedir</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 15 -->
+                    <div class="product-card" data-name="afnan turathi blue">
+                        <div class="product-img-container"><img src="logo-tienda.png" alt="Afnan Turathi Blue"></div>
+                        <div class="product-info">
+                            <h3 class="product-name">Afnan Turathi Blue</h3>
+                            <p class="product-desc">Cítrico amaderado fresco, elegante y versátil.</p>
+                            <div class="product-footer">
+                                <span class="product-price">Consultar</span>
+                                <a href="https://wa.me/50583743021?text=Hola,%20quiero%20Afnan%20Turathi%20Blue" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Pedir</a>
                             </div>
                         </div>
                     </div>
@@ -875,11 +1018,10 @@
                 </div>
             </section>
 
-            <!-- 7. CUIDADO PERSONAL (Subcategorías) -->
+            <!-- 7. CUIDADO PERSONAL -->
             <section id="cuidado-personal" class="category-section search-section">
                 <h2 class="category-title">Cuidado Personal</h2>
                 
-                <!-- Subsección Exfoliantes -->
                 <div id="exfoliantes" style="margin-bottom: 2rem; scroll-margin-top: 90px;">
                     <h3 style="font-size: 1.1rem; color: var(--primary-dark); margin-bottom: 1rem;"><i class="fas fa-spa"></i> Exfoliantes para el cuerpo</h3>
                     <div class="products-grid">
@@ -897,7 +1039,6 @@
                     </div>
                 </div>
 
-                <!-- Subsección Gel de Duchas -->
                 <div id="geles" style="margin-bottom: 2rem; scroll-margin-top: 90px;">
                     <h3 style="font-size: 1.1rem; color: var(--primary-dark); margin-bottom: 1rem;"><i class="fas fa-shower"></i> Gel de duchas</h3>
                     <div class="products-grid">
@@ -915,7 +1056,6 @@
                     </div>
                 </div>
 
-                <!-- Subsección Aceites Corporales -->
                 <div id="aceites" style="margin-bottom: 2rem; scroll-margin-top: 90px;">
                     <h3 style="font-size: 1.1rem; color: var(--primary-dark); margin-bottom: 1rem;"><i class="fas fa-oil-can"></i> Aceites corporales</h3>
                     <div class="products-grid">
