@@ -42,7 +42,7 @@
         /* Cabecera Superior con Buscador Estilo Google (Negro) */
         .main-header {
             background-color: var(--bg-dark);
-            padding: 12px 30px;
+            padding: 12px 25px;
             box-shadow: 0 4px 20px rgba(0,0,0,0.2);
             position: fixed;
             top: 0;
@@ -57,16 +57,42 @@
             border-bottom: 1px solid rgba(197, 155, 39, 0.3);
         }
 
+        .header-left-group {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        /* Botón para colapsar/abrir la barra lateral (Estilo Gemini) */
+        .sidebar-toggle-btn {
+            background: transparent;
+            border: none;
+            color: #ffffff;
+            font-size: 1.2rem;
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s, color 0.2s;
+        }
+
+        .sidebar-toggle-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--primary-color);
+        }
+
         .header-brand {
             display: flex;
             align-items: center;
             gap: 12px;
-            min-width: 260px;
         }
 
         .logo-container {
-            width: 50px;
-            height: 50px;
+            width: 48px;
+            height: 48px;
             flex-shrink: 0;
             border-radius: 50%;
             overflow: hidden;
@@ -141,7 +167,7 @@
             color: #888888;
         }
 
-        /* Estructura del Layout con Sidebar Izquierdo */
+        /* Estructura del Layout con Sidebar Colapsable */
         .app-layout {
             display: flex;
             margin-top: 75px;
@@ -161,6 +187,12 @@
             padding: 20px 15px;
             z-index: 1000;
             box-shadow: 4px 0 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        /* Estado colapsado de la barra lateral */
+        body.sidebar-collapsed .sidebar {
+            transform: translateX(-100%);
         }
 
         .sidebar-title {
@@ -249,12 +281,17 @@
             background-color: rgba(255, 42, 133, 0.1) !important;
         }
 
-        /* Contenido Principal a la Derecha (Fondo Blanco/Claro) */
+        /* Contenido Principal a la Derecha (Se expande si se oculta el sidebar) */
         .main-content {
             margin-left: var(--sidebar-width);
             flex: 1;
             padding: 2.5rem;
             background-color: var(--bg-body);
+            transition: margin-left 0.3s ease-in-out;
+        }
+
+        body.sidebar-collapsed .main-content {
+            margin-left: 0;
         }
 
         .category-section {
@@ -380,13 +417,18 @@
             display: none;
         }
 
-        /* Pie de Página con Degradado de Blanco a Rosado y Logo PNG sin fondo */
+        /* Pie de Página con Degradado y Logo PNG Sin Fondo al Final */
         footer {
             background: linear-gradient(135deg, #ffffff 0%, #fff0f5 50%, #ffcbe0 100%);
             color: var(--text-dark);
             padding: 4rem 5% 2rem 5%;
             margin-left: var(--sidebar-width);
             border-top: 1px solid #f0d0df;
+            transition: margin-left 0.3s ease-in-out;
+        }
+
+        body.sidebar-collapsed footer {
+            margin-left: 0;
         }
 
         .footer-content-grid {
@@ -428,13 +470,14 @@
             font-size: 0.88rem;
             color: var(--text-light);
             margin-bottom: 8px;
+            word-break: break-all;
         }
 
         .footer-contact-info strong {
             color: var(--text-dark);
         }
 
-        /* Contenedor del Logo PNG sin fondo en el Footer */
+        /* Contenedor del Logo PNG SIN FONDO en el Footer */
         .footer-logo-container {
             display: flex;
             justify-content: center;
@@ -443,10 +486,10 @@
         }
 
         .footer-logo-img {
-            max-width: 140px;
+            max-width: 150px;
             height: auto;
             object-fit: contain;
-            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.1));
+            filter: drop-shadow(0 4px 10px rgba(0,0,0,0.15));
         }
 
         /* Línea inferior del Footer (Redes Sociales y Copyright) */
@@ -492,39 +535,23 @@
         /* Responsivo para móviles y tablets */
         @media (max-width: 900px) {
             .sidebar {
-                position: relative;
-                width: 100%;
-                top: 0;
-                height: auto;
-                box-shadow: none;
-                border-right: none;
-                border-bottom: 1px solid rgba(197, 155, 39, 0.3);
-                padding: 15px;
+                transform: translateX(-100%);
+            }
+            body.sidebar-open .sidebar {
+                transform: translateX(0);
             }
             .app-layout {
                 flex-direction: column;
                 margin-top: 75px;
             }
-            .main-content {
-                margin-left: 0;
+            .main-content, footer {
+                margin-left: 0 !important;
                 padding: 1.5rem;
-            }
-            footer {
-                margin-left: 0;
-            }
-            .header-brand {
-                min-width: auto;
-            }
-            .store-subtitle {
-                display: none;
             }
             .footer-content-grid {
                 grid-template-columns: 1fr;
                 gap: 25px;
                 text-align: center;
-            }
-            .footer-col h3 {
-                margin-bottom: 0.8rem;
             }
             .footer-bottom-bar {
                 flex-direction: column;
@@ -536,15 +563,20 @@
 </head>
 <body>
 
-    <!-- Cabecera Superior: Logo y Buscador -->
+    <!-- Cabecera Superior: Botón Menú, Logo y Buscador -->
     <header class="main-header">
-        <div class="header-brand">
-            <a href="#" class="logo-container">
-                <img src="logo-tienda.png" alt="Sensación Aromas Originales Logo" class="logo-img">
-            </a>
-            <div>
-                <h1 class="store-name">Sensación Aromas</h1>
-                <p class="store-subtitle">Originales</p>
+        <div class="header-left-group">
+            <button class="sidebar-toggle-btn" onclick="toggleSidebar()" title="Ocultar/Mostrar menú">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="header-brand">
+                <a href="#" class="logo-container">
+                    <img src="logo-tienda.png" alt="Sensación Aromas Originales Logo" class="logo-img">
+                </a>
+                <div>
+                    <h1 class="store-name">Sensación Aromas</h1>
+                    <p class="store-subtitle">Originales</p>
+                </div>
             </div>
         </div>
 
@@ -797,7 +829,7 @@
         </main>
     </div>
 
-    <!-- Pie de Página con Fondo Degradado y Logo PNG sin fondo -->
+    <!-- Pie de Página con Degradado y Logo PNG Sin Fondo -->
     <footer>
         <div class="footer-content-grid">
             <div class="footer-col">
@@ -814,7 +846,7 @@
                 <h3>Contacto</h3>
                 <div class="footer-contact-info">
                     <p><strong>Email:</strong></p>
-                    <p>ventas@sensacionaromas.com</p>
+                    <p>bellezaycuidadopersonal@gmail.com</p>
                     <p style="margin-top: 8px;"><strong>Teléfono:</strong></p>
                     <p>+505 8374 3021</p>
                     <p style="margin-top: 8px;"><strong>Dirección:</strong></p>
@@ -832,8 +864,8 @@
             </div>
 
             <div class="footer-col footer-logo-container">
-                <!-- Aquí se muestra tu logo PNG sin fondo -->
-                <img src="logo-tienda.png" alt="Sensación Aromas Originales" class="footer-logo-img">
+                <!-- Aquí va tu logo en PNG SIN FONDO -->
+                <img src="logo-sin-fondo.png" alt="Sensación Aromas Originales" class="footer-logo-img">
             </div>
         </div>
 
@@ -850,6 +882,15 @@
 
     <!-- Scripts Interactivos -->
     <script>
+        function toggleSidebar() {
+            // En pantallas grandes alterna colapsar; en móviles abre/cierra
+            if (window.innerWidth <= 900) {
+                document.body.classList.toggle('sidebar-open');
+            } else {
+                document.body.classList.toggle('sidebar-collapsed');
+            }
+        }
+
         function toggleSubmenu(event) {
             event.preventDefault();
             let parent = document.getElementById('cuidadoMenu');
