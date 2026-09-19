@@ -159,7 +159,7 @@
             gap: 18px;
         }
 
-        /* Contenedor del Botón de Usuario y Menú Desplegable de Sesión */
+        /* Contenedor del Botón de Usuario y Menú Desplegable */
         .user-account-wrapper {
             position: relative;
         }
@@ -729,13 +729,13 @@
             background-color: #1ebd56;
         }
 
-        /* Modal de Registro */
+        /* Modal de Registro de Cuenta */
         .auth-modal {
             position: fixed;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%) scale(0.9);
-            width: 400px;
+            width: 420px;
             max-width: 90%;
             background: #ffffff;
             z-index: 1300;
@@ -771,26 +771,28 @@
             padding: 25px;
             display: flex;
             flex-direction: column;
-            gap: 15px;
+            gap: 12px;
+            max-height: 80vh;
+            overflow-y: auto;
         }
 
         .form-group {
             display: flex;
             flex-direction: column;
-            gap: 5px;
+            gap: 4px;
         }
 
         .form-group label {
-            font-size: 0.85rem;
+            font-size: 0.82rem;
             font-weight: 600;
             color: var(--text-dark);
         }
 
         .form-group input, .form-group select {
-            padding: 10px;
+            padding: 9px;
             border: 1px solid #ddd;
             border-radius: 8px;
-            font-size: 0.9rem;
+            font-size: 0.88rem;
             outline: none;
             transition: border-color 0.2s;
         }
@@ -814,6 +816,44 @@
 
         .btn-submit-auth:hover {
             background-color: var(--primary-dark);
+        }
+
+        /* Notificación emergente de Bienvenida / Descuento */
+        .discount-toast {
+            position: fixed;
+            top: 90px;
+            right: 20px;
+            background: linear-gradient(135deg, #222222, #333333);
+            color: #ffffff;
+            padding: 16px 20px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            z-index: 1500;
+            border-left: 5px solid var(--gold-color);
+            display: none;
+            max-width: 320px;
+            animation: slideIn 0.4s ease;
+        }
+
+        .discount-toast.show {
+            display: block;
+        }
+
+        .discount-toast h4 {
+            color: var(--gold-color);
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.2rem;
+            margin-bottom: 4px;
+        }
+
+        .discount-toast p {
+            font-size: 0.82rem;
+            color: #dddddd;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
         }
 
         #no-results {
@@ -1039,7 +1079,7 @@
         </ul>
 
         <div class="header-right-actions">
-            <!-- Botón de Usuario y Menú Desplegable de Sesión -->
+            <!-- Botón de Usuario y Menú Desplegable -->
             <div class="user-account-wrapper">
                 <button class="user-auth-btn" id="userAuthBtn" onclick="handleUserBtnClick()">
                     <i class="fas fa-user-circle"></i> <span id="userNameDisplay">Crear Cuenta</span>
@@ -1060,10 +1100,16 @@
         </div>
     </header>
 
+    <!-- Notificación Flotante de Descuento -->
+    <div class="discount-toast" id="discountToast">
+        <h4>¡Felicidades! 🎉</h4>
+        <p>Has creado tu cuenta y desbloqueado un <strong>5% de descuento</strong> en tu primera compra.</p>
+    </div>
+
     <!-- Fondo Oscuro General para Modales -->
     <div class="modal-overlay" id="modalOverlay" onclick="closeAllModals()"></div>
 
-    <!-- Modal de Registro de Cuenta -->
+    <!-- Modal de Registro de Cuenta Mejorado -->
     <div class="auth-modal" id="authModal">
         <div class="auth-header">
             <h3>Crear Cuenta Nueva</h3>
@@ -1071,11 +1117,11 @@
         </div>
         <div class="auth-body">
             <form id="registerForm" onsubmit="handleRegister(event)">
-                <div class="form-group" style="margin-bottom: 10px;">
+                <div class="form-group" style="margin-bottom: 8px;">
                     <label>Nombre completo</label>
                     <input type="text" id="regName" placeholder="Ej. María Pérez" required>
                 </div>
-                <div style="display: flex; gap: 10px; margin-bottom: 10px;">
+                <div style="display: flex; gap: 8px; margin-bottom: 8px;">
                     <div class="form-group" style="flex: 1;">
                         <label>Edad</label>
                         <input type="number" id="regAge" min="15" max="100" placeholder="Ej. 25" required>
@@ -1090,15 +1136,48 @@
                         </select>
                     </div>
                 </div>
-                <div class="form-group" style="margin-bottom: 10px;">
+                <div class="form-group" style="margin-bottom: 8px;">
+                    <label>Número de Teléfono / WhatsApp</label>
+                    <input type="tel" id="regPhone" placeholder="Ej. +505 8888 8888" required>
+                </div>
+                <div style="display: flex; gap: 8px; margin-bottom: 8px;">
+                    <div class="form-group" style="flex: 1;">
+                        <label>País</label>
+                        <input type="text" id="regCountry" value="Nicaragua" readonly style="background: #f9f9f9; color: #555;">
+                    </div>
+                    <div class="form-group" style="flex: 1;">
+                        <label>Departamento</label>
+                        <select id="regDepartment" required>
+                            <option value="">Selecciona</option>
+                            <option value="Chinandega">Chinandega</option>
+                            <option value="Managua">Managua</option>
+                            <option value="León">León</option>
+                            <option value="Masaya">Masaya</option>
+                            <option value="Granada">Granada</option>
+                            <option value="Carazo">Carazo</option>
+                            <option value="Rivas">Rivas</option>
+                            <option value="Estelí">Estelí</option>
+                            <option value="Madriz">Madriz</option>
+                            <option value="Nueva Segovia">Nueva Segovia</option>
+                            <option value="Matagalpa">Matagalpa</option>
+                            <option value="Jinotega">Jinotega</option>
+                            <option value="Boaco">Boaco</option>
+                            <option value="Chontales">Chontales</option>
+                            <option value="Río San Juan">Río San Juan</option>
+                            <option value="Costa Caribe Norte">Costa Caribe Norte</option>
+                            <option value="Costa Caribe Sur">Costa Caribe Sur</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group" style="margin-bottom: 8px;">
                     <label>Correo electrónico</label>
                     <input type="email" id="regEmail" placeholder="tucorreo@gmail.com" required>
                 </div>
-                <div class="form-group" style="margin-bottom: 15px;">
+                <div class="form-group" style="margin-bottom: 12px;">
                     <label>Contraseña</label>
                     <input type="password" id="regPassword" placeholder="••••••••" required>
                 </div>
-                <button type="submit" class="btn-submit-auth">Registrarse y Enviar</button>
+                <button type="submit" class="btn-submit-auth">Crear Cuenta y Obtener 5% OFF</button>
             </form>
         </div>
     </div>
@@ -1600,7 +1679,7 @@
         </div>
     </footer>
 
-    <!-- Scripts de Interacción, Carrito y Autenticación con Notificación WhatsApp -->
+    <!-- Scripts de Interacción, Carrito y Autenticación con Descuento y WhatsApp -->
     <script>
         let cart = [];
         let currentUser = localStorage.getItem('sensacion_user') ? JSON.parse(localStorage.getItem('sensacion_user')) : null;
@@ -1664,20 +1743,43 @@
             let name = document.getElementById('regName').value;
             let age = document.getElementById('regAge').value;
             let gender = document.getElementById('regGender').value;
+            let phone = document.getElementById('regPhone').value;
+            let country = document.getElementById('regCountry').value;
+            let department = document.getElementById('regDepartment').value;
             let email = document.getElementById('regEmail').value;
 
-            currentUser = { name: name, age: age, gender: gender, email: email };
+            currentUser = { 
+                name: name, 
+                age: age, 
+                gender: gender, 
+                phone: phone, 
+                country: country, 
+                department: department, 
+                email: email,
+                discountActive: true 
+            };
+
             localStorage.setItem('sensacion_user', JSON.stringify(currentUser));
             
             updateUserUI();
             closeAllModals();
 
-            // Enviar notificación automática a tu WhatsApp con los datos del nuevo usuario
+            // Mostrar notificación flotante de descuento al cliente
+            let toast = document.getElementById('discountToast');
+            toast.classList.add('show');
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 6000);
+
+            // Enviar notificación automática a tu WhatsApp con los datos completos del nuevo usuario
             let msg = `¡Hola! Un nuevo cliente se ha registrado en Sensación Aromas Originales:%0A%0A` +
                       `👤 *Nombre:* ${name}%0A` +
                       `📅 *Edad:* ${age} años%0A` +
                       `⚥ *Género:* ${gender}%0A` +
-                      `📧 *Correo:* ${email}`;
+                      `📱 *Teléfono:* ${phone}%0A` +
+                      `📍 *Ubicación:* ${department}, ${country}%0A` +
+                      `📧 *Correo:* ${email}%0A%0A` +
+                      `🎁 *Estado:* ¡Desbloqueó 5% de descuento por registro!`;
 
             let url = `https://wa.me/50583743021?text=${msg}`;
             window.open(url, '_blank');
@@ -1771,7 +1873,14 @@
             });
 
             badge.innerText = totalItems;
-            totalText.innerText = `$${totalPrice.toFixed(2)}`;
+            
+            // Aplicar 5% de descuento si el usuario está registrado con beneficio
+            if (currentUser && currentUser.discountActive) {
+                let discountedTotal = totalPrice * 0.95;
+                totalText.innerHTML = `<span style="text-decoration: line-through; color: #888; font-size: 0.9rem; margin-right: 5px;">$${totalPrice.toFixed(2)}</span> <span style="color: var(--primary-color);">$${discountedTotal.toFixed(2)}</span> <small style="display: block; font-size: 0.7rem; color: var(--gold-color);">¡5% OFF de bienvenida aplicado!</small>`;
+            } else {
+                totalText.innerText = `$${totalPrice.toFixed(2)}`;
+            }
         }
 
         function checkoutWhatsApp() {
@@ -1780,7 +1889,7 @@
                 return;
             }
 
-            let clientInfo = currentUser ? `*Cliente:* ${currentUser.name} (${currentUser.email})%0A%0A` : "*Cliente:* Invitado%0A%0A";
+            let clientInfo = currentUser ? `*Cliente:* ${currentUser.name}%0A*Teléfono:* ${currentUser.phone}%0A*Ubicación:* ${currentUser.department}, ${currentUser.country}%0A*Correo:* ${currentUser.email}%0A%0A` : "*Cliente:* Invitado%0A%0A";
             let message = `Hola, ¡quiero realizar el siguiente pedido desde Sensación Aromas Originales!%0A%0A` + clientInfo;
             let total = 0;
 
@@ -1790,7 +1899,14 @@
                 message += `• *${item.name}* (Cant: ${item.qty}) - $${subtotal.toFixed(2)}%0A`;
             });
 
-            message += `%0A*Total estimado:* $${total.toFixed(2)}`;
+            if (currentUser && currentUser.discountActive) {
+                let finalTotal = total * 0.95;
+                message += `%0A*Subtotal:* $${total.toFixed(2)}`;
+                message += `%0A*Descuento (5% Bienvenida):* -$${(total * 0.05).toFixed(2)}`;
+                message += `%0A*Total con descuento:* $${finalTotal.toFixed(2)}`;
+            } else {
+                message += `%0A*Total estimado:* $${total.toFixed(2)}`;
+            }
 
             let url = `https://wa.me/50583743021?text=${message}`;
             window.open(url, '_blank');
