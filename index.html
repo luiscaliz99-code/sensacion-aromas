@@ -4,18 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sensación Aromas Originales | Catálogo Digital</title>
-    <!-- Google Fonts & FontAwesome para iconos -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Google Fonts Elegantes (Cormorant Garamond & Montserrat) y FontAwesome -->
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
         :root {
             --primary-color: #ff2a85;       /* Rosa vibrante y moderno */
             --primary-dark: #d01b6c;       /* Rosa oscuro para contrastes */
-            --gold-color: #c59b27;         /* Dorado elegante para fondos claros */
+            --gold-color: #c59b27;         /* Dorado elegante */
             --bg-dark: #121212;            /* Fondo negro para header y sidebar */
-            --bg-card: #ffffff;            /* Fondo blanco para las tarjetas de productos */
-            --bg-body: #f4f5f7;            /* Fondo general claro de la sección de productos */
+            --bg-card: #ffffff;            /* Fondo blanco para tarjetas de productos */
+            --bg-body: #f4f5f7;            /* Fondo general claro */
             --text-dark: #222222;          /* Texto principal oscuro */
             --text-light: #666666;         /* Texto secundario gris */
             --whatsapp-color: #25d366;
@@ -26,8 +26,13 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
+            font-family: 'Montserrat', sans-serif; /* Tipografía base limpia y moderna */
             scroll-behavior: smooth;
+        }
+
+        /* Tipografía elegante para títulos y nombres importantes */
+        h1, h2, h3, .store-name, .category-title, .product-name {
+            font-family: 'Cormorant Garamond', serif;
         }
 
         body {
@@ -39,7 +44,7 @@
             min-height: 100vh;
         }
 
-        /* Cabecera Superior Estilo Profesional (Negro con enlaces superiores) */
+        /* Cabecera Superior */
         .main-header {
             background-color: var(--bg-dark);
             padding: 10px 25px;
@@ -63,7 +68,6 @@
             gap: 12px;
         }
 
-        /* Botón para colapsar/abrir la barra lateral */
         .sidebar-toggle-btn {
             background: transparent;
             border: none;
@@ -108,10 +112,11 @@
         }
 
         .store-name {
-            font-size: 0.95rem;
+            font-size: 1.25rem;
             color: #ffffff;
             margin: 0;
             font-weight: 700;
+            letter-spacing: 0.5px;
             line-height: 1.1;
             background: linear-gradient(45deg, #ffffff, #f3d89d);
             -webkit-background-clip: text;
@@ -119,10 +124,12 @@
         }
 
         .store-subtitle {
-            font-size: 0.7rem;
+            font-size: 0.75rem;
             color: var(--gold-color);
             margin: 0;
-            letter-spacing: 0.5px;
+            letter-spacing: 1px;
+            font-family: 'Montserrat', sans-serif;
+            text-transform: uppercase;
         }
 
         /* Menú de navegación superior */
@@ -136,7 +143,7 @@
         .top-nav-menu li a {
             color: #ffffff;
             text-decoration: none;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             font-weight: 500;
             transition: color 0.2s;
             display: flex;
@@ -148,7 +155,6 @@
             color: var(--gold-color);
         }
 
-        /* Zona derecha del Header: Carrito e Iconos Sociales */
         .header-right-actions {
             display: flex;
             align-items: center;
@@ -177,6 +183,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            font-family: 'Montserrat', sans-serif;
         }
 
         .header-social {
@@ -195,14 +202,13 @@
             color: var(--primary-color);
         }
 
-        /* Estructura del Layout con Sidebar Colapsable */
+        /* Layout con Sidebar */
         .app-layout {
             display: flex;
             margin-top: 75px;
             flex: 1;
         }
 
-        /* Menú Lateral Izquierdo (Negro) */
         .sidebar {
             width: var(--sidebar-width);
             background-color: var(--bg-dark);
@@ -230,6 +236,7 @@
             margin-bottom: 15px;
             padding-left: 10px;
             font-weight: 600;
+            font-family: 'Montserrat', sans-serif;
         }
 
         .sidebar-menu {
@@ -265,7 +272,6 @@
             color: var(--gold-color);
         }
 
-        /* Submenú Desplegable de Cuidado Personal */
         .has-submenu .submenu-toggle {
             justify-content: space-between;
         }
@@ -308,7 +314,6 @@
             background-color: rgba(255, 42, 133, 0.1) !important;
         }
 
-        /* Contenido Principal a la Derecha */
         .main-content {
             margin-left: var(--sidebar-width);
             flex: 1;
@@ -327,19 +332,20 @@
         }
 
         .category-title {
-            font-size: 1.4rem;
+            font-size: 1.8rem;
             color: var(--text-dark);
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.2rem;
             border-left: 5px solid var(--primary-color);
-            padding-left: 12px;
+            padding-left: 14px;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
+            letter-spacing: 1px;
             background: linear-gradient(90deg, rgba(255, 42, 133, 0.08), transparent);
             padding-top: 5px;
             padding-bottom: 5px;
+            font-weight: 700;
         }
 
-        /* Estilo Carrusel / Slider horizontal para "Lo Más Vendido" */
+        /* Estilo Carrusel / Slider horizontal para TODAS las categorías */
         .slider-container {
             display: flex;
             overflow-x: auto;
@@ -357,12 +363,6 @@
         .slider-container::-webkit-scrollbar-thumb {
             background: var(--primary-color);
             border-radius: 4px;
-        }
-
-        .products-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
-            gap: 22px;
         }
 
         .product-card {
@@ -385,7 +385,6 @@
             border-color: var(--primary-color);
         }
 
-        /* Contenedor optimizado para que las imágenes se vean completas */
         .product-img-container {
             width: 100%;
             height: 220px;
@@ -417,10 +416,11 @@
         }
 
         .product-name {
-            font-size: 1rem;
-            font-weight: 600;
+            font-size: 1.2rem;
+            font-weight: 700;
             margin-bottom: 0.4rem;
             color: var(--text-dark);
+            letter-spacing: 0.3px;
         }
 
         .product-desc {
@@ -441,6 +441,7 @@
             font-weight: 600;
             color: var(--primary-dark);
             font-size: 0.95rem;
+            font-family: 'Montserrat', sans-serif;
         }
 
         .btn-order {
@@ -456,6 +457,7 @@
             gap: 6px;
             transition: all 0.2s;
             box-shadow: 0 2px 6px rgba(37, 211, 102, 0.2);
+            font-family: 'Montserrat', sans-serif;
         }
 
         .btn-order:hover {
@@ -494,7 +496,7 @@
         }
 
         .footer-col h3 {
-            font-size: 1rem;
+            font-size: 1.2rem;
             color: var(--primary-dark);
             margin-bottom: 1.2rem;
             text-transform: uppercase;
@@ -560,7 +562,7 @@
         }
 
         .footer-store-name {
-            font-size: 1.15rem;
+            font-size: 1.25rem;
             color: #ffffff;
             margin: 0;
             font-weight: 700;
@@ -571,11 +573,13 @@
         }
 
         .footer-store-subtitle {
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             color: var(--gold-color);
             margin: 0;
             letter-spacing: 0.5px;
             font-weight: 600;
+            font-family: 'Montserrat', sans-serif;
+            text-transform: uppercase;
         }
 
         .footer-bottom-bar {
@@ -656,7 +660,7 @@
 </head>
 <body>
 
-    <!-- Cabecera Superior Actualizada -->
+    <!-- Cabecera Superior -->
     <header class="main-header">
         <div class="header-left-group">
             <button class="sidebar-toggle-btn" onclick="toggleSidebar()" title="Ocultar/Mostrar menú">
@@ -747,7 +751,7 @@
                 <p>No se encontraron productos con ese nombre.</p>
             </div>
 
-            <!-- APARTADO DE LO MÁS VENDIDO (Carrusel Horizontal) -->
+            <!-- LO MÁS VENDIDO (Carrusel) -->
             <section id="mas-vendidos" class="category-section search-section">
                 <h2 class="category-title">Los Más Vendidos</h2>
                 <p style="color: var(--text-light); font-size: 0.9rem; margin-bottom: 1.2rem;">Explora los perfumes más vendidos de nuestra tienda deslizando hacia los lados</p>
@@ -803,12 +807,11 @@
                 </div>
             </section>
 
-            <!-- 1. PERFUMERÍA ÁRABE -->
+            <!-- 1. PERFUMERÍA ÁRABE (Carrusel Desplazable) -->
             <section id="arabes" class="category-section search-section">
                 <h2 class="category-title">Perfumería Árabe</h2>
-                <div class="products-grid">
+                <div class="slider-container">
                     
-                    <!-- 1. Stallion 53 -->
                     <div class="product-card" data-name="stallion 53">
                         <div class="product-img-container"><img src="STALLION-53_1500x.webp" alt="Stallion 53"></div>
                         <div class="product-info">
@@ -821,7 +824,6 @@
                         </div>
                     </div>
 
-                    <!-- 2. Armaf Odyssey Bahamas -->
                     <div class="product-card" data-name="armaf odyssey bahamas">
                         <div class="product-img-container"><img src="armaf-odyssey-bahamas_1000x.webp" alt="Armaf Odyssey Bahamas"></div>
                         <div class="product-info">
@@ -834,7 +836,6 @@
                         </div>
                     </div>
 
-                    <!-- 3. Bharara Beauty -->
                     <div class="product-card" data-name="bharara beauty">
                         <div class="product-img-container"><img src="bharara_beauty.webp" alt="Bharara Beauty"></div>
                         <div class="product-info">
@@ -847,7 +848,6 @@
                         </div>
                     </div>
 
-                    <!-- 4. Hawas Ice Men -->
                     <div class="product-card" data-name="hawas ice men">
                         <div class="product-img-container"><img src="hawas-ice-men_1000x.webp" alt="Hawas Ice Men"></div>
                         <div class="product-info">
@@ -860,7 +860,6 @@
                         </div>
                     </div>
 
-                    <!-- 5. Haway Tropical -->
                     <div class="product-card" data-name="haway tropical">
                         <div class="product-img-container"><img src="haway-tropical-tropical.webp" alt="Haway Tropical"></div>
                         <div class="product-info">
@@ -873,7 +872,6 @@
                         </div>
                     </div>
 
-                    <!-- 6. Orientica Oud -->
                     <div class="product-card" data-name="orientica oud">
                         <div class="product-img-container"><img src="orientica-oud-.webp" alt="Orientica Oud"></div>
                         <div class="product-info">
@@ -886,7 +884,6 @@
                         </div>
                     </div>
 
-                    <!-- 7. Orientica Royal -->
                     <div class="product-card" data-name="orientica royal">
                         <div class="product-img-container"><img src="orientica-royal.webp" alt="Orientica Royal"></div>
                         <div class="product-info">
@@ -899,7 +896,6 @@
                         </div>
                     </div>
 
-                    <!-- 8. Orientica Velvet (Nombre exacto corregido: orientica-velvet.webp) -->
                     <div class="product-card" data-name="orientica velvet">
                         <div class="product-img-container"><img src="orientica-velvet.webp" alt="Orientica Velvet"></div>
                         <div class="product-info">
@@ -915,10 +911,10 @@
                 </div>
             </section>
 
-            <!-- 2. PERFUMERÍA DE DISEÑADOR -->
+            <!-- 2. PERFUMERÍA DE DISEÑADOR (Carrusel) -->
             <section id="disenador" class="category-section search-section">
                 <h2 class="category-title">Perfumería de Diseñador</h2>
-                <div class="products-grid">
+                <div class="slider-container">
                     <div class="product-card" data-name="proximamente diseñador">
                         <div class="product-img-container"><img src="logo-tienda.png" alt="Próximamente"></div>
                         <div class="product-info">
@@ -933,10 +929,10 @@
                 </div>
             </section>
 
-            <!-- 3. PERFUMERÍA NICHO -->
+            <!-- 3. PERFUMERÍA NICHO (Carrusel) -->
             <section id="nicho" class="category-section search-section">
                 <h2 class="category-title">Perfumería Nicho</h2>
-                <div class="products-grid">
+                <div class="slider-container">
                     <div class="product-card" data-name="proximamente nicho">
                         <div class="product-img-container"><img src="logo-tienda.png" alt="Próximamente"></div>
                         <div class="product-info">
@@ -951,10 +947,10 @@
                 </div>
             </section>
 
-            <!-- 4. PERFUMERÍA DE CELEBRIDAD -->
+            <!-- 4. PERFUMERÍA DE CELEBRIDAD (Carrusel) -->
             <section id="celebridad" class="category-section search-section">
                 <h2 class="category-title">Perfumería de Celebridad</h2>
-                <div class="products-grid">
+                <div class="slider-container">
                     <div class="product-card" data-name="proximamente celebridad">
                         <div class="product-img-container"><img src="logo-tienda.png" alt="Próximamente"></div>
                         <div class="product-info">
@@ -969,10 +965,10 @@
                 </div>
             </section>
 
-            <!-- 5. BODY MISTS -->
+            <!-- 5. BODY MISTS (Carrusel) -->
             <section id="bodymists" class="category-section search-section">
                 <h2 class="category-title">Body Mists</h2>
-                <div class="products-grid">
+                <div class="slider-container">
                     <div class="product-card" data-name="victoria secret bath body works body mist">
                         <div class="product-img-container"><img src="logo-tienda.png" alt="Próximamente"></div>
                         <div class="product-info">
@@ -987,10 +983,10 @@
                 </div>
             </section>
 
-            <!-- 6. ESMALTES COLOMBIANOS MASGLO -->
+            <!-- 6. ESMALTES COLOMBIANOS MASGLO (Carrusel) -->
             <section id="masglo" class="category-section search-section">
                 <h2 class="category-title">Esmaltes Colombianos Masglo</h2>
-                <div class="products-grid">
+                <div class="slider-container">
                     <div class="product-card" data-name="masglo esmalte base top coat">
                         <div class="product-img-container"><img src="logo-tienda.png" alt="Próximamente"></div>
                         <div class="product-info">
@@ -1005,13 +1001,13 @@
                 </div>
             </section>
 
-            <!-- 7. CUIDADO PERSONAL -->
+            <!-- 7. CUIDADO PERSONAL (Carruseles por subcategoría) -->
             <section id="cuidado-personal" class="category-section search-section">
                 <h2 class="category-title">Cuidado Personal</h2>
                 
-                <div id="exfoliantes" style="margin-bottom: 2rem; scroll-margin-top: 90px;">
-                    <h3 style="font-size: 1.1rem; color: var(--primary-dark); margin-bottom: 1rem;"><i class="fas fa-spa"></i> Exfoliantes para el cuerpo</h3>
-                    <div class="products-grid">
+                <div id="exfoliantes" style="margin-bottom: 2.5rem; scroll-margin-top: 90px;">
+                    <h3 style="font-size: 1.3rem; color: var(--primary-dark); margin-bottom: 1rem; font-family: 'Cormorant Garamond', serif; font-weight: 700;"><i class="fas fa-spa"></i> Exfoliantes para el cuerpo</h3>
+                    <div class="slider-container">
                         <div class="product-card" data-name="exfoliante corporal scrub">
                             <div class="product-img-container"><img src="logo-tienda.png" alt="Exfoliantes"></div>
                             <div class="product-info">
@@ -1026,9 +1022,9 @@
                     </div>
                 </div>
 
-                <div id="geles" style="margin-bottom: 2rem; scroll-margin-top: 90px;">
-                    <h3 style="font-size: 1.1rem; color: var(--primary-dark); margin-bottom: 1rem;"><i class="fas fa-shower"></i> Gel de duchas</h3>
-                    <div class="products-grid">
+                <div id="geles" style="margin-bottom: 2.5rem; scroll-margin-top: 90px;">
+                    <h3 style="font-size: 1.3rem; color: var(--primary-dark); margin-bottom: 1rem; font-family: 'Cormorant Garamond', serif; font-weight: 700;"><i class="fas fa-shower"></i> Gel de duchas</h3>
+                    <div class="slider-container">
                         <div class="product-card" data-name="gel de duchas shower gel">
                             <div class="product-img-container"><img src="logo-tienda.png" alt="Gel de duchas"></div>
                             <div class="product-info">
@@ -1044,8 +1040,8 @@
                 </div>
 
                 <div id="aceites" style="margin-bottom: 2rem; scroll-margin-top: 90px;">
-                    <h3 style="font-size: 1.1rem; color: var(--primary-dark); margin-bottom: 1rem;"><i class="fas fa-oil-can"></i> Aceites corporales</h3>
-                    <div class="products-grid">
+                    <h3 style="font-size: 1.3rem; color: var(--primary-dark); margin-bottom: 1rem; font-family: 'Cormorant Garamond', serif; font-weight: 700;"><i class="fas fa-oil-can"></i> Aceites corporales</h3>
+                    <div class="slider-container">
                         <div class="product-card" data-name="aceite corporal oil">
                             <div class="product-img-container"><img src="logo-tienda.png" alt="Aceites corporales"></div>
                             <div class="product-info">
