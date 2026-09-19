@@ -281,7 +281,7 @@
             background-color: rgba(255, 42, 133, 0.1) !important;
         }
 
-        /* Contenido Principal a la Derecha */
+        /* Contenido Principal a la Derecha (Se expande si se oculta el sidebar) */
         .main-content {
             margin-left: var(--sidebar-width);
             flex: 1;
@@ -477,6 +477,7 @@
             color: var(--text-dark);
         }
 
+        /* Contenedor del Logo PNG SIN FONDO en el Footer */
         .footer-logo-container {
             display: flex;
             justify-content: center;
@@ -491,6 +492,7 @@
             filter: drop-shadow(0 4px 10px rgba(0,0,0,0.15));
         }
 
+        /* Línea inferior del Footer (Redes Sociales y Copyright) */
         .footer-bottom-bar {
             display: flex;
             justify-content: space-between;
@@ -530,6 +532,7 @@
             color: var(--text-light);
         }
 
+        /* Responsivo para móviles y tablets */
         @media (max-width: 900px) {
             .sidebar {
                 transform: translateX(-100%);
@@ -861,8 +864,8 @@
             </div>
 
             <div class="footer-col footer-logo-container">
-                <!-- Logo PNG sin fondo con el nombre exacto de tu repositorio -->
-                <img src="llogo-sin-fondo.png" alt="Sensación Aromas Originales" class="footer-logo-img">
+                <!-- Aquí va tu logo en PNG SIN FONDO -->
+                <img src="logo-sin-fondo.png" alt="Sensación Aromas Originales" class="footer-logo-img">
             </div>
         </div>
 
@@ -880,6 +883,7 @@
     <!-- Scripts Interactivos -->
     <script>
         function toggleSidebar() {
+            // En pantallas grandes alterna colapsar; en móviles abre/cierra
             if (window.innerWidth <= 900) {
                 document.body.classList.toggle('sidebar-open');
             } else {
