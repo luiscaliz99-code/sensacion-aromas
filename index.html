@@ -3,974 +3,265 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sensación Aromas Originales | Catálogo Digital</title>
-    <!-- Google Fonts & FontAwesome para iconos -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+    <title>Tienda de Fragancias - Lo Más Vendido</title>
     <style>
-        :root {
-            --primary-color: #ff2a85;       /* Rosa vibrante y moderno */
-            --primary-dark: #d01b6c;       /* Rosa oscuro para contrastes */
-            --gold-color: #c59b27;         /* Dorado elegante para fondos claros */
-            --bg-dark: #121212;            /* Fondo negro para header y sidebar */
-            --bg-card: #ffffff;            /* Fondo blanco para las tarjetas de productos */
-            --bg-body: #f4f5f7;            /* Fondo general claro de la sección de productos */
-            --text-dark: #222222;          /* Texto principal oscuro */
-            --text-light: #666666;         /* Texto secundario gris */
-            --whatsapp-color: #25d366;
-            --sidebar-width: 270px;
-        }
-
+        /* Estilos generales */
         * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
-            scroll-behavior: smooth;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
         }
 
         body {
-            background-color: var(--bg-body);
-            color: var(--text-dark);
-            line-height: 1.6;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
+            background-color: #f9f9f9;
+            color: #111;
         }
 
-        /* Cabecera Superior con Buscador Estilo Google (Negro) */
-        .main-header {
-            background-color: var(--bg-dark);
-            padding: 12px 25px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            z-index: 1100;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 20px;
-            height: 75px;
-            border-bottom: 1px solid rgba(197, 155, 39, 0.3);
+        header {
+            background-color: #fff;
+            border-bottom: 1px solid #eaeaea;
+            padding: 20px;
+            text-align: center;
         }
 
-        .header-left-group {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        /* Botón para colapsar/abrir la barra lateral (Estilo Gemini) */
-        .sidebar-toggle-btn {
-            background: transparent;
-            border: none;
-            color: #ffffff;
-            font-size: 1.2rem;
-            cursor: pointer;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: background 0.2s, color 0.2s;
-        }
-
-        .sidebar-toggle-btn:hover {
-            background: rgba(255, 255, 255, 0.1);
-            color: var(--primary-color);
-        }
-
-        .header-brand {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .logo-container {
-            width: 48px;
-            height: 48px;
-            flex-shrink: 0;
-            border-radius: 50%;
-            overflow: hidden;
-            box-shadow: 0 0 12px rgba(255, 42, 133, 0.4);
-            border: 2px solid var(--gold-color);
-            background: var(--bg-dark);
-        }
-
-        .logo-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .store-name {
-            font-size: 1rem;
-            color: #ffffff;
-            margin: 0;
-            font-weight: 700;
-            line-height: 1.2;
-            background: linear-gradient(45deg, #ffffff, #f3d89d);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .store-subtitle {
-            font-size: 0.75rem;
-            color: var(--gold-color);
-            margin: 0;
-            letter-spacing: 0.5px;
-        }
-
-        /* Buscador estilo Google Moderno */
+        /* 1. Estilos de la Barra de Búsqueda */
         .search-container {
-            flex-grow: 1;
-            max-width: 550px;
-        }
-
-        .search-box {
             display: flex;
-            align-items: center;
-            background: #1e1e1e;
-            border: 1px solid #333333;
-            border-radius: 24px;
-            padding: 8px 18px;
-            transition: all 0.3s ease;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+            justify-content: center;
+            padding: 10px 20px;
+            background-color: #fff;
         }
 
-        .search-box:hover, .search-box:focus-within {
-            background: #262626;
-            border-color: var(--primary-color);
-            box-shadow: 0 0 10px rgba(255, 42, 133, 0.3);
-        }
-
-        .search-box i {
-            color: var(--gold-color);
-            font-size: 0.95rem;
-            margin-right: 12px;
+        .search-form {
+            display: flex;
+            width: 100%;
+            max-width: 600px;
         }
 
         .search-input {
-            border: none;
-            background: transparent;
-            outline: none;
-            font-size: 0.9rem;
             width: 100%;
-            color: #ffffff;
+            padding: 12px 20px;
+            border: 1px solid #ddd;
+            border-radius: 30px 0 0 30px;
+            outline: none;
+            font-size: 15px;
+            background-color: #f4f4f4;
+            transition: background-color 0.2s;
         }
 
-        .search-input::placeholder {
-            color: #888888;
+        .search-input:focus {
+            background-color: #fff;
+            border-color: #000;
         }
 
-        /* Estructura del Layout con Sidebar Colapsable */
-        .app-layout {
-            display: flex;
-            margin-top: 75px;
-            flex: 1;
+        .search-btn {
+            background: #000;
+            color: #fff;
+            border: none;
+            padding: 0 25px;
+            border-radius: 0 30px 30px 0;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background 0.2s;
         }
 
-        /* Menú Lateral Izquierdo (Negro) */
-        .sidebar {
-            width: var(--sidebar-width);
-            background-color: var(--bg-dark);
-            border-right: 1px solid rgba(197, 155, 39, 0.2);
-            position: fixed;
-            top: 75px;
-            bottom: 0;
-            left: 0;
-            overflow-y: auto;
-            padding: 20px 15px;
-            z-index: 1000;
-            box-shadow: 4px 0 15px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease-in-out;
+        .search-btn:hover {
+            background: #333;
         }
 
-        /* Estado colapsado de la barra lateral */
-        body.sidebar-collapsed .sidebar {
-            transform: translateX(-100%);
-        }
-
-        .sidebar-title {
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            color: var(--gold-color);
-            margin-bottom: 15px;
-            padding-left: 10px;
-            font-weight: 600;
-        }
-
-        .sidebar-menu {
-            list-style: none;
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-        }
-
-        .sidebar-item a {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 11px 14px;
-            color: #ffffff;
-            text-decoration: none;
-            font-size: 0.9rem;
-            font-weight: 500;
-            border-radius: 10px;
-            transition: all 0.3s ease;
-        }
-
-        .sidebar-item a:hover {
-            background: linear-gradient(135deg, rgba(255, 42, 133, 0.2), rgba(197, 155, 39, 0.15));
-            color: var(--primary-color);
-            transform: translateX(4px);
-        }
-
-        .sidebar-item a i {
-            width: 20px;
+        /* 2. Estilos de la Sección de "Lo Más Vendido" */
+        .bestsellers-section {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
             text-align: center;
-            font-size: 0.95rem;
-            color: var(--gold-color);
         }
 
-        /* Submenú Desplegable de Cuidado Personal */
-        .has-submenu .submenu-toggle {
-            justify-content: space-between;
+        .bestsellers-section h2 {
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+            color: #111;
         }
 
-        .has-submenu .submenu-toggle .fa-chevron-down {
-            font-size: 0.75rem;
-            color: #aaaaaa;
-            transition: transform 0.3s ease;
+        .bestsellers-section p {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 30px;
         }
 
-        .has-submenu.open .submenu-toggle .fa-chevron-down {
-            transform: rotate(180deg);
-            color: var(--primary-color);
-        }
-
-        .submenu {
-            list-style: none;
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease-out;
-            padding-left: 20px;
+        /* Contenedor del Carrusel Desplazable */
+        .slider-container {
             display: flex;
-            flex-direction: column;
-            gap: 3px;
+            overflow-x: auto;
+            gap: 20px;
+            padding-bottom: 15px;
+            scroll-snap-type: x mandatory;
+            scrollbar-width: thin;
+            scrollbar-color: #ccc transparent;
         }
 
-        .has-submenu.open .submenu {
-            max-height: 220px;
-            margin-top: 6px;
+        .slider-container::-webkit-scrollbar {
+            height: 6px;
         }
 
-        .submenu-item a {
-            font-size: 0.85rem !important;
-            padding: 8px 10px !important;
-            color: #cccccc !important;
+        .slider-container::-webkit-scrollbar-thumb {
+            background: #ccc;
+            border-radius: 3px;
         }
 
-        .submenu-item a:hover {
-            color: var(--primary-color) !important;
-            background-color: rgba(255, 42, 133, 0.1) !important;
-        }
-
-        /* Contenido Principal a la Derecha */
-        .main-content {
-            margin-left: var(--sidebar-width);
-            flex: 1;
-            padding: 2.5rem;
-            background-color: var(--bg-body);
-            transition: margin-left 0.3s ease-in-out;
-        }
-
-        body.sidebar-collapsed .main-content {
-            margin-left: 0;
-        }
-
-        .category-section {
-            margin-bottom: 3.5rem;
-            scroll-margin-top: 90px;
-        }
-
-        .category-title {
-            font-size: 1.4rem;
-            color: var(--text-dark);
-            margin-bottom: 1.5rem;
-            border-left: 5px solid var(--primary-color);
-            padding-left: 12px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            background: linear-gradient(90deg, rgba(255, 42, 133, 0.08), transparent);
-            padding-top: 5px;
-            padding-bottom: 5px;
-        }
-
-        .products-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
-            gap: 22px;
-        }
-
+        /* Tarjeta de Producto */
         .product-card {
-            background: var(--bg-card);
-            border-radius: 14px;
-            overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+            flex: 0 0 240px;
+            background: #fff;
+            border: 1px solid #eaeaea;
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            scroll-snap-align: start;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
-            border: 1px solid #e2e8f0;
+            transition: transform 0.2s, box-shadow 0.2s;
         }
 
         .product-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 10px 25px rgba(255, 42, 133, 0.15);
-            border-color: var(--primary-color);
+            transform: translateY(-4px);
+            box-shadow: 0 6px 16px rgba(0,0,0,0.08);
         }
 
-        .product-img-container {
+        .product-img-wrapper {
             width: 100%;
-            height: 210px;
-            background: #f8fafc;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .product-img-container img {
-            width: 100%;     
-            height: 100%;    
-            object-fit: cover; 
-            transition: transform 0.4s ease;
-        }
-
-        .product-card:hover .product-img-container img {
-            transform: scale(1.08);
-        }
-
-        .product-info {
-            padding: 1.2rem;
-            display: flex;
-            flex-direction: column;
-            flex-grow: 1;
-        }
-
-        .product-name {
-            font-size: 1rem;
-            font-weight: 600;
-            margin-bottom: 0.4rem;
-            color: var(--text-dark);
-        }
-
-        .product-desc {
-            font-size: 0.85rem;
-            color: var(--text-light);
-            margin-bottom: 1rem;
-            flex-grow: 1;
-        }
-
-        .product-footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: auto;
-        }
-
-        .product-price {
-            font-weight: 600;
-            color: var(--primary-dark);
-            font-size: 1rem;
-        }
-
-        .btn-order {
-            background-color: var(--whatsapp-color);
-            color: white;
-            padding: 6px 14px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-size: 0.85rem;
-            font-weight: 500;
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            transition: all 0.2s;
-            box-shadow: 0 2px 6px rgba(37, 211, 102, 0.2);
-        }
-
-        .btn-order:hover {
-            background-color: #1ebd56;
-            transform: scale(1.05);
-        }
-
-        #no-results {
-            text-align: center;
-            padding: 50px;
-            font-size: 1.1rem;
-            color: var(--text-light);
-            display: none;
-        }
-
-        /* Pie de Página con Estilo Elegante y Logo Grande Estilo Inicio */
-        footer {
-            background: linear-gradient(135deg, #ffffff 0%, #fff0f5 50%, #ffcbe0 100%);
-            color: var(--text-dark);
-            padding: 4rem 5% 2rem 5%;
-            margin-left: var(--sidebar-width);
-            border-top: 1px solid #f0d0df;
-            transition: margin-left 0.3s ease-in-out;
-        }
-
-        body.sidebar-collapsed footer {
-            margin-left: 0;
-        }
-
-        .footer-content-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)) 280px;
-            gap: 40px;
-            align-items: center;
-            margin-bottom: 2.5rem;
-        }
-
-        .footer-col h3 {
-            font-size: 1rem;
-            color: var(--primary-dark);
-            margin-bottom: 1.2rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-weight: 700;
-        }
-
-        .footer-links {
-            list-style: none;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        .footer-links li a {
-            color: var(--text-light);
-            text-decoration: none;
-            font-size: 0.9rem;
-            transition: color 0.2s;
-        }
-
-        .footer-links li a:hover {
-            color: var(--primary-color);
-        }
-
-        .footer-contact-info p {
-            font-size: 0.88rem;
-            color: var(--text-light);
-            margin-bottom: 8px;
-            word-break: break-all;
-        }
-
-        .footer-contact-info strong {
-            color: var(--text-dark);
-        }
-
-        /* Contenedor del logo grande en el footer estilo header */
-        .footer-brand-box {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            background: var(--bg-dark);
-            padding: 16px 20px;
-            border-radius: 16px;
-            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
-            border: 1px solid rgba(197, 155, 39, 0.4);
-        }
-
-        .footer-logo-container {
-            width: 70px;
-            height: 70px;
-            flex-shrink: 0;
-            border-radius: 50%;
-            overflow: hidden;
-            box-shadow: 0 0 15px rgba(255, 42, 133, 0.5);
-            border: 2px solid var(--gold-color);
-            background: var(--bg-dark);
-        }
-
-        .footer-logo-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .footer-store-name {
-            font-size: 1.15rem;
-            color: #ffffff;
-            margin: 0;
-            font-weight: 700;
-            line-height: 1.2;
-            background: linear-gradient(45deg, #ffffff, #f3d89d);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .footer-store-subtitle {
-            font-size: 0.9rem;
-            color: var(--gold-color);
-            margin: 0;
-            letter-spacing: 0.5px;
-            font-weight: 600;
-        }
-
-        .footer-bottom-bar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-top: 1px solid rgba(0,0,0,0.08);
-            padding-top: 25px;
-            flex-wrap: wrap;
-            gap: 20px;
-        }
-
-        .footer-social-icons {
-            display: flex;
-            gap: 15px;
-        }
-
-        .footer-social-icons a {
-            background: var(--text-dark);
-            color: #ffffff;
-            width: 38px;
-            height: 38px;
-            border-radius: 50%;
+            height: 180px;
             display: flex;
             align-items: center;
             justify-content: center;
-            text-decoration: none;
-            transition: transform 0.2s, background 0.2s;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            margin-bottom: 15px;
         }
 
-        .footer-social-icons a:hover {
-            transform: translateY(-3px);
-            background: var(--primary-color);
+        .product-card img {
+            max-height: 100%;
+            max-width: 100%;
+            object-fit: contain;
         }
 
-        .footer-copyright {
-            font-size: 0.85rem;
-            color: var(--text-light);
+        .product-card h3 {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #222;
+            line-height: 1.3;
         }
 
-        @media (max-width: 900px) {
-            .sidebar {
-                transform: translateX(-100%);
-            }
-            body.sidebar-open .sidebar {
-                transform: translateX(0);
-            }
-            .app-layout {
-                flex-direction: column;
-                margin-top: 75px;
-            }
-            .main-content, footer {
-                margin-left: 0 !important;
-                padding: 1.5rem;
-            }
-            .footer-content-grid {
-                grid-template-columns: 1fr;
-                gap: 25px;
-                text-align: center;
-            }
-            .footer-brand-box {
-                justify-content: center;
-            }
-            .footer-bottom-bar {
-                flex-direction: column;
-                align-items: center;
-                text-align: center;
-            }
+        .price {
+            font-weight: 700;
+            color: #000;
+            font-size: 16px;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .add-to-cart {
+            background: #000;
+            color: #fff;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 500;
+            width: 100%;
+            transition: background 0.2s;
+        }
+
+        .add-to-cart:hover {
+            background: #333;
         }
     </style>
 </head>
 <body>
 
-    <!-- Cabecera Superior: Botón Menú, Logo y Buscador -->
-    <header class="main-header">
-        <div class="header-left-group">
-            <button class="sidebar-toggle-btn" onclick="toggleSidebar()" title="Ocultar/Mostrar menú">
-                <i class="fas fa-bars"></i>
-            </button>
-            <div class="header-brand">
-                <a href="#" class="logo-container">
-                    <img src="logo-tienda.png" alt="Sensación Aromas Originales Logo" class="logo-img">
-                </a>
-                <div>
-                    <h1 class="store-name">Sensación Aromas</h1>
-                    <p class="store-subtitle">Originales</p>
-                </div>
-            </div>
-        </div>
-
+    <!-- Encabezado con la Barra de Búsqueda -->
+    <header>
         <div class="search-container">
-            <div class="search-box">
-                <i class="fas fa-search"></i>
-                <input type="text" id="searchInput" class="search-input" placeholder="Buscar perfumes, body mists, esmaltes, exfoliantes..." onkeyup="filterProducts()">
-            </div>
+            <form class="search-form" action="#" method="get">
+                <input type="search" placeholder="Búsqueda de productos..." name="s" class="search-input" required />
+                <button type="submit" class="search-btn">🔍</button>
+            </form>
         </div>
     </header>
 
-    <div class="app-layout">
+    <!-- Sección de Lo Más Vendido -->
+    <section class="bestsellers-section">
+        <h2>LOS MÁS VENDIDOS</h2>
+        <p>Explora los perfumes más vendidos de nuestra tienda</p>
         
-        <!-- Menú Lateral Izquierdo -->
-        <aside class="sidebar">
-            <p class="sidebar-title">Categorías</p>
-            <ul class="sidebar-menu">
-                <li class="sidebar-item">
-                    <a href="#arabes"><i class="fas fa-gem"></i> Perfumería Árabe</a>
-                </li>
-                <li class="sidebar-item">
-                    <a href="#disenador"><i class="fas fa-spray-can"></i> Perfumería de Diseñador</a>
-                </li>
-                <li class="sidebar-item">
-                    <a href="#nicho"><i class="fas fa-crown"></i> Perfumería Nicho</a>
-                </li>
-                <li class="sidebar-item">
-                    <a href="#celebridad"><i class="fas fa-star"></i> Perfumería de Celebridad</a>
-                </li>
-                <li class="sidebar-item">
-                    <a href="#bodymists"><i class="fas fa-wind"></i> Body Mists</a>
-                </li>
-                <li class="sidebar-item">
-                    <a href="#masglo"><i class="fas fa-hand-sparkles"></i> Esmaltes Masglo</a>
-                </li>
-                
-                <!-- Menú Desplegable de Cuidado Personal -->
-                <li class="sidebar-item has-submenu" id="cuidadoMenu">
-                    <a href="javascript:void(0);" class="submenu-toggle" onclick="toggleSubmenu(event)">
-                        <span><i class="fas fa-pump-soap"></i> Cuidado Personal</span>
-                        <i class="fas fa-chevron-down"></i>
-                    </a>
-                    <ul class="submenu">
-                        <li class="submenu-item"><a href="#exfoliantes"><i class="fas fa-circle" style="font-size: 4px;"></i> Exfoliantes corporales</a></li>
-                        <li class="submenu-item"><a href="#geles"><i class="fas fa-circle" style="font-size: 4px;"></i> Gel de duchas</a></li>
-                        <li class="submenu-item"><a href="#aceites"><i class="fas fa-circle" style="font-size: 4px;"></i> Aceites corporales</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </aside>
-
-        <!-- Contenido del Catálogo -->
-        <main class="main-content">
-            
-            <div id="no-results">
-                <i class="fas fa-search" style="font-size: 2rem; margin-bottom: 10px; color: var(--primary-color);"></i>
-                <p>No se encontraron productos con ese nombre.</p>
+        <div class="slider-container">
+            <!-- Producto 1 -->
+            <div class="product-card">
+                <div class="product-img-wrapper">
+                    <!-- Reemplaza el src con el link de tu imagen -->
+                    <img src="https://via.placeholder.com/150" alt="Club De Nuit Women">
+                </div>
+                <div>
+                    <h3>Club De Nuit Women</h3>
+                    <span class="price">C$1,665</span>
+                </div>
+                <button class="add-to-cart">Añadir al carrito</button>
             </div>
 
-            <!-- 1. PERFUMERÍA ÁRABE -->
-            <section id="arabes" class="category-section search-section">
-                <h2 class="category-title">Perfumería Árabe</h2>
-                <div class="products-grid">
-                    <div class="product-card" data-name="bharara beauty">
-                        <div class="product-img-container"><img src="bharara_beauty.webp" alt="Bharara Beauty"></div>
-                        <div class="product-info">
-                            <h3 class="product-name">Bharara Beauty</h3>
-                            <p class="product-desc">Notas aromáticas y alta fijación.</p>
-                            <div class="product-footer">
-                                <span class="product-price">Consultar</span>
-                                <a href="https://wa.me/50583743021?text=Hola,%20quiero%20el%20perfume%20Bharara%20Beauty" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Pedir</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="product-card" data-name="orientica oud">
-                        <div class="product-img-container"><img src="orientica-oud-.webp" alt="Orientica Oud"></div>
-                        <div class="product-info">
-                            <h3 class="product-name">Orientica Oud</h3>
-                            <p class="product-desc">Elegancia y misterio oriental.</p>
-                            <div class="product-footer">
-                                <span class="product-price">Consultar</span>
-                                <a href="https://wa.me/50583743021?text=Hola,%20quiero%20Orientica%20Oud" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Pedir</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="product-card" data-name="hawas ice men">
-                        <div class="product-img-container"><img src="hawas-ice-men_1000x.webp" alt="Hawas Ice Men"></div>
-                        <div class="product-info">
-                            <h3 class="product-name">Hawas Ice Men</h3>
-                            <p class="product-desc">Notas ultra frescas y vibrantes.</p>
-                            <div class="product-footer">
-                                <span class="product-price">Consultar</span>
-                                <a href="https://wa.me/50583743021?text=Hola,%20quiero%20Hawas%20Ice%20Men" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Pedir</a>
-                            </div>
-                        </div>
-                    </div>
+            <!-- Producto 2 -->
+            <div class="product-card">
+                <div class="product-img-wrapper">
+                    <img src="https://via.placeholder.com/150" alt="Club de Nuit Iconic">
                 </div>
-            </section>
-
-            <!-- 2. PERFUMERÍA DE DISEÑADOR -->
-            <section id="disenador" class="category-section search-section">
-                <h2 class="category-title">Perfumería de Diseñador</h2>
-                <div class="products-grid">
-                    <div class="product-card" data-name="proximamente diseñador">
-                        <div class="product-img-container"><img src="logo-tienda.png" alt="Próximamente"></div>
-                        <div class="product-info">
-                            <h3 class="product-name">Próximamente</h3>
-                            <p class="product-desc">Nuevas fragancias de diseñador en camino.</p>
-                            <div class="product-footer">
-                                <span class="product-price">Consultar</span>
-                                <a href="https://wa.me/50583743021?text=Hola,%20consulto%20sobre%20perfumes%20de%20diseñador" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Pedir</a>
-                            </div>
-                        </div>
-                    </div>
+                <div>
+                    <h3>Club de Nuit Iconic</h3>
+                    <span class="price">C$2,050</span>
                 </div>
-            </section>
-
-            <!-- 3. PERFUMERÍA NICHO -->
-            <section id="nicho" class="category-section search-section">
-                <h2 class="category-title">Perfumería Nicho</h2>
-                <div class="products-grid">
-                    <div class="product-card" data-name="proximamente nicho">
-                        <div class="product-img-container"><img src="logo-tienda.png" alt="Próximamente"></div>
-                        <div class="product-info">
-                            <h3 class="product-name">Próximamente</h3>
-                            <p class="product-desc">Colección de alta perfumería exclusiva.</p>
-                            <div class="product-footer">
-                                <span class="product-price">Consultar</span>
-                                <a href="https://wa.me/50583743021?text=Hola,%20consulto%20sobre%20perfumes%20nicho" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Pedir</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- 4. PERFUMERÍA DE CELEBRIDAD -->
-            <section id="celebridad" class="category-section search-section">
-                <h2 class="category-title">Perfumería de Celebridad</h2>
-                <div class="products-grid">
-                    <div class="product-card" data-name="proximamente celebridad">
-                        <div class="product-img-container"><img src="logo-tienda.png" alt="Próximamente"></div>
-                        <div class="product-info">
-                            <h3 class="product-name">Próximamente</h3>
-                            <p class="product-desc">Fragancias de tus artistas favoritos.</p>
-                            <div class="product-footer">
-                                <span class="product-price">Consultar</span>
-                                <a href="https://wa.me/50583743021?text=Hola,%20consulto%20sobre%20perfumes%20de%20celebridad" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Pedir</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- 5. BODY MISTS -->
-            <section id="bodymists" class="category-section search-section">
-                <h2 class="category-title">Body Mists</h2>
-                <div class="products-grid">
-                    <div class="product-card" data-name="victoria secret bath body works body mist">
-                        <div class="product-img-container"><img src="logo-tienda.png" alt="Próximamente"></div>
-                        <div class="product-info">
-                            <h3 class="product-name">Colección Body Mists</h3>
-                            <p class="product-desc">Victoria's Secret, Bath & Body Works y más.</p>
-                            <div class="product-footer">
-                                <span class="product-price">Consultar</span>
-                                <a href="https://wa.me/50583743021?text=Hola,%20quiero%20ver%20body%20mists" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Pedir</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- 6. ESMALTES COLOMBIANOS MASGLO -->
-            <section id="masglo" class="category-section search-section">
-                <h2 class="category-title">Esmaltes Colombianos Masglo</h2>
-                <div class="products-grid">
-                    <div class="product-card" data-name="masglo esmalte base top coat">
-                        <div class="product-img-container"><img src="logo-tienda.png" alt="Próximamente"></div>
-                        <div class="product-info">
-                            <h3 class="product-name">Línea Masglo</h3>
-                            <p class="product-desc">Esmaltes, bases fortalecedoras y top coats.</p>
-                            <div class="product-footer">
-                                <span class="product-price">Consultar</span>
-                                <a href="https://wa.me/50583743021?text=Hola,%20quiero%20consultar%20sobre%20esmaltes%20Masglo" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Pedir</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- 7. CUIDADO PERSONAL (Subcategorías) -->
-            <section id="cuidado-personal" class="category-section search-section">
-                <h2 class="category-title">Cuidado Personal</h2>
-                
-                <!-- Subsección Exfoliantes -->
-                <div id="exfoliantes" style="margin-bottom: 2rem; scroll-margin-top: 90px;">
-                    <h3 style="font-size: 1.1rem; color: var(--primary-dark); margin-bottom: 1rem;"><i class="fas fa-spa"></i> Exfoliantes para el cuerpo</h3>
-                    <div class="products-grid">
-                        <div class="product-card" data-name="exfoliante corporal scrub">
-                            <div class="product-img-container"><img src="logo-tienda.png" alt="Exfoliantes"></div>
-                            <div class="product-info">
-                                <h3 class="product-name">Exfoliantes Corporales</h3>
-                                <p class="product-desc">Suavidad y renovación para tu piel.</p>
-                                <div class="product-footer">
-                                    <span class="product-price">Consultar</span>
-                                    <a href="https://wa.me/50583743021?text=Hola,%20quiero%20ver%20exfoliantes%20corporales" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Pedir</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Subsección Gel de Duchas -->
-                <div id="geles" style="margin-bottom: 2rem; scroll-margin-top: 90px;">
-                    <h3 style="font-size: 1.1rem; color: var(--primary-dark); margin-bottom: 1rem;"><i class="fas fa-shower"></i> Gel de duchas</h3>
-                    <div class="products-grid">
-                        <div class="product-card" data-name="gel de duchas shower gel">
-                            <div class="product-img-container"><img src="logo-tienda.png" alt="Gel de duchas"></div>
-                            <div class="product-info">
-                                <h3 class="product-name">Geles de Ducha</h3>
-                                <p class="product-desc">Limpieza perfumada y espumosa.</p>
-                                <div class="product-footer">
-                                    <span class="product-price">Consultar</span>
-                                    <a href="https://wa.me/50583743021?text=Hola,%20quiero%20ver%20gel%20de%20duchas" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Pedir</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Subsección Aceites Corporales -->
-                <div id="aceites" style="margin-bottom: 2rem; scroll-margin-top: 90px;">
-                    <h3 style="font-size: 1.1rem; color: var(--primary-dark); margin-bottom: 1rem;"><i class="fas fa-oil-can"></i> Aceites corporales</h3>
-                    <div class="products-grid">
-                        <div class="product-card" data-name="aceite corporal oil">
-                            <div class="product-img-container"><img src="logo-tienda.png" alt="Aceites corporales"></div>
-                            <div class="product-info">
-                                <h3 class="product-name">Aceites Corporales</h3>
-                                <p class="product-desc">Hidratación profunda y brillo sedoso.</p>
-                                <div class="product-footer">
-                                    <span class="product-price">Consultar</span>
-                                    <a href="https://wa.me/50583743021?text=Hola,%20quiero%20ver%20aceites%20corporales" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Pedir</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </section>
-
-        </main>
-    </div>
-
-    <!-- Pie de Página con Logo Grande Estilo Header (Círculo Dorado y Texto) -->
-    <footer>
-        <div class="footer-content-grid">
-            <div class="footer-col">
-                <h3>Categorías</h3>
-                <ul class="footer-links">
-                    <li><a href="#arabes">Perfumería Árabe</a></li>
-                    <li><a href="#disenador">Perfumería de Diseñador</a></li>
-                    <li><a href="#bodymists">Body Mists</a></li>
-                    <li><a href="#masglo">Esmaltes Masglo</a></li>
-                </ul>
+                <button class="add-to-cart">Añadir al carrito</button>
             </div>
 
-            <div class="footer-col">
-                <h3>Contacto</h3>
-                <div class="footer-contact-info">
-                    <p><strong>Email:</strong></p>
-                    <p>bellezaycuidadopersonal@gmail.com</p>
-                    <p style="margin-top: 8px;"><strong>Teléfono:</strong></p>
-                    <p>+505 8374 3021</p>
-                    <p style="margin-top: 8px;"><strong>Dirección:</strong></p>
-                    <p>Chinandega, Nicaragua</p>
+            <!-- Producto 3 -->
+            <div class="product-card">
+                <div class="product-img-wrapper">
+                    <img src="https://via.placeholder.com/150" alt="Odyssey White Edition">
                 </div>
+                <div>
+                    <h3>Odyssey White Edition</h3>
+                    <span class="price">C$1,792</span>
+                </div>
+                <button class="add-to-cart">Añadir al carrito</button>
             </div>
 
-            <div class="footer-col">
-                <h3>Información</h3>
-                <ul class="footer-links">
-                    <li><a href="#">Acerca de Nosotros</a></li>
-                    <li><a href="#">Política de Privacidad</a></li>
-                    <li><a href="#">Términos y Condiciones</a></li>
-                </ul>
+            <!-- Producto 4 -->
+            <div class="product-card">
+                <div class="product-img-wrapper">
+                    <img src="https://via.placeholder.com/150" alt="Amber Oud Aqua Dubai">
+                </div>
+                <div>
+                    <h3>Amber Oud Aqua Dubai</h3>
+                    <span class="price">C$2,523</span>
+                </div>
+                <button class="add-to-cart">Añadir al carrito</button>
             </div>
 
-            <div class="footer-col">
-                <!-- Bloque de marca grande estilo header para el footer -->
-                <div class="footer-brand-box">
-                    <div class="footer-logo-container">
-                        <img src="llogo-sin-fondo.png" alt="Sensación Aromas Originales Logo" class="footer-logo-img">
-                    </div>
-                    <div>
-                        <h2 class="footer-store-name">Sensación Aromas</h2>
-                        <p class="footer-store-subtitle">Originales</p>
-                    </div>
+            <!-- Producto 5 -->
+            <div class="product-card">
+                <div class="product-img-wrapper">
+                    <img src="https://via.placeholder.com/150" alt="Yara Tous">
                 </div>
+                <div>
+                    <h3>Yara Tous</h3>
+                    <span class="price">C$1,665</span>
+                </div>
+                <button class="add-to-cart">Añadir al carrito</button>
             </div>
         </div>
+    </section>
 
-        <div class="footer-bottom-bar">
-            <div class="footer-social-icons">
-                <a href="https://www.facebook.com/profile.php?id=61576096020955" target="_blank"><i class="fab fa-facebook-f"></i></a>
-                <a href="https://www.instagram.com/sensancion_a?stkn=OXJqb3ZqdTdha3g5" target="_blank"><i class="fab fa-instagram"></i></a>
-            </div>
-            <div class="footer-copyright">
-                <p>&copy; 2026 Sensación Aromas Originales. Todos los derechos reservados.</p>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Scripts Interactivos -->
-    <script>
-        function toggleSidebar() {
-            if (window.innerWidth <= 900) {
-                document.body.classList.toggle('sidebar-open');
-            } else {
-                document.body.classList.toggle('sidebar-collapsed');
-            }
-        }
-
-        function toggleSubmenu(event) {
-            event.preventDefault();
-            let parent = document.getElementById('cuidadoMenu');
-            parent.classList.toggle('open');
-        }
-
-        function filterProducts() {
-            let input = document.getElementById('searchInput').value.toLowerCase();
-            let cards = document.querySelectorAll('.product-card');
-            let sections = document.querySelectorAll('.category-section');
-            let noResults = document.getElementById('no-results');
-            let foundCount = 0;
-
-            cards.forEach(card => {
-                let name = card.getAttribute('data-name');
-                if (name.includes(input)) {
-                    card.style.display = "flex";
-                    foundCount++;
-                } else {
-                    card.style.display = "none";
-                }
-            });
-
-            sections.forEach(section => {
-                let cardsInSec = section.querySelectorAll('.product-card');
-                let hasVisible = Array.from(cardsInSec).some(c => c.style.display !== "none");
-                if (hasVisible) {
-                    section.style.display = "block";
-                } else {
-                    section.style.display = "none";
-                }
-            });
-
-            if (foundCount === 0) {
-                noResults.style.display = "block";
-            } else {
-                noResults.style.display = "none";
-            }
-        }
-    </script>
 </body>
 </html>
