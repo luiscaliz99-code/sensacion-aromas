@@ -12,13 +12,13 @@
         :root {
             --primary-color: #ff2a85;       /* Rosa vibrante y moderno */
             --primary-dark: #d01b6c;       /* Rosa oscuro para contrastes */
-            --gold-color: #dfb15b;         /* Dorado elegante */
-            --gold-light: #f3d89d;         /* Dorado claro */
-            --bg-dark: #121212;            /* Fondo negro principal */
-            --bg-card: #1c1c1c;            /* Fondo negro para tarjetas y menús */
-            --bg-body: #181818;            /* Fondo general de la página */
-            --text-dark: #ffffff;          /* Texto principal blanco */
-            --text-light: #b0b0b0;         /* Texto secundario gris claro */
+            --gold-color: #c59b27;         /* Dorado elegante para fondos claros */
+            --gold-light: #9a7615;         
+            --bg-dark: #121212;            /* Fondo negro para header y sidebar */
+            --bg-card: #ffffff;            /* Fondo blanco para las tarjetas de productos */
+            --bg-body: #f4f5f7;            /* Fondo general claro de la sección de productos */
+            --text-dark: #222222;          /* Texto principal oscuro */
+            --text-light: #666666;         /* Texto secundario gris */
             --whatsapp-color: #25d366;
             --sidebar-width: 270px;
         }
@@ -40,11 +40,11 @@
             min-height: 100vh;
         }
 
-        /* Cabecera Superior con Buscador Estilo Google */
+        /* Cabecera Superior con Buscador Estilo Google (Negro) */
         .main-header {
-            background-color: var(--bg-card);
+            background-color: var(--bg-dark);
             padding: 12px 30px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
             position: fixed;
             top: 0;
             left: 0;
@@ -55,7 +55,7 @@
             align-items: center;
             gap: 20px;
             height: 75px;
-            border-bottom: 1px solid rgba(223, 177, 91, 0.2); /* Sutil línea dorada */
+            border-bottom: 1px solid rgba(197, 155, 39, 0.3);
         }
 
         .header-brand {
@@ -72,7 +72,7 @@
             border-radius: 50%;
             overflow: hidden;
             box-shadow: 0 0 12px rgba(255, 42, 133, 0.4);
-            border: 2px solid var(--gold-color); /* Marco dorado elegante */
+            border: 2px solid var(--gold-color);
             background: var(--bg-dark);
         }
 
@@ -84,11 +84,11 @@
 
         .store-name {
             font-size: 1rem;
-            color: var(--text-dark);
+            color: #ffffff;
             margin: 0;
             font-weight: 700;
             line-height: 1.2;
-            background: linear-gradient(45deg, #ffffff, var(--gold-light));
+            background: linear-gradient(45deg, #ffffff, #f3d89d);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
@@ -109,7 +109,7 @@
         .search-box {
             display: flex;
             align-items: center;
-            background: #222222;
+            background: #1e1e1e;
             border: 1px solid #333333;
             border-radius: 24px;
             padding: 8px 18px;
@@ -118,7 +118,7 @@
         }
 
         .search-box:hover, .search-box:focus-within {
-            background: #2a2a2a;
+            background: #262626;
             border-color: var(--primary-color);
             box-shadow: 0 0 10px rgba(255, 42, 133, 0.3);
         }
@@ -135,11 +135,11 @@
             outline: none;
             font-size: 0.9rem;
             width: 100%;
-            color: var(--text-dark);
+            color: #ffffff;
         }
 
         .search-input::placeholder {
-            color: #777777;
+            color: #888888;
         }
 
         /* Estructura del Layout con Sidebar Izquierdo */
@@ -149,11 +149,11 @@
             flex: 1;
         }
 
-        /* Menú Lateral Izquierdo */
+        /* Menú Lateral Izquierdo (Negro) */
         .sidebar {
             width: var(--sidebar-width);
-            background-color: var(--bg-card);
-            border-right: 1px solid rgba(223, 177, 91, 0.15);
+            background-color: var(--bg-dark);
+            border-right: 1px solid rgba(197, 155, 39, 0.2);
             position: fixed;
             top: 75px;
             bottom: 0;
@@ -161,7 +161,7 @@
             overflow-y: auto;
             padding: 20px 15px;
             z-index: 1000;
-            box-shadow: 4px 0 15px rgba(0,0,0,0.3);
+            box-shadow: 4px 0 15px rgba(0,0,0,0.1);
         }
 
         .sidebar-title {
@@ -186,7 +186,7 @@
             align-items: center;
             gap: 12px;
             padding: 11px 14px;
-            color: var(--text-dark);
+            color: #ffffff;
             text-decoration: none;
             font-size: 0.9rem;
             font-weight: 500;
@@ -195,7 +195,7 @@
         }
 
         .sidebar-item a:hover {
-            background: linear-gradient(135deg, rgba(255, 42, 133, 0.15), rgba(223, 177, 91, 0.1));
+            background: linear-gradient(135deg, rgba(255, 42, 133, 0.2), rgba(197, 155, 39, 0.15));
             color: var(--primary-color);
             transform: translateX(4px);
         }
@@ -214,7 +214,7 @@
 
         .has-submenu .submenu-toggle .fa-chevron-down {
             font-size: 0.75rem;
-            color: var(--text-light);
+            color: #aaaaaa;
             transition: transform 0.3s ease;
         }
 
@@ -242,15 +242,15 @@
         .submenu-item a {
             font-size: 0.85rem !important;
             padding: 8px 10px !important;
-            color: var(--text-light) !important;
+            color: #cccccc !important;
         }
 
         .submenu-item a:hover {
             color: var(--primary-color) !important;
-            background-color: rgba(255, 42, 133, 0.08) !important;
+            background-color: rgba(255, 42, 133, 0.1) !important;
         }
 
-        /* Contenido Principal a la Derecha */
+        /* Contenido Principal a la Derecha (Fondo Blanco/Claro) */
         .main-content {
             margin-left: var(--sidebar-width);
             flex: 1;
@@ -271,7 +271,7 @@
             padding-left: 12px;
             text-transform: uppercase;
             letter-spacing: 0.5px;
-            background: linear-gradient(90deg, rgba(255, 42, 133, 0.1), transparent);
+            background: linear-gradient(90deg, rgba(255, 42, 133, 0.08), transparent);
             padding-top: 5px;
             padding-bottom: 5px;
         }
@@ -286,24 +286,24 @@
             background: var(--bg-card);
             border-radius: 14px;
             overflow: hidden;
-            box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
             display: flex;
             flex-direction: column;
             justify-content: space-between;
             transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            border: 1px solid #e2e8f0;
         }
 
         .product-card:hover {
             transform: translateY(-6px);
-            box-shadow: 0 10px 30px rgba(255, 42, 133, 0.2);
-            border-color: rgba(223, 177, 91, 0.4);
+            box-shadow: 0 10px 25px rgba(255, 42, 133, 0.15);
+            border-color: var(--primary-color);
         }
 
         .product-img-container {
             width: 100%;
             height: 210px;
-            background: #181818;
+            background: #f8fafc;
             overflow: hidden;
             position: relative;
         }
@@ -349,7 +349,7 @@
 
         .product-price {
             font-weight: 600;
-            color: var(--gold-color);
+            color: var(--primary-dark);
             font-size: 1rem;
         }
 
@@ -365,7 +365,7 @@
             align-items: center;
             gap: 6px;
             transition: all 0.2s;
-            box-shadow: 0 2px 8px rgba(37, 211, 102, 0.3);
+            box-shadow: 0 2px 6px rgba(37, 211, 102, 0.2);
         }
 
         .btn-order:hover {
@@ -381,14 +381,53 @@
             display: none;
         }
 
+        /* Pie de página con Redes Sociales */
         footer {
             text-align: center;
-            padding: 2rem;
+            padding: 2.5rem 2rem;
             color: var(--text-light);
             font-size: 0.85rem;
-            background-color: var(--bg-card);
-            border-top: 1px solid rgba(223, 177, 91, 0.15);
+            background-color: #ffffff;
+            border-top: 1px solid #e2e8f0;
             margin-left: var(--sidebar-width);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .footer-socials {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .social-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            border-radius: 30px;
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: transform 0.2s ease, opacity 0.2s ease;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .social-btn.facebook {
+            background-color: #1877f2;
+        }
+
+        .social-btn.instagram {
+            background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+        }
+
+        .social-btn:hover {
+            transform: translateY(-3px);
+            opacity: 0.9;
         }
 
         /* Responsivo para móviles y tablets */
@@ -400,7 +439,7 @@
                 height: auto;
                 box-shadow: none;
                 border-right: none;
-                border-bottom: 1px solid rgba(223, 177, 91, 0.2);
+                border-bottom: 1px solid rgba(197, 155, 39, 0.3);
                 padding: 15px;
             }
             .app-layout {
@@ -489,7 +528,7 @@
         <main class="main-content">
             
             <div id="no-results">
-                <i class="fas fa-search" style="font-size: 2rem; margin-bottom: 10px; color: var(--gold-color);"></i>
+                <i class="fas fa-search" style="font-size: 2rem; margin-bottom: 10px; color: var(--primary-color);"></i>
                 <p>No se encontraron productos con ese nombre.</p>
             </div>
 
@@ -629,7 +668,7 @@
                 
                 <!-- Subsección Exfoliantes -->
                 <div id="exfoliantes" style="margin-bottom: 2rem; scroll-margin-top: 90px;">
-                    <h3 style="font-size: 1.1rem; color: var(--gold-color); margin-bottom: 1rem;"><i class="fas fa-spa"></i> Exfoliantes para el cuerpo</h3>
+                    <h3 style="font-size: 1.1rem; color: var(--primary-dark); margin-bottom: 1rem;"><i class="fas fa-spa"></i> Exfoliantes para el cuerpo</h3>
                     <div class="products-grid">
                         <div class="product-card" data-name="exfoliante corporal scrub">
                             <div class="product-img-container"><img src="logo-tienda.png" alt="Exfoliantes"></div>
@@ -647,7 +686,7 @@
 
                 <!-- Subsección Gel de Duchas -->
                 <div id="geles" style="margin-bottom: 2rem; scroll-margin-top: 90px;">
-                    <h3 style="font-size: 1.1rem; color: var(--gold-color); margin-bottom: 1rem;"><i class="fas fa-shower"></i> Gel de duchas</h3>
+                    <h3 style="font-size: 1.1rem; color: var(--primary-dark); margin-bottom: 1rem;"><i class="fas fa-shower"></i> Gel de duchas</h3>
                     <div class="products-grid">
                         <div class="product-card" data-name="gel de duchas shower gel">
                             <div class="product-img-container"><img src="logo-tienda.png" alt="Gel de duchas"></div>
@@ -665,7 +704,7 @@
 
                 <!-- Subsección Aceites Corporales -->
                 <div id="aceites" style="margin-bottom: 2rem; scroll-margin-top: 90px;">
-                    <h3 style="font-size: 1.1rem; color: var(--gold-color); margin-bottom: 1rem;"><i class="fas fa-oil-can"></i> Aceites corporales</h3>
+                    <h3 style="font-size: 1.1rem; color: var(--primary-dark); margin-bottom: 1rem;"><i class="fas fa-oil-can"></i> Aceites corporales</h3>
                     <div class="products-grid">
                         <div class="product-card" data-name="aceite corporal oil">
                             <div class="product-img-container"><img src="logo-tienda.png" alt="Aceites corporales"></div>
@@ -686,7 +725,16 @@
         </main>
     </div>
 
+    <!-- Pie de Página con Redes Sociales -->
     <footer>
+        <div class="footer-socials">
+            <a href="https://www.facebook.com/profile.php?id=61576096020955" class="social-btn facebook" target="_blank">
+                <i class="fab fa-facebook-f"></i> Facebook
+            </a>
+            <a href="https://www.instagram.com/sensancion_a?stkn=OXJqb3ZqdTdha3g5" class="social-btn instagram" target="_blank">
+                <i class="fab fa-instagram"></i> Instagram
+            </a>
+        </div>
         <p>&copy; 2026 Sensación Aromas Originales. Todos los derechos reservados.</p>
     </footer>
 
