@@ -818,7 +818,7 @@
             background-color: var(--primary-dark);
         }
 
-        /* Notificación emergente de Bienvenida / Descuento */
+        /* Notificación emergente de Descuento */
         .discount-toast {
             position: fixed;
             top: 90px;
@@ -1070,12 +1070,11 @@
 
         <ul class="top-nav-menu">
             <li><a href="#" class="active">Inicio</a></li>
-            <li><a href="#arabes">Hombre</a></li>
-            <li><a href="#arabes">Mujer</a></li>
-            <li><a href="#arabes">Unisex</a></li>
-            <li><a href="#">Tienda</a></li>
+            <li><a href="#arabes">Árabe</a></li>
+            <li><a href="#disenador">Diseñador</a></li>
+            <li><a href="#celebridad">Celebridad</a></li>
+            <li><a href="#bodymists">Body Mists</a></li>
             <li><a href="#mas-vendidos">Más Vendidos</a></li>
-            <li><a href="#arabes">Marcas <i class="fas fa-chevron-down" style="font-size: 0.7rem;"></i></a></li>
         </ul>
 
         <div class="header-right-actions">
@@ -1109,7 +1108,7 @@
     <!-- Fondo Oscuro General para Modales -->
     <div class="modal-overlay" id="modalOverlay" onclick="closeAllModals()"></div>
 
-    <!-- Modal de Registro de Cuenta Mejorado -->
+    <!-- Modal de Registro de Cuenta -->
     <div class="auth-modal" id="authModal">
         <div class="auth-header">
             <h3>Crear Cuenta Nueva</h3>
@@ -1228,18 +1227,6 @@
                 <li class="sidebar-item">
                     <a href="#masglo"><i class="fas fa-hand-sparkles"></i> Esmaltes Masglo</a>
                 </li>
-                
-                <li class="sidebar-item has-submenu" id="cuidadoMenu">
-                    <a href="javascript:void(0);" class="submenu-toggle" onclick="toggleSubmenu(event)">
-                        <span><i class="fas fa-pump-soap"></i> Cuidado Personal</span>
-                        <i class="fas fa-chevron-down"></i>
-                    </a>
-                    <ul class="submenu">
-                        <li class="submenu-item"><a href="#exfoliantes"><i class="fas fa-circle" style="font-size: 4px;"></i> Exfoliantes corporales</a></li>
-                        <li class="submenu-item"><a href="#geles"><i class="fas fa-circle" style="font-size: 4px;"></i> Gel de duchas</a></li>
-                        <li class="submenu-item"><a href="#aceites"><i class="fas fa-circle" style="font-size: 4px;"></i> Aceites corporales</a></li>
-                    </ul>
-                </li>
             </ul>
         </aside>
 
@@ -1251,67 +1238,66 @@
             </div>
 
             <!-- LO MÁS VENDIDO -->
-            <section id="mas-vendidos" class="category-section search-section">
+            <section id="mas-vendidos" class="category-section">
                 <h2 class="category-title">Los Más Vendidos</h2>
-                <p style="color: var(--text-light); font-size: 0.9rem; margin-bottom: 1.2rem;">Explora los perfumes más vendidos de nuestra tienda deslizando hacia los lados</p>
-                
+                <p style="color: var(--text-light); font-size: 0.9rem; margin-bottom: 1.2rem;">Explora los favoritos de nuestros clientes</p>
                 <div class="slider-container">
-                    <div class="product-card" data-name="bharara beauty" data-price="45.00">
-                        <div class="product-img-container"><img src="bharara_beauty.webp" alt="Bharara Beauty"></div>
+                    <div class="product-card" data-name="bharara king" data-price="55.00">
+                        <div class="product-img-container"><img src="BhararaKing3.4OzEDPForMen_webp.webp" alt="Bharara King"></div>
                         <div class="product-info">
-                            <h3 class="product-name">Bharara Beauty</h3>
-                            <p class="product-desc">Notas aromáticas y alta fijación.</p>
-                            <div class="product-footer">
-                                <div class="product-price-row">
-                                    <span class="product-price">$45.00</span>
-                                    <a href="https://wa.me/50583743021?text=Hola,%20quiero%20consultar%20sobre%20Bharara%20Beauty" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Consultar</a>
-                                </div>
-                                <button class="btn-add-cart" onclick="addToCart('Bharara Beauty', 45.00)"><i class="fas fa-cart-plus"></i> Agregar al Carrito</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="product-card" data-name="hawas ice men" data-price="50.00">
-                        <div class="product-img-container"><img src="hawas-ice-men_1000x.webp" alt="Hawas Ice Men"></div>
-                        <div class="product-info">
-                            <h3 class="product-name">Hawas Ice Men</h3>
-                            <p class="product-desc">Notas ultra frescas y vibrantes.</p>
-                            <div class="product-footer">
-                                <div class="product-price-row">
-                                    <span class="product-price">$50.00</span>
-                                    <a href="https://wa.me/50583743021?text=Hola,%20quiero%20consultar%20sobre%20Hawas%20Ice%20Men" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Consultar</a>
-                                </div>
-                                <button class="btn-add-cart" onclick="addToCart('Hawas Ice Men', 50.00)"><i class="fas fa-cart-plus"></i> Agregar al Carrito</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="product-card" data-name="orientica oud" data-price="55.00">
-                        <div class="product-img-container"><img src="orientica-oud-.webp" alt="Orientica Oud"></div>
-                        <div class="product-info">
-                            <h3 class="product-name">Orientica Oud</h3>
-                            <p class="product-desc">Elegancia y misterio oriental.</p>
+                            <h3 class="product-name">Bharara King</h3>
+                            <p class="product-desc">Alta durabilidad y notas dulces amaderadas.</p>
                             <div class="product-footer">
                                 <div class="product-price-row">
                                     <span class="product-price">$55.00</span>
-                                    <a href="https://wa.me/50583743021?text=Hola,%20quiero%20consultar%20sobre%20Orientica%20Oud" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Consultar</a>
+                                    <a href="https://wa.me/50583743021?text=Hola,%20quiero%20consultar%20sobre%20Bharara%20King" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Consultar</a>
                                 </div>
-                                <button class="btn-add-cart" onclick="addToCart('Orientica Oud', 55.00)"><i class="fas fa-cart-plus"></i> Agregar al Carrito</button>
+                                <button class="btn-add-cart" onclick="addToCart('Bharara King', 55.00)"><i class="fas fa-cart-plus"></i> Agregar al Carrito</button>
                             </div>
                         </div>
                     </div>
 
-                    <div class="product-card" data-name="armaf odyssey bahamas" data-price="42.00">
-                        <div class="product-img-container"><img src="armaf-odyssey-bahamas_1000x.webp" alt="Armaf Odyssey Bahamas"></div>
+                    <div class="product-card" data-name="lattafa khamrah" data-price="48.00">
+                        <div class="product-img-container"><img src="LATTAFA-KHAMRAH_webp.webp" alt="Lattafa Khamrah"></div>
                         <div class="product-info">
-                            <h3 class="product-name">Armaf Odyssey Bahamas</h3>
-                            <p class="product-desc">Aroma tropical fresco y duradero.</p>
+                            <h3 class="product-name">Lattafa Khamrah</h3>
+                            <p class="product-desc">Especiado cálido con canela, dátiles y vainilla.</p>
                             <div class="product-footer">
                                 <div class="product-price-row">
-                                    <span class="product-price">$42.00</span>
-                                    <a href="https://wa.me/50583743021?text=Hola,%20quiero%20consultar%20sobre%20Armaf%20Odyssey%20Bahamas" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Consultar</a>
+                                    <span class="product-price">$48.00</span>
+                                    <a href="https://wa.me/50583743021?text=Hola,%20quiero%20consultar%20sobre%20Lattafa%20Khamrah" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Consultar</a>
                                 </div>
-                                <button class="btn-add-cart" onclick="addToCart('Armaf Odyssey Bahamas', 42.00)"><i class="fas fa-cart-plus"></i> Agregar al Carrito</button>
+                                <button class="btn-add-cart" onclick="addToCart('Lattafa Khamrah', 48.00)"><i class="fas fa-cart-plus"></i> Agregar al Carrito</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="product-card" data-name="afnan 9 pm" data-price="45.00">
+                        <div class="product-img-container"><img src="afnan-9-pm-5.07ox_webp.webp" alt="Afnan 9 PM"></div>
+                        <div class="product-info">
+                            <h3 class="product-name">Afnan 9 PM</h3>
+                            <p class="product-desc">Aroma nocturno cautivador, dulce y moderno.</p>
+                            <div class="product-footer">
+                                <div class="product-price-row">
+                                    <span class="product-price">$45.00</span>
+                                    <a href="https://wa.me/50583743021?text=Hola,%20quiero%20consultar%20sobre%20Afnan%209%20PM" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Consultar</a>
+                                </div>
+                                <button class="btn-add-cart" onclick="addToCart('Afnan 9 PM', 45.00)"><i class="fas fa-cart-plus"></i> Agregar al Carrito</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="product-card" data-name="armaf club de nuit intense" data-price="50.00">
+                        <div class="product-img-container"><img src="armaf-club-de-nuit-intense-3-6-oz.jpeg" alt="Armaf Club de Nuit Intense"></div>
+                        <div class="product-info">
+                            <h3 class="product-name">Club de Nuit Intense</h3>
+                            <p class="product-desc">Poderoso aroma cítrico ahumado de gran proyección.</p>
+                            <div class="product-footer">
+                                <div class="product-price-row">
+                                    <span class="product-price">$50.00</span>
+                                    <a href="https://wa.me/50583743021?text=Hola,%20quiero%20consultar%20sobre%20Armaf%20Club%20de%20Nuit%20Intense" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Consultar</a>
+                                </div>
+                                <button class="btn-add-cart" onclick="addToCart('Armaf Club de Nuit Intense', 50.00)"><i class="fas fa-cart-plus"></i> Agregar al Carrito</button>
                             </div>
                         </div>
                     </div>
@@ -1319,10 +1305,85 @@
             </section>
 
             <!-- 1. PERFUMERÍA ÁRABE -->
-            <section id="arabes" class="category-section search-section">
+            <section id="arabes" class="category-section">
                 <h2 class="category-title">Perfumería Árabe</h2>
                 <div class="slider-container">
                     
+                    <div class="product-card" data-name="armaf odyssey mandarin sky" data-price="45.00">
+                        <div class="product-img-container"><img src="ARMAF-ODYSSEY-MANDARIN-SKY-ELIXIR_web...jpg" alt="Odyssey Mandarin Sky"></div>
+                        <div class="product-info">
+                            <h3 class="product-name">Armaf Odyssey Mandarin Sky</h3>
+                            <p class="product-desc">Notas cítricas especiadas y dulces vibrantes.</p>
+                            <div class="product-footer">
+                                <div class="product-price-row">
+                                    <span class="product-price">$45.00</span>
+                                    <a href="https://wa.me/50583743021?text=Hola,%20quiero%20consultar%20sobre%20Armaf%20Odyssey%20Mandarin%20Sky" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Consultar</a>
+                                </div>
+                                <button class="btn-add-cart" onclick="addToCart('Armaf Odyssey Mandarin Sky', 45.00)"><i class="fas fa-cart-plus"></i> Agregar al Carrito</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="product-card" data-name="al haramain l adventure fraiche" data-price="50.00">
+                        <div class="product-img-container"><img src="Al_Haramain_L_Adventure_Fraiche_webp.webp" alt="L'Aventure Fraiche"></div>
+                        <div class="product-info">
+                            <h3 class="product-name">Al Haramain L'Aventure Fraiche</h3>
+                            <p class="product-desc">Frescura cítrica y maderas limpias de alta fijación.</p>
+                            <div class="product-footer">
+                                <div class="product-price-row">
+                                    <span class="product-price">$50.00</span>
+                                    <a href="https://wa.me/50583743021?text=Hola,%20quiero%20consultar%20sobre%20Al%20Haramain%20L'Aventure%20Fraiche" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Consultar</a>
+                                </div>
+                                <button class="btn-add-cart" onclick="addToCart('Al Haramain L\'Aventure Fraiche', 50.00)"><i class="fas fa-cart-plus"></i> Agregar al Carrito</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="product-card" data-name="lattafa art of universe" data-price="52.00">
+                        <div class="product-img-container"><img src="LATTAFA-ART-OF-UNIVERSE_webp.webp" alt="Art of Universe"></div>
+                        <div class="product-info">
+                            <h3 class="product-name">Lattafa Art of Universe</h3>
+                            <p class="product-desc">Fragancia sofisticada y misteriosa.</p>
+                            <div class="product-footer">
+                                <div class="product-price-row">
+                                    <span class="product-price">$52.00</span>
+                                    <a href="https://wa.me/50583743021?text=Hola,%20quiero%20consultar%20sobre%20Lattafa%20Art%20of%20Universe" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Consultar</a>
+                                </div>
+                                <button class="btn-add-cart" onclick="addToCart('Lattafa Art of Universe', 52.00)"><i class="fas fa-cart-plus"></i> Agregar al Carrito</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="product-card" data-name="lattafa dukhan" data-price="48.00">
+                        <div class="product-img-container"><img src="LATTAFA-DUKHAN_webp.webp" alt="Lattafa Dukhan"></div>
+                        <div class="product-info">
+                            <h3 class="product-name">Lattafa Dukhan</h3>
+                            <p class="product-desc">Aroma amaderado profundo con matices ahumados.</p>
+                            <div class="product-footer">
+                                <div class="product-price-row">
+                                    <span class="product-price">$48.00</span>
+                                    <a href="https://wa.me/50583743021?text=Hola,%20quiero%20consultar%20sobre%20Lattafa%20Dukhan" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Consultar</a>
+                                </div>
+                                <button class="btn-add-cart" onclick="addToCart('Lattafa Dukhan', 48.00)"><i class="fas fa-cart-plus"></i> Agregar al Carrito</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="product-card" data-name="yara tous lattafa" data-price="45.00">
+                        <div class="product-img-container"><img src="YARA-TOUS-LATAFFA_webp.webp" alt="Yara Tous"></div>
+                        <div class="product-info">
+                            <h3 class="product-name">Yara Tous Lattafa</h3>
+                            <p class="product-desc">Tropical, exótico y cremoso con notas de mango y coco.</p>
+                            <div class="product-footer">
+                                <div class="product-price-row">
+                                    <span class="product-price">$45.00</span>
+                                    <a href="https://wa.me/50583743021?text=Hola,%20quiero%20consultar%20sobre%20Yara%20Tous%20Lattafa" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Consultar</a>
+                                </div>
+                                <button class="btn-add-cart" onclick="addToCart('Yara Tous Lattafa', 45.00)"><i class="fas fa-cart-plus"></i> Agregar al Carrito</button>
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="product-card" data-name="stallion 53" data-price="60.00">
                         <div class="product-img-container"><img src="STALLION-53_1500x.webp" alt="Stallion 53"></div>
                         <div class="product-info">
@@ -1338,107 +1399,77 @@
                         </div>
                     </div>
 
-                    <div class="product-card" data-name="armaf odyssey bahamas" data-price="42.00">
-                        <div class="product-img-container"><img src="armaf-odyssey-bahamas_1000x.webp" alt="Armaf Odyssey Bahamas"></div>
+                    <div class="product-card" data-name="lattafa eclaire" data-price="48.00">
+                        <div class="product-img-container"><img src="lattafa-eclaire_webp.webp" alt="Lattafa Eclaire"></div>
                         <div class="product-info">
-                            <h3 class="product-name">Armaf Odyssey Bahamas</h3>
-                            <p class="product-desc">Notas tropicales, frescas y de alta proyección.</p>
-                            <div class="product-footer">
-                                <div class="product-price-row">
-                                    <span class="product-price">$42.00</span>
-                                    <a href="https://wa.me/50583743021?text=Hola,%20quiero%20consultar%20sobre%20Armaf%20Odyssey%20Bahamas" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Consultar</a>
-                                </div>
-                                <button class="btn-add-cart" onclick="addToCart('Armaf Odyssey Bahamas', 42.00)"><i class="fas fa-cart-plus"></i> Agregar al Carrito</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="product-card" data-name="bharara beauty" data-price="45.00">
-                        <div class="product-img-container"><img src="bharara_beauty.webp" alt="Bharara Beauty"></div>
-                        <div class="product-info">
-                            <h3 class="product-name">Bharara Beauty</h3>
-                            <p class="product-desc">Notas aromáticas y alta fijación.</p>
-                            <div class="product-footer">
-                                <div class="product-price-row">
-                                    <span class="product-price">$45.00</span>
-                                    <a href="https://wa.me/50583743021?text=Hola,%20quiero%20consultar%20sobre%20Bharara%20Beauty" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Consultar</a>
-                                </div>
-                                <button class="btn-add-cart" onclick="addToCart('Bharara Beauty', 45.00)"><i class="fas fa-cart-plus"></i> Agregar al Carrito</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="product-card" data-name="hawas ice men" data-price="50.00">
-                        <div class="product-img-container"><img src="hawas-ice-men_1000x.webp" alt="Hawas Ice Men"></div>
-                        <div class="product-info">
-                            <h3 class="product-name">Hawas Ice Men</h3>
-                            <p class="product-desc">Notas ultra frescas y vibrantes.</p>
-                            <div class="product-footer">
-                                <div class="product-price-row">
-                                    <span class="product-price">$50.00</span>
-                                    <a href="https://wa.me/50583743021?text=Hola,%20quiero%20consultar%20sobre%20Hawas%20Ice%20Men" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Consultar</a>
-                                </div>
-                                <button class="btn-add-cart" onclick="addToCart('Hawas Ice Men', 50.00)"><i class="fas fa-cart-plus"></i> Agregar al Carrito</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="product-card" data-name="haway tropical" data-price="48.00">
-                        <div class="product-img-container"><img src="haway-tropical-tropical.webp" alt="Haway Tropical"></div>
-                        <div class="product-info">
-                            <h3 class="product-name">Haway Tropical</h3>
-                            <p class="product-desc">Aroma frutal, fresco y cautivador.</p>
+                            <h3 class="product-name">Lattafa Eclaire</h3>
+                            <p class="product-desc">Notas cremosas, avainilladas y dulces irresistibles.</p>
                             <div class="product-footer">
                                 <div class="product-price-row">
                                     <span class="product-price">$48.00</span>
-                                    <a href="https://wa.me/50583743021?text=Hola,%20quiero%20consultar%20sobre%20Haway%20Tropical" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Consultar</a>
+                                    <a href="https://wa.me/50583743021?text=Hola,%20quiero%20consultar%20sobre%20Lattafa%20Eclaire" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Consultar</a>
                                 </div>
-                                <button class="btn-add-cart" onclick="addToCart('Haway Tropical', 48.00)"><i class="fas fa-cart-plus"></i> Agregar al Carrito</button>
+                                <button class="btn-add-cart" onclick="addToCart('Lattafa Eclaire', 48.00)"><i class="fas fa-cart-plus"></i> Agregar al Carrito</button>
                             </div>
                         </div>
                     </div>
 
-                    <div class="product-card" data-name="orientica oud" data-price="55.00">
-                        <div class="product-img-container"><img src="orientica-oud-.webp" alt="Orientica Oud"></div>
+                    <div class="product-card" data-name="lattafa eclaire pistache" data-price="49.00">
+                        <div class="product-img-container"><img src="lattafa-eclaire-pistache_webp.webp" alt="Lattafa Eclaire Pistache"></div>
                         <div class="product-info">
-                            <h3 class="product-name">Orientica Oud</h3>
-                            <p class="product-desc">Elegancia y misterio oriental.</p>
+                            <h3 class="product-name">Lattafa Eclaire Pistache</h3>
+                            <p class="product-desc">Exquisita combinación de pistacho y notas gourmand.</p>
                             <div class="product-footer">
                                 <div class="product-price-row">
-                                    <span class="product-price">$55.00</span>
-                                    <a href="https://wa.me/50583743021?text=Hola,%20quiero%20consultar%20sobre%20Orientica%20Oud" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Consultar</a>
+                                    <span class="product-price">$49.00</span>
+                                    <a href="https://wa.me/50583743021?text=Hola,%20quiero%20consultar%20sobre%20Lattafa%20Eclaire%20Pistache" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Consultar</a>
                                 </div>
-                                <button class="btn-add-cart" onclick="addToCart('Orientica Oud', 55.00)"><i class="fas fa-cart-plus"></i> Agregar al Carrito</button>
+                                <button class="btn-add-cart" onclick="addToCart('Lattafa Eclaire Pistache', 49.00)"><i class="fas fa-cart-plus"></i> Agregar al Carrito</button>
                             </div>
                         </div>
                     </div>
 
-                    <div class="product-card" data-name="orientica royal" data-price="58.00">
-                        <div class="product-img-container"><img src="orientica-royal.webp" alt="Orientica Royal"></div>
+                    <div class="product-card" data-name="yara lattafa candy" data-price="45.00">
+                        <div class="product-img-container"><img src="yara-lattafa-candy_webp.webp" alt="Yara Lattafa Candy"></div>
                         <div class="product-info">
-                            <h3 class="product-name">Orientica Royal</h3>
-                            <p class="product-desc">Sofisticación y notas de lujo inigualables.</p>
+                            <h3 class="product-name">Yara Lattafa Candy</h3>
+                            <p class="product-desc">Aroma frutal, dulce y juvenil muy encantador.</p>
                             <div class="product-footer">
                                 <div class="product-price-row">
-                                    <span class="product-price">$58.00</span>
-                                    <a href="https://wa.me/50583743021?text=Hola,%20quiero%20consultar%20sobre%20Orientica%20Royal" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Consultar</a>
+                                    <span class="product-price">$45.00</span>
+                                    <a href="https://wa.me/50583743021?text=Hola,%20quiero%20consultar%20sobre%20Yara%20Lattafa%20Candy" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Consultar</a>
                                 </div>
-                                <button class="btn-add-cart" onclick="addToCart('Orientica Royal', 58.00)"><i class="fas fa-cart-plus"></i> Agregar al Carrito</button>
+                                <button class="btn-add-cart" onclick="addToCart('Yara Lattafa Candy', 45.00)"><i class="fas fa-cart-plus"></i> Agregar al Carrito</button>
                             </div>
                         </div>
                     </div>
 
-                    <div class="product-card" data-name="orientica velvet" data-price="52.00">
-                        <div class="product-img-container"><img src="orientica-velvet.webp" alt="Orientica Velvet"></div>
+                    <div class="product-card" data-name="haramain amber oud" data-price="65.00">
+                        <div class="product-img-container"><img src="haramain-amber-oud_webp.webp" alt="Haramain Amber Oud"></div>
                         <div class="product-info">
-                            <h3 class="product-name">Orientica Velvet</h3>
-                            <p class="product-desc">Textura aromática suave, cálida y envolvente.</p>
+                            <h3 class="product-name">Haramain Amber Oud</h3>
+                            <p class="product-desc">Lujo y elegancia oriental con ámbar y maderas finas.</p>
+                            <div class="product-footer">
+                                <div class="product-price-row">
+                                    <span class="product-price">$65.00</span>
+                                    <a href="https://wa.me/50583743021?text=Hola,%20quiero%20consultar%20sobre%20Haramain%20Amber%20Oud" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Consultar</a>
+                                </div>
+                                <button class="btn-add-cart" onclick="addToCart('Haramain Amber Oud', 65.00)"><i class="fas fa-cart-plus"></i> Agregar al Carrito</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="product-card" data-name="hawas atlantis" data-price="52.00">
+                        <div class="product-img-container"><img src="hawas-atlantis_webp.webp" alt="Hawas Atlantis"></div>
+                        <div class="product-info">
+                            <h3 class="product-name">Hawas Atlantis</h3>
+                            <p class="product-desc">Frescura oceánica intensa con gran proyección.</p>
                             <div class="product-footer">
                                 <div class="product-price-row">
                                     <span class="product-price">$52.00</span>
-                                    <a href="https://wa.me/50583743021?text=Hola,%20quiero%20consultar%20sobre%20Orientica%20Velvet" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Consultar</a>
+                                    <a href="https://wa.me/50583743021?text=Hola,%20quiero%20consultar%20sobre%20Hawas%20Atlantis" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Consultar</a>
                                 </div>
-                                <button class="btn-add-cart" onclick="addToCart('Orientica Velvet', 52.00)"><i class="fas fa-cart-plus"></i> Agregar al Carrito</button>
+                                <button class="btn-add-cart" onclick="addToCart('Hawas Atlantis', 52.00)"><i class="fas fa-cart-plus"></i> Agregar al Carrito</button>
                             </div>
                         </div>
                     </div>
@@ -1447,41 +1478,103 @@
             </section>
 
             <!-- 2. PERFUMERÍA DE DISEÑADOR -->
-            <section id="disenador" class="category-section search-section">
+            <section id="disenador" class="category-section">
                 <h2 class="category-title">Perfumería de Diseñador</h2>
                 <div class="slider-container">
-                    <div class="product-card" data-name="proximamente diseñador" data-price="0.00">
-                        <div class="product-img-container"><img src="logo-tienda.png" alt="Próximamente"></div>
+                    
+                    <div class="product-card" data-name="stronger with you absolutely armani" data-price="90.00">
+                        <div class="product-img-container"><img src="STRONGER-WITH-YOU-ABSOLUTELY-ARMANI-...jpg" alt="Stronger With You Absolutely"></div>
                         <div class="product-info">
-                            <h3 class="product-name">Próximamente</h3>
-                            <p class="product-desc">Nuevas fragancias de diseñador en camino.</p>
+                            <h3 class="product-name">Stronger With You Absolutely</h3>
+                            <p class="product-desc">Intenso acorde ambarino, ron y vainilla seductora.</p>
                             <div class="product-footer">
                                 <div class="product-price-row">
-                                    <span class="product-price">Consultar</span>
-                                    <a href="https://wa.me/50583743021?text=Hola,%20consulto%20sobre%20perfumes%20de%20diseñador" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Consultar</a>
+                                    <span class="product-price">$90.00</span>
+                                    <a href="https://wa.me/50583743021?text=Hola,%20quiero%20consultar%20sobre%20Stronger%20With%20You%20Absolutely" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Consultar</a>
                                 </div>
-                                <button class="btn-add-cart" onclick="addToCart('Próximamente Diseñador', 0.00)"><i class="fas fa-cart-plus"></i> Agregar al Carrito</button>
+                                <button class="btn-add-cart" onclick="addToCart('Stronger With You Absolutely', 90.00)"><i class="fas fa-cart-plus"></i> Agregar al Carrito</button>
                             </div>
                         </div>
                     </div>
+
+                    <div class="product-card" data-name="burberry her edp" data-price="75.00">
+                        <div class="product-img-container"><img src="burberry-her-edp_webp.webp" alt="Burberry Her EDP"></div>
+                        <div class="product-info">
+                            <h3 class="product-name">Burberry Her EDP</h3>
+                            <p class="product-desc">Aroma frutal, floral y gourmand moderno muy sofisticado.</p>
+                            <div class="product-footer">
+                                <div class="product-price-row">
+                                    <span class="product-price">$75.00</span>
+                                    <a href="https://wa.me/50583743021?text=Hola,%20quiero%20consultar%20sobre%20Burberry%20Her%20EDP" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Consultar</a>
+                                </div>
+                                <button class="btn-add-cart" onclick="addToCart('Burberry Her EDP', 75.00)"><i class="fas fa-cart-plus"></i> Agregar al Carrito</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="product-card" data-name="la vie est belle" data-price="85.00">
+                        <div class="product-img-container"><img src="la-vie-est-belle_webp.webp" alt="La Vie Est Belle"></div>
+                        <div class="product-info">
+                            <h3 class="product-name">La Vie Est Belle</h3>
+                            <p class="product-desc">Clásico elegante con notas de iris, pachulí y vainilla.</p>
+                            <div class="product-footer">
+                                <div class="product-price-row">
+                                    <span class="product-price">$85.00</span>
+                                    <a href="https://wa.me/50583743021?text=Hola,%20quiero%20consultar%20sobre%20La%20Vie%20Est%20Belle" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Consultar</a>
+                                </div>
+                                <button class="btn-add-cart" onclick="addToCart('La Vie Est Belle', 85.00)"><i class="fas fa-cart-plus"></i> Agregar al Carrito</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="product-card" data-name="light blue men dolce gabbana" data-price="68.00">
+                        <div class="product-img-container"><img src="light-blue-men-dolce-gabbana-3-3_webp.webp" alt="Light Blue Men D&G"></div>
+                        <div class="product-info">
+                            <h3 class="product-name">Light Blue Men D&G</h3>
+                            <p class="product-desc">Frescura cítrica mediterránea inconfundible y elegante.</p>
+                            <div class="product-footer">
+                                <div class="product-price-row">
+                                    <span class="product-price">$68.00</span>
+                                    <a href="https://wa.me/50583743021?text=Hola,%20quiero%20consultar%20sobre%20Light%20Blue%20Men%20Dolce%20Gabbana" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Consultar</a>
+                                </div>
+                                <button class="btn-add-cart" onclick="addToCart('Light Blue Men Dolce Gabbana', 68.00)"><i class="fas fa-cart-plus"></i> Agregar al Carrito</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="product-card" data-name="moschino toy boy" data-price="62.00">
+                        <div class="product-img-container"><img src="moschino-toy-boy_webp.webp" alt="Moschino Toy Boy"></div>
+                        <div class="product-info">
+                            <h3 class="product-name">Moschino Toy Boy</h3>
+                            <p class="product-desc">Fragancia especiada, amaderada y audaz para hombre.</p>
+                            <div class="product-footer">
+                                <div class="product-price-row">
+                                    <span class="product-price">$62.00</span>
+                                    <a href="https://wa.me/50583743021?text=Hola,%20quiero%20consultar%20sobre%20Moschino%20Toy%20Boy" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Consultar</a>
+                                </div>
+                                <button class="btn-add-cart" onclick="addToCart('Moschino Toy Boy', 62.00)"><i class="fas fa-cart-plus"></i> Agregar al Carrito</button>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </section>
 
             <!-- 3. PERFUMERÍA NICHO -->
-            <section id="nicho" class="category-section search-section">
+            <section id="nicho" class="category-section">
                 <h2 class="category-title">Perfumería Nicho</h2>
                 <div class="slider-container">
-                    <div class="product-card" data-name="proximamente nicho" data-price="0.00">
-                        <div class="product-img-container"><img src="logo-tienda.png" alt="Próximamente"></div>
+                    <div class="product-card" data-name="orientica amber rouge" data-price="95.00">
+                        <div class="product-img-container"><img src="Orientic_amber_rouge_5.0ozEDP_5.0oz.webp" alt="Orientica Amber Rouge"></div>
                         <div class="product-info">
-                            <h3 class="product-name">Próximamente</h3>
-                            <p class="product-desc">Colección de alta perfumería exclusiva.</p>
+                            <h3 class="product-name">Orientica Amber Rouge</h3>
+                            <p class="product-desc">Lujo exclusivo, estela ambarina y azafrán inigualable.</p>
                             <div class="product-footer">
                                 <div class="product-price-row">
-                                    <span class="product-price">Consultar</span>
-                                    <a href="https://wa.me/50583743021?text=Hola,%20consulto%20sobre%20perfumes%20nicho" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Consultar</a>
+                                    <span class="product-price">$95.00</span>
+                                    <a href="https://wa.me/50583743021?text=Hola,%20quiero%20consultar%20sobre%20Orientica%20Amber%20Rouge" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Consultar</a>
                                 </div>
-                                <button class="btn-add-cart" onclick="addToCart('Próximamente Nicho', 0.00)"><i class="fas fa-cart-plus"></i> Agregar al Carrito</button>
+                                <button class="btn-add-cart" onclick="addToCart('Orientica Amber Rouge', 95.00)"><i class="fas fa-cart-plus"></i> Agregar al Carrito</button>
                             </div>
                         </div>
                     </div>
@@ -1489,20 +1582,20 @@
             </section>
 
             <!-- 4. PERFUMERÍA DE CELEBRIDAD -->
-            <section id="celebridad" class="category-section search-section">
+            <section id="celebridad" class="category-section">
                 <h2 class="category-title">Perfumería de Celebridad</h2>
                 <div class="slider-container">
-                    <div class="product-card" data-name="proximamente celebridad" data-price="0.00">
-                        <div class="product-img-container"><img src="logo-tienda.png" alt="Próximamente"></div>
+                    <div class="product-card" data-name="ariana grande cloud pink" data-price="58.00">
+                        <div class="product-img-container"><img src="ariana-pink-cloud.webp" alt="Ariana Pink Cloud"></div>
                         <div class="product-info">
-                            <h3 class="product-name">Próximamente</h3>
-                            <p class="product-desc">Fragancias de tus artistas favoritos.</p>
+                            <h3 class="product-name">Ariana Grande Cloud Pink</h3>
+                            <p class="product-desc">Notas dulces, frutales y florales muy soñadoras.</p>
                             <div class="product-footer">
                                 <div class="product-price-row">
-                                    <span class="product-price">Consultar</span>
-                                    <a href="https://wa.me/50583743021?text=Hola,%20consulto%20sobre%20perfumes%20de%20celebridad" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Consultar</a>
+                                    <span class="product-price">$58.00</span>
+                                    <a href="https://wa.me/50583743021?text=Hola,%20quiero%20consultar%20sobre%20Ariana%20Grande%20Cloud%20Pink" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Consultar</a>
                                 </div>
-                                <button class="btn-add-cart" onclick="addToCart('Próximamente Celebridad', 0.00)"><i class="fas fa-cart-plus"></i> Agregar al Carrito</button>
+                                <button class="btn-add-cart" onclick="addToCart('Ariana Grande Cloud Pink', 58.00)"><i class="fas fa-cart-plus"></i> Agregar al Carrito</button>
                             </div>
                         </div>
                     </div>
@@ -1510,11 +1603,11 @@
             </section>
 
             <!-- 5. BODY MISTS -->
-            <section id="bodymists" class="category-section search-section">
+            <section id="bodymists" class="category-section">
                 <h2 class="category-title">Body Mists</h2>
                 <div class="slider-container">
                     <div class="product-card" data-name="victoria secret bath body works body mist" data-price="25.00">
-                        <div class="product-img-container"><img src="logo-tienda.png" alt="Próximamente"></div>
+                        <div class="product-img-container"><img src="logo-tienda.png" alt="Body Mists"></div>
                         <div class="product-info">
                             <h3 class="product-name">Colección Body Mists</h3>
                             <p class="product-desc">Victoria's Secret, Bath & Body Works y más.</p>
@@ -1531,11 +1624,11 @@
             </section>
 
             <!-- 6. ESMALTES COLOMBIANOS MASGLO -->
-            <section id="masglo" class="category-section search-section">
+            <section id="masglo" class="category-section">
                 <h2 class="category-title">Esmaltes Colombianos Masglo</h2>
                 <div class="slider-container">
                     <div class="product-card" data-name="masglo esmalte base top coat" data-price="12.00">
-                        <div class="product-img-container"><img src="logo-tienda.png" alt="Próximamente"></div>
+                        <div class="product-img-container"><img src="logo-tienda.png" alt="Esmaltes Masglo"></div>
                         <div class="product-info">
                             <h3 class="product-name">Línea Masglo</h3>
                             <p class="product-desc">Esmaltes, bases fortalecedoras y top coats.</p>
@@ -1549,72 +1642,6 @@
                         </div>
                     </div>
                 </div>
-            </section>
-
-            <!-- 7. CUIDADO PERSONAL -->
-            <section id="cuidado-personal" class="category-section search-section">
-                <h2 class="category-title">Cuidado Personal</h2>
-                
-                <div id="exfoliantes" style="margin-bottom: 2.5rem; scroll-margin-top: 90px;">
-                    <h3 style="font-size: 1.3rem; color: var(--primary-dark); margin-bottom: 1rem; font-family: 'Cormorant Garamond', serif; font-weight: 700;"><i class="fas fa-spa"></i> Exfoliantes para el cuerpo</h3>
-                    <div class="slider-container">
-                        <div class="product-card" data-name="exfoliante corporal scrub" data-price="20.00">
-                            <div class="product-img-container"><img src="logo-tienda.png" alt="Exfoliantes"></div>
-                            <div class="product-info">
-                                <h3 class="product-name">Exfoliantes Corporales</h3>
-                                <p class="product-desc">Suavidad y renovación para tu piel.</p>
-                                <div class="product-footer">
-                                    <div class="product-price-row">
-                                        <span class="product-price">$20.00</span>
-                                        <a href="https://wa.me/50583743021?text=Hola,%20quiero%20ver%20exfoliantes%20corporales" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Consultar</a>
-                                    </div>
-                                    <button class="btn-add-cart" onclick="addToCart('Exfoliantes Corporales', 20.00)"><i class="fas fa-cart-plus"></i> Agregar al Carrito</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div id="geles" style="margin-bottom: 2.5rem; scroll-margin-top: 90px;">
-                    <h3 style="font-size: 1.3rem; color: var(--primary-dark); margin-bottom: 1rem; font-family: 'Cormorant Garamond', serif; font-weight: 700;"><i class="fas fa-shower"></i> Gel de duchas</h3>
-                    <div class="slider-container">
-                        <div class="product-card" data-name="gel de duchas shower gel" data-price="18.00">
-                            <div class="product-img-container"><img src="logo-tienda.png" alt="Gel de duchas"></div>
-                            <div class="product-info">
-                                <h3 class="product-name">Geles de Ducha</h3>
-                                <p class="product-desc">Limpieza perfumada y espumosa.</p>
-                                <div class="product-footer">
-                                    <div class="product-price-row">
-                                        <span class="product-price">$18.00</span>
-                                        <a href="https://wa.me/50583743021?text=Hola,%20quiero%20ver%20gel%20de%20duchas" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Consultar</a>
-                                    </div>
-                                    <button class="btn-add-cart" onclick="addToCart('Geles de Ducha', 18.00)"><i class="fas fa-cart-plus"></i> Agregar al Carrito</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div id="aceites" style="margin-bottom: 2rem; scroll-margin-top: 90px;">
-                    <h3 style="font-size: 1.3rem; color: var(--primary-dark); margin-bottom: 1rem; font-family: 'Cormorant Garamond', serif; font-weight: 700;"><i class="fas fa-oil-can"></i> Aceites corporales</h3>
-                    <div class="slider-container">
-                        <div class="product-card" data-name="aceite corporal oil" data-price="22.00">
-                            <div class="product-img-container"><img src="logo-tienda.png" alt="Aceites corporales"></div>
-                            <div class="product-info">
-                                <h3 class="product-name">Aceites Corporales</h3>
-                                <p class="product-desc">Hidratación profunda y brillo sedoso.</p>
-                                <div class="product-footer">
-                                    <div class="product-price-row">
-                                        <span class="product-price">$22.00</span>
-                                        <a href="https://wa.me/50583743021?text=Hola,%20quiero%20ver%20aceites%20corporales" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Consultar</a>
-                                    </div>
-                                    <button class="btn-add-cart" onclick="addToCart('Aceites Corporales', 22.00)"><i class="fas fa-cart-plus"></i> Agregar al Carrito</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
             </section>
 
         </main>
@@ -1694,12 +1721,6 @@
             } else {
                 document.body.classList.toggle('sidebar-collapsed');
             }
-        }
-
-        function toggleSubmenu(event) {
-            event.preventDefault();
-            let parent = document.getElementById('cuidadoMenu');
-            parent.classList.toggle('open');
         }
 
         /* Control de Autenticación y Menú Desplegable */
