@@ -4,1443 +4,198 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sensación Aromas Originales | Catálogo Digital</title>
-    <!-- Google Fonts Elegantes (Cormorant Garamond & Montserrat) y FontAwesome -->
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
         :root {
-            --primary-color: #ff2a85;       /* Rosa vibrante y moderno */
-            --primary-dark: #d01b6c;       /* Rosa oscuro para contrastes */
-            --gold-color: #c59b27;         /* Dorado elegante */
-            --bg-dark: #121212;            /* Fondo negro para header y sidebar */
-            --bg-card: #ffffff;            /* Fondo blanco para tarjetas de productos */
-            --bg-body: #f4f5f7;            /* Fondo general claro */
-            --text-dark: #222222;          /* Texto principal oscuro */
-            --text-light: #666666;         /* Texto secundario gris */
+            --primary-color: #ff2a85;
+            --primary-dark: #d01b6c;
+            --gold-color: #c59b27;
+            --bg-dark: #121212;
+            --bg-card: #ffffff;
+            --bg-body: #f4f5f7;
+            --text-dark: #222222;
+            --text-light: #666666;
             --whatsapp-color: #25d366;
             --sidebar-width: 270px;
         }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Montserrat', sans-serif;
-            scroll-behavior: smooth;
-        }
-
-        h1, h2, h3, .store-name, .category-title, .product-name {
-            font-family: 'Cormorant Garamond', serif;
-        }
-
-        body {
-            background-color: var(--bg-body);
-            color: var(--text-dark);
-            line-height: 1.6;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-        }
-
-        /* Cabecera Superior */
-        .main-header {
-            background-color: var(--bg-dark);
-            padding: 10px 25px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            z-index: 1100;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 15px;
-            height: 75px;
-            border-bottom: 1px solid rgba(197, 155, 39, 0.3);
-        }
-
-        .header-left-group {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .sidebar-toggle-btn {
-            background: transparent;
-            border: none;
-            color: #ffffff;
-            font-size: 1.2rem;
-            cursor: pointer;
-            width: 38px;
-            height: 38px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: background 0.2s, color 0.2s;
-        }
-
-        .sidebar-toggle-btn:hover {
-            background: rgba(255, 255, 255, 0.1);
-            color: var(--primary-color);
-        }
-
-        .header-brand {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .logo-container {
-            width: 42px;
-            height: 42px;
-            flex-shrink: 0;
-            border-radius: 50%;
-            overflow: hidden;
-            box-shadow: 0 0 10px rgba(255, 42, 133, 0.4);
-            border: 2px solid var(--gold-color);
-            background: var(--bg-dark);
-        }
-
-        .logo-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .store-name {
-            font-size: 1.25rem;
-            color: #ffffff;
-            margin: 0;
-            font-weight: 700;
-            letter-spacing: 0.5px;
-            line-height: 1.1;
-            background: linear-gradient(45deg, #ffffff, #f3d89d);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .store-subtitle {
-            font-size: 0.75rem;
-            color: var(--gold-color);
-            margin: 0;
-            letter-spacing: 1px;
-            font-family: 'Montserrat', sans-serif;
-            text-transform: uppercase;
-        }
-
-        .top-nav-menu {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            list-style: none;
-        }
-
-        .top-nav-menu li a {
-            color: #ffffff;
-            text-decoration: none;
-            font-size: 0.95rem;
-            font-weight: 500;
-            transition: color 0.2s;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-
-        .top-nav-menu li a:hover, .top-nav-menu li a.active {
-            color: var(--gold-color);
-        }
-
-        .header-right-actions {
-            display: flex;
-            align-items: center;
-            gap: 18px;
-        }
-
-        /* Contenedor del Botón de Usuario y Menú Desplegable */
-        .user-account-wrapper {
-            position: relative;
-        }
-
-        .user-auth-btn {
-            background: transparent;
-            border: 1px solid var(--gold-color);
-            color: #ffffff;
-            padding: 6px 14px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            transition: all 0.2s;
-        }
-
-        .user-auth-btn:hover {
-            background: var(--gold-color);
-            color: var(--bg-dark);
-        }
-
-        .user-dropdown-menu {
-            position: absolute;
-            top: 45px;
-            right: 0;
-            background: #ffffff;
-            color: var(--text-dark);
-            border-radius: 10px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
-            width: 160px;
-            display: none;
-            flex-direction: column;
-            overflow: hidden;
-            z-index: 1400;
-        }
-
-        .user-dropdown-menu.show {
-            display: flex;
-        }
-
-        .user-dropdown-menu button {
-            background: transparent;
-            border: none;
-            padding: 12px 15px;
-            text-align: left;
-            font-size: 0.85rem;
-            font-weight: 600;
-            cursor: pointer;
-            color: #ff4d4d;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            transition: background 0.2s;
-        }
-
-        .user-dropdown-menu button:hover {
-            background: #fdf2f2;
-        }
-
-        .cart-icon-container {
-            position: relative;
-            color: #ffffff;
-            font-size: 1.3rem;
-            cursor: pointer;
-            text-decoration: none;
-            background: transparent;
-            border: none;
-        }
-
-        .cart-badge {
-            position: absolute;
-            top: -8px;
-            right: -10px;
-            background-color: var(--primary-color);
-            color: white;
-            font-size: 0.65rem;
-            font-weight: 700;
-            width: 18px;
-            height: 18px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: 'Montserrat', sans-serif;
-        }
-
-        .header-social {
-            display: flex;
-            gap: 10px;
-        }
-
-        .header-social a {
-            color: #ffffff;
-            font-size: 1.1rem;
-            transition: color 0.2s;
-            text-decoration: none;
-        }
-
-        .header-social a:hover {
-            color: var(--primary-color);
-        }
-
-        /* Layout con Sidebar */
-        .app-layout {
-            display: flex;
-            margin-top: 75px;
-            flex: 1;
-        }
-
-        .sidebar {
-            width: var(--sidebar-width);
-            background-color: var(--bg-dark);
-            border-right: 1px solid rgba(197, 155, 39, 0.2);
-            position: fixed;
-            top: 75px;
-            bottom: 0;
-            left: 0;
-            overflow-y: auto;
-            padding: 20px 15px;
-            z-index: 1000;
-            box-shadow: 4px 0 15px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease-in-out;
-        }
-
-        body.sidebar-collapsed .sidebar {
-            transform: translateX(-100%);
-        }
-
-        .sidebar-title {
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            color: var(--gold-color);
-            margin-bottom: 15px;
-            padding-left: 10px;
-            font-weight: 600;
-            font-family: 'Montserrat', sans-serif;
-        }
-
-        .sidebar-menu {
-            list-style: none;
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-        }
-
-        .sidebar-item a {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 11px 14px;
-            color: #ffffff;
-            text-decoration: none;
-            font-size: 0.9rem;
-            font-weight: 500;
-            border-radius: 10px;
-            transition: all 0.3s ease;
-        }
-
-        .sidebar-item a:hover {
-            background: linear-gradient(135deg, rgba(255, 42, 133, 0.2), rgba(197, 155, 39, 0.15));
-            color: var(--primary-color);
-            transform: translateX(4px);
-        }
-
-        .sidebar-item a i {
-            width: 20px;
-            text-align: center;
-            font-size: 0.95rem;
-            color: var(--gold-color);
-        }
-
-        .main-content {
-            margin-left: var(--sidebar-width);
-            flex: 1;
-            padding: 2.5rem;
-            background-color: var(--bg-body);
-            transition: margin-left 0.3s ease-in-out;
-        }
-
-        body.sidebar-collapsed .main-content {
-            margin-left: 0;
-        }
-
-        .category-section {
-            margin-bottom: 3.5rem;
-            scroll-margin-top: 90px;
-        }
-
-        .category-title {
-            font-size: 1.8rem;
-            color: var(--text-dark);
-            margin-bottom: 1.2rem;
-            border-left: 5px solid var(--primary-color);
-            padding-left: 14px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            background: linear-gradient(90deg, rgba(255, 42, 133, 0.08), transparent);
-            padding-top: 5px;
-            padding-bottom: 5px;
-            font-weight: 700;
-        }
-
-        /* Carrusel / Slider limpio */
-        .slider-container {
-            display: flex;
-            overflow-x: auto;
-            gap: 22px;
-            padding: 10px 5px 15px 5px;
-            scroll-snap-type: x mandatory;
-            scrollbar-width: thin;
-            scrollbar-color: var(--primary-color) #e2e8f0;
-            scroll-behavior: smooth;
-            width: 100%;
-        }
-
-        .slider-container::-webkit-scrollbar {
-            height: 8px;
-        }
-
-        .slider-container::-webkit-scrollbar-thumb {
-            background: var(--primary-color);
-            border-radius: 4px;
-        }
-
-        .product-card {
-            flex: 0 0 250px;
-            background: var(--bg-card);
-            border-radius: 14px;
-            overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
-            border: 1px solid #e2e8f0;
-            scroll-snap-align: start;
-        }
-
-        .product-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 10px 25px rgba(255, 42, 133, 0.15);
-            border-color: var(--primary-color);
-        }
-
-        .product-img-container {
-            width: 100%;
-            height: 220px;
-            background: #ffffff;
-            overflow: hidden;
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 12px;
-        }
-
-        .product-img-container img {
-            max-width: 100%;     
-            max-height: 100%;    
-            object-fit: contain; 
-            transition: transform 0.4s ease;
-        }
-
-        .product-card:hover .product-img-container img {
-            transform: scale(1.06);
-        }
-
-        .product-info {
-            padding: 1.2rem;
-            display: flex;
-            flex-direction: column;
-            flex-grow: 1;
-        }
-
-        .product-name {
-            font-size: 1.2rem;
-            font-weight: 700;
-            margin-bottom: 0.4rem;
-            color: var(--text-dark);
-            letter-spacing: 0.3px;
-        }
-
-        .product-desc {
-            font-size: 0.85rem;
-            color: var(--text-light);
-            margin-bottom: 1rem;
-            flex-grow: 1;
-        }
-
-        .product-footer {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-            margin-top: auto;
-        }
-
-        .product-price-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .product-price {
-            font-weight: 600;
-            color: var(--primary-dark);
-            font-size: 0.95rem;
-            font-family: 'Montserrat', sans-serif;
-        }
-
-        .btn-order {
-            background-color: var(--whatsapp-color);
-            color: white;
-            padding: 5px 10px;
-            border-radius: 6px;
-            text-decoration: none;
-            font-size: 0.8rem;
-            font-weight: 500;
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
-            transition: all 0.2s;
-            font-family: 'Montserrat', sans-serif;
-        }
-
-        .btn-order:hover {
-            background-color: #1ebd56;
-        }
-
-        .btn-add-cart {
-            background-color: var(--primary-color);
-            color: white;
-            border: none;
-            padding: 7px 12px;
-            border-radius: 8px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 6px;
-            transition: background 0.2s, transform 0.2s;
-            width: 100%;
-        }
-
-        .btn-add-cart:hover {
-            background-color: var(--primary-dark);
-            transform: scale(1.02);
-        }
-
-        /* Modal y Drawer Genéricos */
-        .modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.6);
-            z-index: 1200;
-            display: none;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .modal-overlay.open {
-            display: block;
-            opacity: 1;
-        }
-
-        /* Panel Lateral del Carrito */
-        .cart-drawer {
-            position: fixed;
-            top: 0;
-            right: -400px;
-            width: 380px;
-            max-width: 100%;
-            height: 100%;
-            background: #ffffff;
-            z-index: 1300;
-            box-shadow: -5px 0 25px rgba(0,0,0,0.2);
-            transition: right 0.3s ease-in-out;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .cart-drawer.open {
-            right: 0;
-        }
-
-        .cart-header {
-            background: var(--bg-dark);
-            color: #ffffff;
-            padding: 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid rgba(197, 155, 39, 0.3);
-        }
-
-        .cart-header h3 {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.4rem;
-            color: var(--gold-color);
-        }
-
-        .close-btn {
-            background: transparent;
-            border: none;
-            color: #ffffff;
-            font-size: 1.2rem;
-            cursor: pointer;
-        }
-
-        .cart-body {
-            padding: 20px;
-            overflow-y: auto;
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-
-        .cart-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding-bottom: 12px;
-            border-bottom: 1px solid #eee;
-        }
-
-        .cart-item-info {
-            flex: 1;
-        }
-
-        .cart-item-title {
-            font-weight: 700;
-            font-size: 0.95rem;
-            color: var(--text-dark);
-            margin-bottom: 3px;
-        }
-
-        .cart-item-price {
-            font-size: 0.85rem;
-            color: var(--text-light);
-        }
-
-        .cart-item-controls {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .qty-btn {
-            background: #eee;
-            border: none;
-            width: 25px;
-            height: 25px;
-            border-radius: 50%;
-            cursor: pointer;
-            font-weight: bold;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .qty-btn:hover {
-            background: var(--primary-color);
-            color: white;
-        }
-
-        .cart-item-qty {
-            font-weight: 600;
-            font-size: 0.9rem;
-            width: 20px;
-            text-align: center;
-        }
-
-        .remove-item {
-            color: #ff4d4d;
-            background: none;
-            border: none;
-            cursor: pointer;
-            font-size: 0.9rem;
-            margin-left: 8px;
-        }
-
-        .cart-footer {
-            padding: 20px;
-            background: #f9f9f9;
-            border-top: 1px solid #ddd;
-        }
-
-        .cart-total {
-            display: flex;
-            justify-content: space-between;
-            font-size: 1.1rem;
-            font-weight: 700;
-            margin-bottom: 15px;
-            color: var(--text-dark);
-        }
-
-        .btn-whatsapp-checkout {
-            background-color: var(--whatsapp-color);
-            color: white;
-            border: none;
-            width: 100%;
-            padding: 12px;
-            border-radius: 10px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
-            transition: background 0.2s;
-            text-decoration: none;
-        }
-
-        .btn-whatsapp-checkout:hover {
-            background-color: #1ebd56;
-        }
-
-        /* Modal de Registro de Cuenta */
-        .auth-modal {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%) scale(0.9);
-            width: 420px;
-            max-width: 90%;
-            background: #ffffff;
-            z-index: 1300;
-            border-radius: 16px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-            display: none;
-            flex-direction: column;
-            overflow: hidden;
-            transition: all 0.3s ease;
-        }
-
-        .auth-modal.open {
-            display: flex;
-            transform: translate(-50%, -50%) scale(1);
-        }
-
-        .auth-header {
-            background: var(--bg-dark);
-            color: #ffffff;
-            padding: 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .auth-header h3 {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.4rem;
-            color: var(--gold-color);
-        }
-
-        .auth-body {
-            padding: 25px;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            max-height: 80vh;
-            overflow-y: auto;
-        }
-
-        .form-group {
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
-        }
-
-        .form-group label {
-            font-size: 0.82rem;
-            font-weight: 600;
-            color: var(--text-dark);
-        }
-
-        .form-group input, .form-group select {
-            padding: 9px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            font-size: 0.88rem;
-            outline: none;
-            transition: border-color 0.2s;
-        }
-
-        .form-group input:focus, .form-group select:focus {
-            border-color: var(--primary-color);
-        }
-
-        .btn-submit-auth {
-            background-color: var(--primary-color);
-            color: white;
-            border: none;
-            padding: 12px;
-            border-radius: 8px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background 0.2s;
-            margin-top: 5px;
-        }
-
-        .btn-submit-auth:hover {
-            background-color: var(--primary-dark);
-        }
-
-        /* Notificación emergente de Descuento */
-        .discount-toast {
-            position: fixed;
-            top: 90px;
-            right: 20px;
-            background: linear-gradient(135deg, #222222, #333333);
-            color: #ffffff;
-            padding: 16px 20px;
-            border-radius: 12px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-            z-index: 1500;
-            border-left: 5px solid var(--gold-color);
-            display: none;
-            max-width: 320px;
-            animation: slideIn 0.4s ease;
-        }
-
-        .discount-toast.show {
-            display: block;
-        }
-
-        .discount-toast h4 {
-            color: var(--gold-color);
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.2rem;
-            margin-bottom: 4px;
-        }
-
-        .discount-toast p {
-            font-size: 0.82rem;
-            color: #dddddd;
-        }
-
-        @keyframes slideIn {
-            from { transform: translateX(100%); opacity: 0; }
-            to { transform: translateX(0); opacity: 1; }
-        }
-
-        #no-results {
-            text-align: center;
-            padding: 50px;
-            font-size: 1.1rem;
-            color: var(--text-light);
-            display: none;
-        }
-
-        /* Pie de Página */
-        footer {
-            background: linear-gradient(135deg, #ffffff 0%, #fff0f5 50%, #ffcbe0 100%);
-            color: var(--text-dark);
-            padding: 4rem 5% 2rem 5%;
-            margin-left: var(--sidebar-width);
-            border-top: 1px solid #f0d0df;
-            transition: margin-left 0.3s ease-in-out;
-        }
-
-        body.sidebar-collapsed footer {
-            margin-left: 0;
-        }
-
-        .footer-content-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)) 280px;
-            gap: 40px;
-            align-items: center;
-            margin-bottom: 2.5rem;
-        }
-
-        .footer-col h3 {
-            font-size: 1.2rem;
-            color: var(--primary-dark);
-            margin-bottom: 1.2rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-weight: 700;
-        }
-
-        .footer-links {
-            list-style: none;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        .footer-links li a {
-            color: var(--text-light);
-            text-decoration: none;
-            font-size: 0.9rem;
-            transition: color 0.2s;
-        }
-
-        .footer-links li a:hover {
-            color: var(--primary-color);
-        }
-
-        .footer-contact-info p {
-            font-size: 0.88rem;
-            color: var(--text-light);
-            margin-bottom: 8px;
-            word-break: break-all;
-        }
-
-        .footer-contact-info strong {
-            color: var(--text-dark);
-        }
-
-        .footer-brand-box {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            background: var(--bg-dark);
-            padding: 16px 20px;
-            border-radius: 16px;
-            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
-            border: 1px solid rgba(197, 155, 39, 0.4);
-        }
-
-        .footer-logo-container {
-            width: 70px;
-            height: 70px;
-            flex-shrink: 0;
-            border-radius: 50%;
-            overflow: hidden;
-            box-shadow: 0 0 15px rgba(255, 42, 133, 0.5);
-            border: 2px solid var(--gold-color);
-            background: var(--bg-dark);
-        }
-
-        .footer-logo-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .footer-store-name {
-            font-size: 1.25rem;
-            color: #ffffff;
-            margin: 0;
-            font-weight: 700;
-            line-height: 1.2;
-            background: linear-gradient(45deg, #ffffff, #f3d89d);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .footer-store-subtitle {
-            font-size: 0.8rem;
-            color: var(--gold-color);
-            margin: 0;
-            letter-spacing: 0.5px;
-            font-weight: 600;
-            font-family: 'Montserrat', sans-serif;
-            text-transform: uppercase;
-        }
-
-        .footer-bottom-bar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-top: 1px solid rgba(0,0,0,0.08);
-            padding-top: 25px;
-            flex-wrap: wrap;
-            gap: 20px;
-        }
-
-        .footer-social-icons {
-            display: flex;
-            gap: 15px;
-        }
-
-        .footer-social-icons a {
-            background: var(--text-dark);
-            color: #ffffff;
-            width: 38px;
-            height: 38px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-decoration: none;
-            transition: transform 0.2s, background 0.2s;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-        }
-
-        .footer-social-icons a:hover {
-            transform: translateY(-3px);
-            background: var(--primary-color);
-        }
-
-        .footer-copyright {
-            font-size: 0.85rem;
-            color: var(--text-light);
-        }
-
-        @media (max-width: 1050px) {
-            .top-nav-menu {
-                display: none;
-            }
-        }
-
-        @media (max-width: 900px) {
-            .sidebar {
-                transform: translateX(-100%);
-            }
-            body.sidebar-open .sidebar {
-                transform: translateX(0);
-            }
-            .app-layout {
-                flex-direction: column;
-                margin-top: 75px;
-            }
-            .main-content, footer {
-                margin-left: 0 !important;
-                padding: 1.5rem;
-            }
-            .footer-content-grid {
-                grid-template-columns: 1fr;
-                gap: 25px;
-                text-align: center;
-            }
-            .footer-brand-box {
-                justify-content: center;
-            }
-            .footer-bottom-bar {
-                flex-direction: column;
-                align-items: center;
-                text-align: center;
-            }
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Montserrat', sans-serif; scroll-behavior: smooth; }
+        h1, h2, h3, .store-name, .category-title, .product-name { font-family: 'Cormorant Garamond', serif; }
+        body { background-color: var(--bg-body); color: var(--text-dark); line-height: 1.6; display: flex; flex-direction: column; min-height: 100vh; }
+        
+        .main-header { background-color: var(--bg-dark); padding: 10px 25px; position: fixed; top: 0; left: 0; width: 100%; z-index: 1100; display: flex; justify-content: space-between; align-items: center; height: 75px; border-bottom: 1px solid rgba(197, 155, 39, 0.3); }
+        .header-left-group { display: flex; align-items: center; gap: 12px; }
+        .sidebar-toggle-btn { background: transparent; border: none; color: #fff; font-size: 1.2rem; cursor: pointer; width: 38px; height: 38px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+        .header-brand { display: flex; align-items: center; gap: 10px; }
+        .logo-container { width: 42px; height: 42px; border-radius: 50%; overflow: hidden; border: 2px solid var(--gold-color); background: var(--bg-dark); }
+        .logo-img { width: 100%; height: 100%; object-fit: cover; }
+        .store-name { font-size: 1.25rem; color: #fff; font-weight: 700; background: linear-gradient(45deg, #fff, #f3d89d); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .store-subtitle { font-size: 0.75rem; color: var(--gold-color); text-transform: uppercase; }
+        
+        .top-nav-menu { display: flex; align-items: center; gap: 20px; list-style: none; }
+        .top-nav-menu li a { color: #fff; text-decoration: none; font-size: 0.95rem; font-weight: 500; }
+        .top-nav-menu li a:hover { color: var(--gold-color); }
+        
+        .header-right-actions { display: flex; align-items: center; gap: 18px; }
+        .user-auth-btn { background: transparent; border: 1px solid var(--gold-color); color: #fff; padding: 6px 14px; border-radius: 20px; font-size: 0.85rem; cursor: pointer; display: flex; align-items: center; gap: 6px; }
+        .user-dropdown-menu { position: absolute; top: 45px; right: 0; background: #fff; border-radius: 10px; box-shadow: 0 5px 20px rgba(0,0,0,0.2); width: 160px; display: none; flex-direction: column; z-index: 1400; }
+        .user-dropdown-menu.show { display: flex; }
+        .user-dropdown-menu button { background: transparent; border: none; padding: 12px 15px; text-align: left; font-size: 0.85rem; font-weight: 600; cursor: pointer; color: #ff4d4d; }
+        
+        .cart-icon-container { position: relative; color: #fff; font-size: 1.3rem; cursor: pointer; background: transparent; border: none; }
+        .cart-badge { position: absolute; top: -8px; right: -10px; background-color: var(--primary-color); color: white; font-size: 0.65rem; font-weight: 700; width: 18px; height: 18px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+        
+        .app-layout { display: flex; margin-top: 75px; flex: 1; }
+        .sidebar { width: var(--sidebar-width); background-color: var(--bg-dark); position: fixed; top: 75px; bottom: 0; left: 0; overflow-y: auto; padding: 20px 15px; z-index: 1000; }
+        .sidebar-title { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1.5px; color: var(--gold-color); margin-bottom: 15px; font-weight: 600; }
+        .sidebar-menu { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+        .sidebar-item a { display: flex; align-items: center; gap: 12px; padding: 11px 14px; color: #fff; text-decoration: none; font-size: 0.9rem; border-radius: 10px; transition: 0.3s; }
+        .sidebar-item a:hover { background: rgba(255, 42, 133, 0.2); color: var(--primary-color); }
+        .sidebar-item a i { color: var(--gold-color); }
+
+        .main-content { margin-left: var(--sidebar-width); flex: 1; padding: 2.5rem; background-color: var(--bg-body); }
+        .category-section { margin-bottom: 3.5rem; scroll-margin-top: 90px; }
+        .category-title { font-size: 1.8rem; margin-bottom: 1.2rem; border-left: 5px solid var(--primary-color); padding-left: 14px; text-transform: uppercase; font-weight: 700; }
+
+        .slider-container { display: flex; overflow-x: auto; gap: 22px; padding: 10px 5px 15px 5px; scroll-snap-type: x mandatory; scroll-behavior: smooth; }
+        .product-card { flex: 0 0 250px; background: var(--bg-card); border-radius: 14px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.06); display: flex; flex-direction: column; justify-content: space-between; border: 1px solid #e2e8f0; scroll-snap-align: start; transition: 0.3s; }
+        .product-card:hover { transform: translateY(-6px); box-shadow: 0 10px 25px rgba(255, 42, 133, 0.15); border-color: var(--primary-color); }
+        .product-img-container { width: 100%; height: 220px; background: #fff; display: flex; align-items: center; justify-content: center; padding: 12px; }
+        .product-img-container img { max-width: 100%; max-height: 100%; object-fit: contain; }
+        .product-info { padding: 1.2rem; display: flex; flex-direction: column; flex-grow: 1; }
+        .product-name { font-size: 1.2rem; font-weight: 700; margin-bottom: 0.4srem; }
+        .product-desc { font-size: 0.85rem; color: var(--text-light); margin-bottom: 1rem; flex-grow: 1; }
+        .product-footer { display: flex; flex-direction: column; gap: 8px; margin-top: auto; }
+        .product-price-row { display: flex; justify-content: space-between; align-items: center; }
+        .product-price { font-weight: 600; color: var(--primary-dark); font-size: 0.95rem; }
+        
+        .btn-order { background-color: var(--whatsapp-color); color: white; padding: 5px 10px; border-radius: 6px; text-decoration: none; font-size: 0.8rem; display: inline-flex; align-items: center; gap: 5px; }
+        .btn-add-cart { background-color: var(--primary-color); color: white; border: none; padding: 7px 12px; border-radius: 8px; font-size: 0.85rem; font-weight: 600; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px; width: 100%; }
+
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 1200; display: none; }
+        .modal-overlay.open { display: block; }
+        
+        .cart-drawer { position: fixed; top: 0; right: -400px; width: 380px; max-width: 100%; height: 100%; background: #fff; z-index: 1300; box-shadow: -5px 0 25px rgba(0,0,0,0.2); transition: right 0.3s ease-in-out; display: flex; flex-direction: column; }
+        .cart-drawer.open { right: 0; }
+        .cart-header { background: var(--bg-dark); color: #fff; padding: 20px; display: flex; justify-content: space-between; align-items: center; }
+        .cart-body { padding: 20px; overflow-y: auto; flex: 1; display: flex; flex-direction: column; gap: 15px; }
+        .cart-footer { padding: 20px; background: #f9f9f9; border-top: 1px solid #ddd; }
+        .cart-total { display: flex; justify-content: space-between; font-size: 1.1rem; font-weight: 700; margin-bottom: 15px; }
+        .btn-whatsapp-checkout { background-color: var(--whatsapp-color); color: white; border: none; width: 100%; padding: 12px; border-radius: 10px; font-size: 1rem; font-weight: 600; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; text-decoration: none; }
+
+        footer { background: #fff0f5; color: var(--text-dark); padding: 3rem 5%; margin-left: var(--sidebar-width); border-top: 1px solid #f0d0df; }
     </style>
 </head>
 <body>
 
-    <!-- Cabecera Superior -->
     <header class="main-header">
         <div class="header-left-group">
-            <button class="sidebar-toggle-btn" onclick="toggleSidebar()" title="Ocultar/Mostrar menú">
-                <i class="fas fa-bars"></i>
-            </button>
+            <button class="sidebar-toggle-btn" onclick="toggleSidebar()"><i class="fas fa-bars"></i></button>
             <div class="header-brand">
-                <a href="#" class="logo-container">
-                    <img src="logo-tienda.png" alt="Sensación Aromas Originales Logo" class="logo-img">
-                </a>
+                <a href="#" class="logo-container"><img src="logo-tienda.png" alt="Logo" class="logo-img"></a>
                 <div>
                     <h1 class="store-name">Sensación Aromas</h1>
                     <p class="store-subtitle">Originales</p>
                 </div>
             </div>
         </div>
-
         <ul class="top-nav-menu">
-            <li><a href="#" class="active">Inicio</a></li>
+            <li><a href="#mas-vendidos">Más Vendidos</a></li>
             <li><a href="#arabes">Árabe</a></li>
             <li><a href="#disenador">Diseñador</a></li>
-            <li><a href="#celebridad">Celebridad</a></li>
-            <li><a href="#bodymists">Body Mists</a></li>
-            <li><a href="#mas-vendidos">Más Vendidos</a></li>
         </ul>
-
         <div class="header-right-actions">
-            <!-- Botón de Usuario y Menú Desplegable -->
-            <div class="user-account-wrapper">
-                <button class="user-auth-btn" id="userAuthBtn" onclick="handleUserBtnClick()">
-                    <i class="fas fa-user-circle"></i> <span id="userNameDisplay">Crear Cuenta</span>
-                </button>
-                <div class="user-dropdown-menu" id="userDropdown">
-                    <button onclick="logoutUser()"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</button>
-                </div>
-            </div>
-
-            <button class="cart-icon-container" onclick="toggleCartDrawer()" title="Ver Carrito">
-                <i class="fas fa-shopping-cart"></i>
-                <span class="cart-badge" id="cartBadge">0</span>
-            </button>
-            <div class="header-social">
-                <a href="https://www.facebook.com/profile.php?id=61576096020955" target="_blank"><i class="fab fa-facebook-f"></i></a>
-                <a href="https://www.instagram.com/sensancion_a?stkn=OXJqb3ZqdTdha3g5" target="_blank"><i class="fab fa-instagram"></i></a>
-            </div>
+            <button class="cart-icon-container" onclick="toggleCartDrawer()"><i class="fas fa-shopping-cart"></i><span class="cart-badge" id="cartBadge">0</span></button>
         </div>
     </header>
 
-    <!-- Notificación Flotante de Descuento -->
-    <div class="discount-toast" id="discountToast">
-        <h4>¡Felicidades! 🎉</h4>
-        <p>Has creado tu cuenta y desbloqueado un <strong>5% de descuento</strong> en tu primera compra.</p>
-    </div>
+    <div class="modal-overlay" id="modalOverlay" onclick="closeCart()"></div>
 
-    <!-- Fondo Oscuro General para Modales -->
-    <div class="modal-overlay" id="modalOverlay" onclick="closeAllModals()"></div>
-
-    <!-- Modal de Registro de Cuenta -->
-    <div class="auth-modal" id="authModal">
-        <div class="auth-header">
-            <h3>Crear Cuenta Nueva</h3>
-            <button class="close-btn" onclick="closeAllModals()"><i class="fas fa-times"></i></button>
-        </div>
-        <div class="auth-body">
-            <form id="registerForm" onsubmit="handleRegister(event)">
-                <div class="form-group" style="margin-bottom: 8px;">
-                    <label>Nombre completo</label>
-                    <input type="text" id="regName" placeholder="Ej. María Pérez" required>
-                </div>
-                <div style="display: flex; gap: 8px; margin-bottom: 8px;">
-                    <div class="form-group" style="flex: 1;">
-                        <label>Edad</label>
-                        <input type="number" id="regAge" min="15" max="100" placeholder="Ej. 25" required>
-                    </div>
-                    <div class="form-group" style="flex: 1;">
-                        <label>Género</label>
-                        <select id="regGender" required>
-                            <option value="">Selecciona</option>
-                            <option value="Femenino">Femenino</option>
-                            <option value="Masculino">Masculino</option>
-                            <option value="Otro">Otro</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="form-group" style="margin-bottom: 8px;">
-                    <label>Número de Teléfono / WhatsApp</label>
-                    <input type="tel" id="regPhone" placeholder="Ej. +505 8888 8888" required>
-                </div>
-                <div style="display: flex; gap: 8px; margin-bottom: 8px;">
-                    <div class="form-group" style="flex: 1;">
-                        <label>País</label>
-                        <input type="text" id="regCountry" value="Nicaragua" readonly style="background: #f9f9f9; color: #555;">
-                    </div>
-                    <div class="form-group" style="flex: 1;">
-                        <label>Departamento</label>
-                        <select id="regDepartment" required>
-                            <option value="">Selecciona</option>
-                            <option value="Chinandega">Chinandega</option>
-                            <option value="Managua">Managua</option>
-                            <option value="León">León</option>
-                            <option value="Masaya">Masaya</option>
-                            <option value="Granada">Granada</option>
-                            <option value="Carazo">Carazo</option>
-                            <option value="Rivas">Rivas</option>
-                            <option value="Estelí">Estelí</option>
-                            <option value="Madriz">Madriz</option>
-                            <option value="Nueva Segovia">Nueva Segovia</option>
-                            <option value="Matagalpa">Matagalpa</option>
-                            <option value="Jinotega">Jinotega</option>
-                            <option value="Boaco">Boaco</option>
-                            <option value="Chontales">Chontales</option>
-                            <option value="Río San Juan">Río San Juan</option>
-                            <option value="Costa Caribe Norte">Costa Caribe Norte</option>
-                            <option value="Costa Caribe Sur">Costa Caribe Sur</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="form-group" style="margin-bottom: 8px;">
-                    <label>Correo electrónico</label>
-                    <input type="email" id="regEmail" placeholder="tucorreo@gmail.com" required>
-                </div>
-                <div class="form-group" style="margin-bottom: 12px;">
-                    <label>Contraseña</label>
-                    <input type="password" id="regPassword" placeholder="••••••••" required>
-                </div>
-                <button type="submit" class="btn-submit-auth">Crear Cuenta y Obtener 5% OFF</button>
-            </form>
-        </div>
-    </div>
-
-    <!-- Drawer / Modal del Carrito de Compras -->
     <div class="cart-drawer" id="cartDrawer">
         <div class="cart-header">
-            <h3>Tu Carrito de Pedidos</h3>
-            <button class="close-btn" onclick="toggleCartDrawer()"><i class="fas fa-times"></i></button>
+            <h3>Tu Carrito</h3>
+            <button onclick="toggleCartDrawer()" style="background:none; border:none; color:#fff; font-size:1.2rem; cursor:pointer;"><i class="fas fa-times"></i></button>
         </div>
         <div class="cart-body" id="cartItemsContainer">
-            <p style="color: var(--text-light); text-align: center; margin-top: 30px;">Tu carrito está vacío.</p>
+            <p style="text-align:center; color:#777;">Tu carrito está vacío.</p>
         </div>
         <div class="cart-footer">
-            <div class="cart-total">
-                <span>Total estimado:</span>
-                <span id="cartTotalText">$0.00</span>
-            </div>
-            <button class="btn-whatsapp-checkout" onclick="checkoutWhatsApp()">
-                <i class="fab fa-whatsapp" style="font-size: 1.2rem;"></i> Enviar Pedido por WhatsApp
-            </button>
+            <div class="cart-total"><span>Total:</span><span id="cartTotalText">$0.00</span></div>
+            <button class="btn-whatsapp-checkout" onclick="checkoutWhatsApp()"><i class="fab fa-whatsapp"></i> Enviar Pedido</button>
         </div>
     </div>
 
     <div class="app-layout">
-        
         <aside class="sidebar">
             <p class="sidebar-title">Categorías</p>
             <ul class="sidebar-menu">
-                <li class="sidebar-item">
-                    <a href="#mas-vendidos"><i class="fas fa-fire"></i> Los Más Vendidos</a>
-                </li>
-                <li class="sidebar-item">
-                    <a href="#arabes"><i class="fas fa-gem"></i> Perfumería Árabe</a>
-                </li>
-                <li class="sidebar-item">
-                    <a href="#disenador"><i class="fas fa-spray-can"></i> Perfumería de Diseñador</a>
-                </li>
-                <li class="sidebar-item">
-                    <a href="#celebridad"><i class="fas fa-star"></i> Perfumería de Celebridad</a>
-                </li>
-                <li class="sidebar-item">
-                    <a href="#bodymists"><i class="fas fa-wind"></i> Body Mists</a>
-                </li>
-                <li class="sidebar-item">
-                    <a href="#masglo"><i class="fas fa-hand-sparkles"></i> Esmaltes Masglo</a>
-                </li>
+                <li class="sidebar-item"><a href="#mas-vendidos"><i class="fas fa-fire"></i> Los Más Vendidos</a></li>
+                <li class="sidebar-item"><a href="#arabes"><i class="fas fa-gem"></i> Perfumería Árabe</a></li>
+                <li class="sidebar-item"><a href="#disenador"><i class="fas fa-spray-can"></i> Perfumería de Diseñador</a></li>
+                <li class="sidebar-item"><a href="#celebridad"><i class="fas fa-star"></i> Perfumería de Celebridad</a></li>
+                <li class="sidebar-item"><a href="#bodymists"><i class="fas fa-wind"></i> Body Mists</a></li>
+                <li class="sidebar-item"><a href="#masglo"><i class="fas fa-hand-sparkles"></i> Esmaltes Masglo</a></li>
             </ul>
         </aside>
 
         <main class="main-content">
             
-            <div id="no-results">
-                <i class="fas fa-search" style="font-size: 2rem; margin-bottom: 10px; color: var(--primary-color);"></i>
-                <p>No se encontraron productos con ese nombre.</p>
-            </div>
-
-            <!-- LO MÁS VENDIDO -->
+            <!-- MÁS VENDIDOS -->
             <section id="mas-vendidos" class="category-section">
                 <h2 class="category-title">Los Más Vendidos</h2>
-                <p style="color: var(--text-light); font-size: 0.9rem; margin-bottom: 1.2rem;">Explora los favoritos de nuestros clientes</p>
                 <div class="slider-container">
-                    <div class="product-card" data-name="bharara king" data-price="55.00">
+                    <div class="product-card">
                         <div class="product-img-container"><img src="BhararaKing3.4OzEDPForMen_webp.webp" alt="Bharara King"></div>
                         <div class="product-info">
                             <h3 class="product-name">Bharara King</h3>
                             <p class="product-desc">Alta durabilidad y notas dulces amaderadas.</p>
                             <div class="product-footer">
-                                <div class="product-price-row">
-                                    <span class="product-price">$55.00</span>
-                                    <a href="https://wa.me/50583743021?text=Hola,%20quiero%20consultar%20sobre%20Bharara%20King" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Consultar</a>
-                                </div>
-                                <button class="btn-add-cart" onclick="addToCart('Bharara King', 55.00)"><i class="fas fa-cart-plus"></i> Agregar al Carrito</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="product-card" data-name="lattafa khamrah" data-price="48.00">
-                        <div class="product-img-container"><img src="LATTAFA-KHAMRAH_webp.webp" alt="Lattafa Khamrah"></div>
-                        <div class="product-info">
-                            <h3 class="product-name">Lattafa Khamrah</h3>
-                            <p class="product-desc">Especiado cálido con canela, dátiles y vainilla.</p>
-                            <div class="product-footer">
-                                <div class="product-price-row">
-                                    <span class="product-price">$48.00</span>
-                                    <a href="https://wa.me/50583743021?text=Hola,%20quiero%20consultar%20sobre%20Lattafa%20Khamrah" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Consultar</a>
-                                </div>
-                                <button class="btn-add-cart" onclick="addToCart('Lattafa Khamrah', 48.00)"><i class="fas fa-cart-plus"></i> Agregar al Carrito</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="product-card" data-name="afnan 9 pm" data-price="45.00">
-                        <div class="product-img-container"><img src="afnan-9-pm-5.07ox_webp.webp" alt="Afnan 9 PM"></div>
-                        <div class="product-info">
-                            <h3 class="product-name">Afnan 9 PM</h3>
-                            <p class="product-desc">Aroma nocturno cautivador, dulce y moderno.</p>
-                            <div class="product-footer">
-                                <div class="product-price-row">
-                                    <span class="product-price">$45.00</span>
-                                    <a href="https://wa.me/50583743021?text=Hola,%20quiero%20consultar%20sobre%20Afnan%209%20PM" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Consultar</a>
-                                </div>
-                                <button class="btn-add-cart" onclick="addToCart('Afnan 9 PM', 45.00)"><i class="fas fa-cart-plus"></i> Agregar al Carrito</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="product-card" data-name="armaf club de nuit intense" data-price="50.00">
-                        <div class="product-img-container"><img src="armaf-club-de-nuit-intense-3-6-oz.jpeg" alt="Armaf Club de Nuit Intense"></div>
-                        <div class="product-info">
-                            <h3 class="product-name">Club de Nuit Intense</h3>
-                            <p class="product-desc">Poderoso aroma cítrico ahumado de gran proyección.</p>
-                            <div class="product-footer">
-                                <div class="product-price-row">
-                                    <span class="product-price">$50.00</span>
-                                    <a href="https://wa.me/50583743021?text=Hola,%20quiero%20consultar%20sobre%20Armaf%20Club%20de%20Nuit%20Intense" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Consultar</a>
-                                </div>
-                                <button class="btn-add-cart" onclick="addToCart('Armaf Club de Nuit Intense', 50.00)"><i class="fas fa-cart-plus"></i> Agregar al Carrito</button>
+                                <div class="product-price-row"><span class="product-price">$55.00</span><a href="https://wa.me/50583743021?text=Hola,%20quiero%20consultar%20sobre%20Bharara%20King" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Consultar</a></div>
+                                <button class="btn-add-cart" onclick="addToCart('Bharara King', 55.00)"><i class="fas fa-cart-plus"></i> Agregar</button>
                             </div>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <!-- 1. PERFUMERÍA ÁRABE -->
+            <!-- PERFUMERÍA ÁRABE (Con los nombres cortos recomendados) -->
             <section id="arabes" class="category-section">
                 <h2 class="category-title">Perfumería Árabe</h2>
                 <div class="slider-container">
                     
-                    <div class="product-card" data-name="armaf odyssey mandarin sky" data-price="45.00">
-                        <div class="product-img-container"><img src="ARMAF-ODYSSEY-MANDARIN-SKY-ELIXIR_web.webp.webp" alt="Odyssey Mandarin Sky"></div>
+                    <div class="product-card">
+                        <div class="product-img-container"><img src="mandarin.webp" alt="Odyssey Mandarin Sky"></div>
                         <div class="product-info">
                             <h3 class="product-name">Armaf Odyssey Mandarin Sky</h3>
                             <p class="product-desc">Notas cítricas especiadas y dulces vibrantes.</p>
                             <div class="product-footer">
-                                <div class="product-price-row">
-                                    <span class="product-price">$45.00</span>
-                                    <a href="https://wa.me/50583743021?text=Hola,%20quiero%20consultar%20sobre%20Armaf%20Odyssey%20Mandarin%20Sky" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Consultar</a>
-                                </div>
-                                <button class="btn-add-cart" onclick="addToCart('Armaf Odyssey Mandarin Sky', 45.00)"><i class="fas fa-cart-plus"></i> Agregar al Carrito</button>
+                                <div class="product-price-row"><span class="product-price">$45.00</span><a href="https://wa.me/50583743021?text=Hola,%20quiero%20consultar%20sobre%20Armaf%20Odyssey%20Mandarin%20Sky" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Consultar</a></div>
+                                <button class="btn-add-cart" onclick="addToCart('Armaf Odyssey Mandarin Sky', 45.00)"><i class="fas fa-cart-plus"></i> Agregar</button>
                             </div>
                         </div>
                     </div>
 
-                    <div class="product-card" data-name="al haramain l adventure fraiche" data-price="50.00">
-                        <div class="product-img-container"><img src="Al_Haramain_L_Adventure_Fraiche_webp.webp" alt="L'Aventure Fraiche"></div>
-                        <div class="product-info">
-                            <h3 class="product-name">Al Haramain L'Aventure Fraiche</h3>
-                            <p class="product-desc">Frescura cítrica y maderas limpias de alta fijación.</p>
-                            <div class="product-footer">
-                                <div class="product-price-row">
-                                    <span class="product-price">$50.00</span>
-                                    <a href="https://wa.me/50583743021?text=Hola,%20quiero%20consultar%20sobre%20Al%20Haramain%20L'Aventure%20Fraiche" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Consultar</a>
-                                </div>
-                                <button class="btn-add-cart" onclick="addToCart('Al Haramain L\'Aventure Fraiche', 50.00)"><i class="fas fa-cart-plus"></i> Agregar al Carrito</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="product-card" data-name="lattafa art of universe" data-price="52.00">
-                        <div class="product-img-container"><img src="LATTAFA-ART-OF-UNIVERSE_webp.webp" alt="Art of Universe"></div>
+                    <div class="product-card">
+                        <div class="product-img-container"><img src="universe.webp" alt="Art of Universe"></div>
                         <div class="product-info">
                             <h3 class="product-name">Lattafa Art of Universe</h3>
                             <p class="product-desc">Fragancia sofisticada y misteriosa.</p>
                             <div class="product-footer">
-                                <div class="product-price-row">
-                                    <span class="product-price">$52.00</span>
-                                    <a href="https://wa.me/50583743021?text=Hola,%20quiero%20consultar%20sobre%20Lattafa%20Art%20of%20Universe" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Consultar</a>
-                                </div>
-                                <button class="btn-add-cart" onclick="addToCart('Lattafa Art of Universe', 52.00)"><i class="fas fa-cart-plus"></i> Agregar al Carrito</button>
+                                <div class="product-price-row"><span class="product-price">$52.00</span><a href="https://wa.me/50583743021?text=Hola,%20quiero%20consultar%20sobre%20Lattafa%20Art%20of%20Universe" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Consultar</a></div>
+                                <button class="btn-add-cart" onclick="addToCart('Lattafa Art of Universe', 52.00)"><i class="fas fa-cart-plus"></i> Agregar</button>
                             </div>
                         </div>
                     </div>
 
-                    <div class="product-card" data-name="lattafa dukhan" data-price="48.00">
-                        <div class="product-img-container"><img src="LATTAFA-DUKHAN_webp.webp" alt="Lattafa Dukhan"></div>
-                        <div class="product-info">
-                            <h3 class="product-name">Lattafa Dukhan</h3>
-                            <p class="product-desc">Aroma amaderado profundo con matices ahumados.</p>
-                            <div class="product-footer">
-                                <div class="product-price-row">
-                                    <span class="product-price">$48.00</span>
-                                    <a href="https://wa.me/50583743021?text=Hola,%20quiero%20consultar%20sobre%20Lattafa%20Dukhan" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Consultar</a>
-                                </div>
-                                <button class="btn-add-cart" onclick="addToCart('Lattafa Dukhan', 48.00)"><i class="fas fa-cart-plus"></i> Agregar al Carrito</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="product-card" data-name="yara tous lattafa" data-price="45.00">
-                        <div class="product-img-container"><img src="YARA-TOUS-LATAFFA_webp.webp" alt="Yara Tous"></div>
-                        <div class="product-info">
-                            <h3 class="product-name">Yara Tous Lattafa</h3>
-                            <p class="product-desc">Tropical, exótico y cremoso con notas de mango y coco.</p>
-                            <div class="product-footer">
-                                <div class="product-price-row">
-                                    <span class="product-price">$45.00</span>
-                                    <a href="https://wa.me/50583743021?text=Hola,%20quiero%20consultar%20sobre%20Yara%20Tous%20Lattafa" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Consultar</a>
-                                </div>
-                                <button class="btn-add-cart" onclick="addToCart('Yara Tous Lattafa', 45.00)"><i class="fas fa-cart-plus"></i> Agregar al Carrito</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="product-card" data-name="stallion 53" data-price="60.00">
-                        <div class="product-img-container"><img src="STALLION-53_1500x.webp" alt="Stallion 53"></div>
-                        <div class="product-info">
-                            <h3 class="product-name">Stallion 53</h3>
-                            <p class="product-desc">Exclusiva fragancia con gran carácter y fijación.</p>
-                            <div class="product-footer">
-                                <div class="product-price-row">
-                                    <span class="product-price">$60.00</span>
-                                    <a href="https://wa.me/50583743021?text=Hola,%20quiero%20consultar%20sobre%20Stallion%2053" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Consultar</a>
-                                </div>
-                                <button class="btn-add-cart" onclick="addToCart('Stallion 53', 60.00)"><i class="fas fa-cart-plus"></i> Agregar al Carrito</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="product-card" data-name="lattafa eclaire" data-price="48.00">
-                        <div class="product-img-container"><img src="lattafa-eclaire_webp.webp" alt="Lattafa Eclaire"></div>
-                        <div class="product-info">
-                            <h3 class="product-name">Lattafa Eclaire</h3>
-                            <p class="product-desc">Notas cremosas, avainilladas y dulces irresistibles.</p>
-                            <div class="product-footer">
-                                <div class="product-price-row">
-                                    <span class="product-price">$48.00</span>
-                                    <a href="https://wa.me/50583743021?text=Hola,%20quiero%20consultar%20sobre%20Lattafa%20Eclaire" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Consultar</a>
-                                </div>
-                                <button class="btn-add-cart" onclick="addToCart('Lattafa Eclaire', 48.00)"><i class="fas fa-cart-plus"></i> Agregar al Carrito</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="product-card" data-name="lattafa eclaire pistache" data-price="49.00">
-                        <div class="product-img-container"><img src="lattafa-eclaire-pistache_webp.webp" alt="Lattafa Eclaire Pistache"></div>
-                        <div class="product-info">
-                            <h3 class="product-name">Lattafa Eclaire Pistache</h3>
-                            <p class="product-desc">Exquisita combinación de pistacho y notas gourmand.</p>
-                            <div class="product-footer">
-                                <div class="product-price-row">
-                                    <span class="product-price">$49.00</span>
-                                    <a href="https://wa.me/50583743021?text=Hola,%20quiero%20consultar%20sobre%20Lattafa%20Eclaire%20Pistache" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Consultar</a>
-                                </div>
-                                <button class="btn-add-cart" onclick="addToCart('Lattafa Eclaire Pistache', 49.00)"><i class="fas fa-cart-plus"></i> Agregar al Carrito</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="product-card" data-name="yara lattafa candy" data-price="45.00">
-                        <div class="product-img-container"><img src="yara-lattafa-candy_webp.webp" alt="Yara Lattafa Candy"></div>
-                        <div class="product-info">
-                            <h3 class="product-name">Yara Lattafa Candy</h3>
-                            <p class="product-desc">Aroma frutal, dulce y juvenil muy encantador.</p>
-                            <div class="product-footer">
-                                <div class="product-price-row">
-                                    <span class="product-price">$45.00</span>
-                                    <a href="https://wa.me/50583743021?text=Hola,%20quiero%20consultar%20sobre%20Yara%20Lattafa%20Candy" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Consultar</a>
-                                </div>
-                                <button class="btn-add-cart" onclick="addToCart('Yara Lattafa Candy', 45.00)"><i class="fas fa-cart-plus"></i> Agregar al Carrito</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="product-card" data-name="haramain amber oud" data-price="65.00">
-                        <div class="product-img-container"><img src="haramain-amber-oud_webp.webp" alt="Haramain Amber Oud"></div>
-                        <div class="product-info">
-                            <h3 class="product-name">Haramain Amber Oud</h3>
-                            <p class="product-desc">Lujo y elegancia oriental con ámbar y maderas finas.</p>
-                            <div class="product-footer">
-                                <div class="product-price-row">
-                                    <span class="product-price">$65.00</span>
-                                    <a href="https://wa.me/50583743021?text=Hola,%20quiero%20consultar%20sobre%20Haramain%20Amber%20Oud" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Consultar</a>
-                                </div>
-                                <button class="btn-add-cart" onclick="addToCart('Haramain Amber Oud', 65.00)"><i class="fas fa-cart-plus"></i> Agregar al Carrito</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="product-card" data-name="hawas atlantis" data-price="52.00">
-                        <div class="product-img-container"><img src="hawas-atlantis_webp.webp" alt="Hawas Atlantis"></div>
-                        <div class="product-info">
-                            <h3 class="product-name">Hawas Atlantis</h3>
-                            <p class="product-desc">Frescura oceánica intensa con gran proyección.</p>
-                            <div class="product-footer">
-                                <div class="product-price-row">
-                                    <span class="product-price">$52.00</span>
-                                    <a href="https://wa.me/50583743021?text=Hola,%20quiero%20consultar%20sobre%20Hawas%20Atlantis" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Consultar</a>
-                                </div>
-                                <button class="btn-add-cart" onclick="addToCart('Hawas Atlantis', 52.00)"><i class="fas fa-cart-plus"></i> Agregar al Carrito</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Orientica Amber Rouge -->
-                    <div class="product-card" data-name="orientica amber rouge" data-price="95.00">
-                        <div class="product-img-container"><img src="Orientic_amber_rouge_5.0ozEDP_5.0oz.webp" alt="Orientica Amber Rouge"></div>
+                    <div class="product-card">
+                        <div class="product-img-container"><img src="Orientic_amber_rouge_5.0ozEDP_5.0oz.webp" alt="Amber Rouge"></div>
                         <div class="product-info">
                             <h3 class="product-name">Orientica Amber Rouge</h3>
                             <p class="product-desc">Lujo exclusivo, estela ambarina y azafrán inigualable.</p>
                             <div class="product-footer">
-                                <div class="product-price-row">
-                                    <span class="product-price">$95.00</span>
-                                    <a href="https://wa.me/50583743021?text=Hola,%20quiero%20consultar%20sobre%20Orientica%20Amber%20Rouge" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Consultar</a>
-                                </div>
-                                <button class="btn-add-cart" onclick="addToCart('Orientica Amber Rouge', 95.00)"><i class="fas fa-cart-plus"></i> Agregar al Carrito</button>
+                                <div class="product-price-row"><span class="product-price">$95.00</span><a href="https://wa.me/50583743021?text=Hola,%20quiero%20consultar%20sobre%20Orientica%20Amber%20Rouge" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Consultar</a></div>
+                                <button class="btn-add-cart" onclick="addToCart('Orientica Amber Rouge', 95.00)"><i class="fas fa-cart-plus"></i> Agregar</button>
                             </div>
                         </div>
                     </div>
@@ -1448,146 +203,18 @@
                 </div>
             </section>
 
-            <!-- 2. PERFUMERÍA DE DISEÑADOR -->
+            <!-- PERFUMERÍA DE DISEÑADOR -->
             <section id="disenador" class="category-section">
                 <h2 class="category-title">Perfumería de Diseñador</h2>
                 <div class="slider-container">
-                    
-                    <div class="product-card" data-name="stronger with you absolutely armani" data-price="90.00">
-                        <div class="product-img-container"><img src="STRONGER-WITH-YOU-ABSOLUTELY-ARMANI-..jpg" alt="Stronger With You Absolutely"></div>
+                    <div class="product-card">
+                        <div class="product-img-container"><img src="stronger.jpg" alt="Stronger With You"></div>
                         <div class="product-info">
                             <h3 class="product-name">Stronger With You Absolutely</h3>
                             <p class="product-desc">Intenso acorde ambarino, ron y vainilla seductora.</p>
                             <div class="product-footer">
-                                <div class="product-price-row">
-                                    <span class="product-price">$90.00</span>
-                                    <a href="https://wa.me/50583743021?text=Hola,%20quiero%20consultar%20sobre%20Stronger%20With%20You%20Absolutely" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Consultar</a>
-                                </div>
-                                <button class="btn-add-cart" onclick="addToCart('Stronger With You Absolutely', 90.00)"><i class="fas fa-cart-plus"></i> Agregar al Carrito</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="product-card" data-name="burberry her edp" data-price="75.00">
-                        <div class="product-img-container"><img src="burberry-her-edp_webp.webp" alt="Burberry Her EDP"></div>
-                        <div class="product-info">
-                            <h3 class="product-name">Burberry Her EDP</h3>
-                            <p class="product-desc">Aroma frutal, floral y gourmand moderno muy sofisticado.</p>
-                            <div class="product-footer">
-                                <div class="product-price-row">
-                                    <span class="product-price">$75.00</span>
-                                    <a href="https://wa.me/50583743021?text=Hola,%20quiero%20consultar%20sobre%20Burberry%20Her%20EDP" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Consultar</a>
-                                </div>
-                                <button class="btn-add-cart" onclick="addToCart('Burberry Her EDP', 75.00)"><i class="fas fa-cart-plus"></i> Agregar al Carrito</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="product-card" data-name="la vie est belle" data-price="85.00">
-                        <div class="product-img-container"><img src="la-vie-est-belle_webp.webp" alt="La Vie Est Belle"></div>
-                        <div class="product-info">
-                            <h3 class="product-name">La Vie Est Belle</h3>
-                            <p class="product-desc">Clásico elegante con notas de iris, pachulí y vainilla.</p>
-                            <div class="product-footer">
-                                <div class="product-price-row">
-                                    <span class="product-price">$85.00</span>
-                                    <a href="https://wa.me/50583743021?text=Hola,%20quiero%20consultar%20sobre%20La%20Vie%20Est%20Belle" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Consultar</a>
-                                </div>
-                                <button class="btn-add-cart" onclick="addToCart('La Vie Est Belle', 85.00)"><i class="fas fa-cart-plus"></i> Agregar al Carrito</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="product-card" data-name="light blue men dolce gabbana" data-price="68.00">
-                        <div class="product-img-container"><img src="light-blue-men-dolce-gabbana-3-3_webp.webp" alt="Light Blue Men D&G"></div>
-                        <div class="product-info">
-                            <h3 class="product-name">Light Blue Men D&G</h3>
-                            <p class="product-desc">Frescura cítrica mediterránea inconfundible y elegante.</p>
-                            <div class="product-footer">
-                                <div class="product-price-row">
-                                    <span class="product-price">$68.00</span>
-                                    <a href="https://wa.me/50583743021?text=Hola,%20quiero%20consultar%20sobre%20Light%20Blue%20Men%20Dolce%20Gabbana" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Consultar</a>
-                                </div>
-                                <button class="btn-add-cart" onclick="addToCart('Light Blue Men Dolce Gabbana', 68.00)"><i class="fas fa-cart-plus"></i> Agregar al Carrito</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="product-card" data-name="moschino toy boy" data-price="62.00">
-                        <div class="product-img-container"><img src="moschino-toy-boy_webp.webp" alt="Moschino Toy Boy"></div>
-                        <div class="product-info">
-                            <h3 class="product-name">Moschino Toy Boy</h3>
-                            <p class="product-desc">Fragancia especiada, amaderada y audaz para hombre.</p>
-                            <div class="product-footer">
-                                <div class="product-price-row">
-                                    <span class="product-price">$62.00</span>
-                                    <a href="https://wa.me/50583743021?text=Hola,%20quiero%20consultar%20sobre%20Moschino%20Toy%20Boy" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Consultar</a>
-                                </div>
-                                <button class="btn-add-cart" onclick="addToCart('Moschino Toy Boy', 62.00)"><i class="fas fa-cart-plus"></i> Agregar al Carrito</button>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </section>
-
-            <!-- 3. PERFUMERÍA DE CELEBRIDAD -->
-            <section id="celebridad" class="category-section">
-                <h2 class="category-title">Perfumería de Celebridad</h2>
-                <div class="slider-container">
-                    <div class="product-card" data-name="ariana grande cloud pink" data-price="58.00">
-                        <div class="product-img-container"><img src="ariana-pink-cloud.webp" alt="Ariana Pink Cloud"></div>
-                        <div class="product-info">
-                            <h3 class="product-name">Ariana Grande Cloud Pink</h3>
-                            <p class="product-desc">Notas dulces, frutales y florales muy soñadoras.</p>
-                            <div class="product-footer">
-                                <div class="product-price-row">
-                                    <span class="product-price">$58.00</span>
-                                    <a href="https://wa.me/50583743021?text=Hola,%20quiero%20consultar%20sobre%20Ariana%20Grande%20Cloud%20Pink" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Consultar</a>
-                                </div>
-                                <button class="btn-add-cart" onclick="addToCart('Ariana Grande Cloud Pink', 58.00)"><i class="fas fa-cart-plus"></i> Agregar al Carrito</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- 4. BODY MISTS -->
-            <section id="bodymists" class="category-section">
-                <h2 class="category-title">Body Mists</h2>
-                <div class="slider-container">
-                    <div class="product-card" data-name="victoria secret bath body works body mist" data-price="25.00">
-                        <div class="product-img-container"><img src="logo-tienda.png" alt="Body Mists"></div>
-                        <div class="product-info">
-                            <h3 class="product-name">Colección Body Mists</h3>
-                            <p class="product-desc">Victoria's Secret, Bath & Body Works y más.</p>
-                            <div class="product-footer">
-                                <div class="product-price-row">
-                                    <span class="product-price">$25.00</span>
-                                    <a href="https://wa.me/50583743021?text=Hola,%20quiero%20ver%20body%20mists" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Consultar</a>
-                                </div>
-                                <button class="btn-add-cart" onclick="addToCart('Colección Body Mists', 25.00)"><i class="fas fa-cart-plus"></i> Agregar al Carrito</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- 5. ESMALTES COLOMBIANOS MASGLO -->
-            <section id="masglo" class="category-section">
-                <h2 class="category-title">Esmaltes Colombianos Masglo</h2>
-                <div class="slider-container">
-                    <div class="product-card" data-name="masglo esmalte base top coat" data-price="12.00">
-                        <div class="product-img-container"><img src="logo-tienda.png" alt="Esmaltes Masglo"></div>
-                        <div class="product-info">
-                            <h3 class="product-name">Línea Masglo</h3>
-                            <p class="product-desc">Esmaltes, bases fortalecedoras y top coats.</p>
-                            <div class="product-footer">
-                                <div class="product-price-row">
-                                    <span class="product-price">$12.00</span>
-                                    <a href="https://wa.me/50583743021?text=Hola,%20quiero%20consultar%20sobre%20esmaltes%20Masglo" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Consultar</a>
-                                </div>
-                                <button class="btn-add-cart" onclick="addToCart('Línea Masglo', 12.00)"><i class="fas fa-cart-plus"></i> Agregar al Carrito</button>
+                                <div class="product-price-row"><span class="product-price">$90.00</span><a href="https://wa.me/50583743021?text=Hola,%20quiero%20consultar%20sobre%20Stronger%20With%20You%20Absolutely" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Consultar</a></div>
+                                <button class="btn-add-cart" onclick="addToCart('Stronger With You Absolutely', 90.00)"><i class="fas fa-cart-plus"></i> Agregar</button>
                             </div>
                         </div>
                     </div>
@@ -1597,259 +224,46 @@
         </main>
     </div>
 
-    <!-- Pie de Página -->
-    <footer>
-        <div class="footer-content-grid">
-            <div class="footer-col">
-                <h3>Categorías</h3>
-                <ul class="footer-links">
-                    <li><a href="#mas-vendidos">Los Más Vendidos</a></li>
-                    <li><a href="#arabes">Perfumería Árabe</a></li>
-                    <li><a href="#disenador">Perfumería de Diseñador</a></li>
-                    <li><a href="#bodymists">Body Mists</a></li>
-                    <li><a href="#masglo">Esmaltes Masglo</a></li>
-                </ul>
-            </div>
-
-            <div class="footer-col">
-                <h3>Contacto</h3>
-                <div class="footer-contact-info">
-                    <p><strong>Email:</strong></p>
-                    <p>bellezaycuidadopersonal@gmail.com</p>
-                    <p style="margin-top: 8px;"><strong>Teléfono:</strong></p>
-                    <p>+505 8374 3021</p>
-                    <p style="margin-top: 8px;"><strong>Dirección:</strong></p>
-                    <p>Chinandega, Nicaragua</p>
-                </div>
-            </div>
-
-            <div class="footer-col">
-                <h3>Información</h3>
-                <ul class="footer-links">
-                    <li><a href="#">Acerca de Nosotros</a></li>
-                    <li><a href="#">Política de Privacidad</a></li>
-                    <li><a href="#">Términos y Condiciones</a></li>
-                </ul>
-            </div>
-
-            <div class="footer-col">
-                <div class="footer-brand-box">
-                    <div class="footer-logo-container">
-                        <img src="logo-tienda.png" alt="Sensación Aromas Originales Logo" class="footer-logo-img">
-                    </div>
-                    <div>
-                        <h2 class="footer-store-name">Sensación Aromas</h2>
-                        <p class="footer-store-subtitle">Originales</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="footer-bottom-bar">
-            <div class="footer-social-icons">
-                <a href="https://www.facebook.com/profile.php?id=61576096020955" target="_blank"><i class="fab fa-facebook-f"></i></a>
-                <a href="https://www.instagram.com/sensancion_a?stkn=OXJqb3ZqdTdha3g5" target="_blank"><i class="fab fa-instagram"></i></a>
-            </div>
-            <div class="footer-copyright">
-                <p>&copy; 2026 Sensación Aromas Originales. Todos los derechos reservados.</p>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Scripts -->
     <script>
         let cart = [];
-        let currentUser = localStorage.getItem('sensacion_user') ? JSON.parse(localStorage.getItem('sensacion_user')) : null;
-
-        window.onload = function() {
-            updateUserUI();
+        function toggleSidebar() { document.body.classList.toggle('sidebar-collapsed'); }
+        function toggleCartDrawer() {
+            document.getElementById('cartDrawer').classList.toggle('open');
+            document.getElementById('modalOverlay').classList.toggle('open');
         }
-
-        function toggleSidebar() {
-            if (window.innerWidth <= 900) {
-                document.body.classList.toggle('sidebar-open');
-            } else {
-                document.body.classList.toggle('sidebar-collapsed');
-            }
-        }
-
-        function handleUserBtnClick() {
-            if (currentUser) {
-                let dropdown = document.getElementById('userDropdown');
-                dropdown.classList.toggle('show');
-            } else {
-                openAuthModal();
-            }
-        }
-
-        function openAuthModal() {
-            document.getElementById('authModal').classList.add('open');
-            document.getElementById('modalOverlay').classList.add('open');
-            document.getElementById('userDropdown').classList.remove('show');
-        }
-
-        function closeAllModals() {
-            document.getElementById('authModal').classList.remove('open');
+        function closeCart() {
             document.getElementById('cartDrawer').classList.remove('open');
             document.getElementById('modalOverlay').classList.remove('open');
-            document.getElementById('userDropdown').classList.remove('show');
         }
-
-        function toggleCartDrawer() {
-            let drawer = document.getElementById('cartDrawer');
-            let overlay = document.getElementById('modalOverlay');
-            document.getElementById('userDropdown').classList.remove('show');
-            if (drawer.classList.contains('open')) {
-                drawer.classList.remove('open');
-                overlay.classList.remove('open');
-            } else {
-                drawer.classList.add('open');
-                overlay.classList.add('open');
-            }
-        }
-
-        function handleRegister(event) {
-            event.preventDefault();
-            let name = document.getElementById('regName').value;
-            let age = document.getElementById('regAge').value;
-            let gender = document.getElementById('regGender').value;
-            let phone = document.getElementById('regPhone').value;
-            let country = document.getElementById('regCountry').value;
-            let department = document.getElementById('regDepartment').value;
-            let email = document.getElementById('regEmail').value;
-
-            currentUser = { 
-                name: name, age: age, gender: gender, phone: phone, 
-                country: country, department: department, email: email,
-                discountActive: true 
-            };
-
-            localStorage.setItem('sensacion_user', JSON.stringify(currentUser));
-            updateUserUI();
-            closeAllModals();
-
-            let toast = document.getElementById('discountToast');
-            toast.classList.add('show');
-            setTimeout(() => { toast.classList.remove('show'); }, 6000);
-
-            let msg = `¡Hola! Un nuevo cliente se ha registrado en Sensación Aromas Originales:%0A%0A` +
-                      `👤 *Nombre:* ${name}%0A📅 *Edad:* ${age} años%0A⚥ *Género:* ${gender}%0A` +
-                      `📱 *Teléfono:* ${phone}%0A📍 *Ubicación:* ${department}, ${country}%0A` +
-                      `📧 *Correo:* ${email}%0A%0A🎁 *Estado:* ¡Desbloqueó 5% de descuento por registro!`;
-            window.open(`https://wa.me/50583743021?text=${msg}`, '_blank');
-        }
-
-        function logoutUser() {
-            currentUser = null;
-            localStorage.removeItem('sensacion_user');
-            updateUserUI();
-            document.getElementById('userDropdown').classList.remove('show');
-            alert("Has cerrado sesión correctamente.");
-        }
-
-        function updateUserUI() {
-            let userDisplay = document.getElementById('userNameDisplay');
-            if (currentUser) {
-                userDisplay.innerText = currentUser.name.split(' ')[0];
-            } else {
-                userDisplay.innerText = "Crear Cuenta";
-            }
-        }
-
         function addToCart(name, price) {
-            let existingItem = cart.find(item => item.name === name);
-            if (existingItem) {
-                if (existingItem.qty < 2) { existingItem.qty++; } 
-                else { alert("Solo puedes agregar un máximo de 2 unidades por producto."); return; }
-            } else {
-                cart.push({ name: name, price: price, qty: 1 });
-            }
-            updateCartUI();
+            let item = cart.find(i => i.name === name);
+            if(item) { if(item.qty < 2) item.qty++; else alert("Máximo 2 unidades."); }
+            else { cart.push({name, price, qty: 1}); }
+            updateCart();
             toggleCartDrawer();
         }
-
-        function changeQty(index, delta) {
-            cart[index].qty += delta;
-            if (cart[index].qty > 2) cart[index].qty = 2;
-            if (cart[index].qty <= 0) cart.splice(index, 1);
-            updateCartUI();
-        }
-
-        function removeFromCart(index) {
-            cart.splice(index, 1);
-            updateCartUI();
-        }
-
-        function updateCartUI() {
+        function updateCart() {
             let container = document.getElementById('cartItemsContainer');
             let badge = document.getElementById('cartBadge');
             let totalText = document.getElementById('cartTotalText');
-
             container.innerHTML = '';
-            let totalItems = 0;
-            let totalPrice = 0;
-
-            if (cart.length === 0) {
-                container.innerHTML = '<p style="color: var(--text-light); text-align: center; margin-top: 30px;">Tu carrito está vacío.</p>';
-                badge.innerText = '0';
-                totalText.innerText = '$0.00';
-                return;
-            }
-
-            cart.forEach((item, index) => {
-                totalItems += item.qty;
-                totalPrice += item.price * item.qty;
-
-                let itemDiv = document.createElement('div');
-                itemDiv.className = 'cart-item';
-                itemDiv.innerHTML = `
-                    <div class="cart-item-info">
-                        <div class="cart-item-title">${item.name}</div>
-                        <div class="cart-item-price">$${item.price.toFixed(2)} c/u</div>
-                    </div>
-                    <div class="cart-item-controls">
-                        <button class="qty-btn" onclick="changeQty(${index}, -1)">-</button>
-                        <span class="cart-item-qty">${item.qty}</span>
-                        <button class="qty-btn" onclick="changeQty(${index}, 1)">+</button>
-                        <button class="remove-item" onclick="removeFromCart(${index})"><i class="fas fa-trash"></i></button>
-                    </div>
-                `;
-                container.appendChild(itemDiv);
+            let total = 0, count = 0;
+            if(cart.length === 0) { container.innerHTML = '<p style="text-align:center; color:#777;">Tu carrito está vacío.</p>'; badge.innerText='0'; totalText.innerText='$0.00'; return; }
+            cart.forEach((i, idx) => {
+                total += i.price * i.qty;
+                count += i.qty;
+                container.innerHTML += `<div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid #eee; padding-bottom:8px;"><div><b>${i.name}</b><br><small>$${i.price} x ${i.qty}</small></div><button onclick="cart.splice(${idx},1);updateCart();" style="background:none;border:none;color:red;cursor:pointer;"><i class="fas fa-trash"></i></button></div>`;
             });
-
-            badge.innerText = totalItems;
-            
-            if (currentUser && currentUser.discountActive) {
-                let discountedTotal = totalPrice * 0.95;
-                totalText.innerHTML = `<span style="text-decoration: line-through; color: #888; font-size: 0.9rem; margin-right: 5px;">$${totalPrice.toFixed(2)}</span> <span style="color: var(--primary-color);">$${discountedTotal.toFixed(2)}</span> <small style="display: block; font-size: 0.7rem; color: var(--gold-color);">¡5% OFF de bienvenida aplicado!</small>`;
-            } else {
-                totalText.innerText = `$${totalPrice.toFixed(2)}`;
-            }
+            badge.innerText = count;
+            totalText.innerText = `$${total.toFixed(2)}`;
         }
-
         function checkoutWhatsApp() {
-            if (cart.length === 0) { alert("Tu carrito está vacío."); return; }
-
-            let clientInfo = currentUser ? `*Cliente:* ${currentUser.name}%0A*Teléfono:* ${currentUser.phone}%0A*Ubicación:* ${currentUser.department}, ${currentUser.country}%0A*Correo:* ${currentUser.email}%0A%0A` : "*Cliente:* Invitado%0A%0A";
-            let message = `Hola, ¡quiero realizar el siguiente pedido desde Sensación Aromas Originales!%0A%0A` + clientInfo;
+            if(cart.length === 0) { alert("Tu carrito está vacío."); return; }
+            let msg = "Hola, quiero realizar este pedido:%0A";
             let total = 0;
-
-            cart.forEach(item => {
-                let subtotal = item.price * item.qty;
-                total += subtotal;
-                message += `• *${item.name}* (Cant: ${item.qty}) - $${subtotal.toFixed(2)}%0A`;
-            });
-
-            if (currentUser && currentUser.discountActive) {
-                let finalTotal = total * 0.95;
-                message += `%0A*Subtotal:* $${total.toFixed(2)}`;
-                message += `%0A*Descuento (5% Bienvenida):* -$${(total * 0.05).toFixed(2)}`;
-                message += `%0A*Total con descuento:* $${finalTotal.toFixed(2)}`;
-            } else {
-                message += `%0A*Total estimado:* $${total.toFixed(2)}`;
-            }
-
-            window.open(`https://wa.me/50583743021?text=${message}`, '_blank');
+            cart.forEach(i => { total += i.price * i.qty; msg += `- ${i.name} (Cant: ${i.qty}) - $${(i.price*i.qty).toFixed(2)}%0A`; });
+            msg += `%0ATotal: $${total.toFixed(2)}`;
+            window.open(`https://wa.me/50583743021?text=${msg}`, '_blank');
         }
     </script>
 </body>
