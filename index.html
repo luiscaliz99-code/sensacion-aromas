@@ -222,6 +222,7 @@
             flex: 1;
             padding: 2.5rem;
             background-color: var(--bg-body);
+            overflow-x: hidden;
         }
 
         .category-section {
@@ -229,26 +230,71 @@
             scroll-margin-top: 90px;
         }
 
-        .category-title {
-            font-size: 1.8rem;
+        /* Cabecera de Categoría Estilo Shopify con Controles de Flechas */
+        .category-header-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             margin-bottom: 1.2rem;
             border-left: 5px solid var(--primary-color);
             padding-left: 14px;
-            text-transform: uppercase;
-            font-weight: 700;
+            background: linear-gradient(90deg, rgba(255, 42, 133, 0.08), transparent);
+            padding-top: 5px;
+            padding-bottom: 5px;
         }
 
+        .category-title {
+            font-size: 1.8rem;
+            text-transform: uppercase;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        /* Botones de navegación tipo Shopify (Flechas laterales) */
+        .slider-nav-controls {
+            display: flex;
+            gap: 8px;
+        }
+
+        .slider-btn {
+            background: #ffffff;
+            border: 1px solid #ddd;
+            color: var(--text-dark);
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .slider-btn:hover {
+            background: var(--primary-color);
+            color: #ffffff;
+            border-color: var(--primary-color);
+        }
+
+        /* Contenedor Carrusel Ocultando Barras de Desplazamiento */
         .slider-container {
             display: flex;
-            overflow-x: auto;
             gap: 22px;
-            padding: 10px 5px 15px 5px;
-            scroll-snap-type: x mandatory;
+            overflow-x: auto;
             scroll-behavior: smooth;
+            padding: 10px 5px;
+            /* Ocultar barra de desplazamiento manteniendo funcionalidad táctil y de scroll */
+            scrollbar-width: none; /* Firefox */
+            -ms-overflow-style: none; /* IE/Edge */
+        }
+
+        .slider-container::-webkit-scrollbar {
+            display: none; /* Chrome/Safari/Opera */
         }
 
         .product-card {
-            flex: 0 0 250px;
+            flex: 0 0 260px;
             background: var(--bg-card);
             border-radius: 14px;
             overflow: hidden;
@@ -257,7 +303,6 @@
             flex-direction: column;
             justify-content: space-between;
             border: 1px solid #e2e8f0;
-            scroll-snap-align: start;
             transition: 0.3s;
         }
 
@@ -440,6 +485,11 @@
             margin-left: var(--sidebar-width);
             border-top: 1px solid #f0d0df;
         }
+
+        @media (max-width: 900px) {
+            .sidebar { transform: translateX(-100%); }
+            .main-content, footer { margin-left: 0; padding: 1.5rem; }
+        }
     </style>
 </head>
 <body>
@@ -500,8 +550,14 @@
             
             <!-- 0. LOS MÁS VENDIDOS -->
             <section id="mas-vendidos" class="category-section">
-                <h2 class="category-title">Los Más Vendidos</h2>
-                <div class="slider-container">
+                <div class="category-header-row">
+                    <h2 class="category-title">Los Más Vendidos</h2>
+                    <div class="slider-nav-controls">
+                        <button class="slider-btn" onclick="scrollSlider('slider-mas-vendidos', -300)"><i class="fas fa-chevron-left"></i></button>
+                        <button class="slider-btn" onclick="scrollSlider('slider-mas-vendidos', 300)"><i class="fas fa-chevron-right"></i></button>
+                    </div>
+                </div>
+                <div class="slider-container" id="slider-mas-vendidos">
                     <div class="product-card">
                         <div class="product-img-container"><img src="BhararaKing3.4OzEDPForMen_webp.webp" alt="Bharara King"></div>
                         <div class="product-info">
@@ -551,8 +607,14 @@
 
             <!-- 1. PERFUMERÍA ÁRABE -->
             <section id="arabes" class="category-section">
-                <h2 class="category-title">Perfumería Árabe</h2>
-                <div class="slider-container">
+                <div class="category-header-row">
+                    <h2 class="category-title">Perfumería Árabe</h2>
+                    <div class="slider-nav-controls">
+                        <button class="slider-btn" onclick="scrollSlider('slider-arabes', -300)"><i class="fas fa-chevron-left"></i></button>
+                        <button class="slider-btn" onclick="scrollSlider('slider-arabes', 300)"><i class="fas fa-chevron-right"></i></button>
+                    </div>
+                </div>
+                <div class="slider-container" id="slider-arabes">
                     <div class="product-card">
                         <div class="product-img-container"><img src="mandarin.webp" alt="Odyssey Mandarin Sky"></div>
                         <div class="product-info">
@@ -701,8 +763,14 @@
 
             <!-- 2. PERFUMERÍA DE DISEÑADOR -->
             <section id="disenador" class="category-section">
-                <h2 class="category-title">Perfumería de Diseñador</h2>
-                <div class="slider-container">
+                <div class="category-header-row">
+                    <h2 class="category-title">Perfumería de Diseñador</h2>
+                    <div class="slider-nav-controls">
+                        <button class="slider-btn" onclick="scrollSlider('slider-disenador', -300)"><i class="fas fa-chevron-left"></i></button>
+                        <button class="slider-btn" onclick="scrollSlider('slider-disenador', 300)"><i class="fas fa-chevron-right"></i></button>
+                    </div>
+                </div>
+                <div class="slider-container" id="slider-disenador">
                     <div class="product-card">
                         <div class="product-img-container"><img src="stronger.jpg" alt="Stronger With You"></div>
                         <div class="product-info">
@@ -763,8 +831,14 @@
 
             <!-- 3. PERFUMERÍA DE CELEBRIDAD -->
             <section id="celebridad" class="category-section">
-                <h2 class="category-title">Perfumería de Celebridad</h2>
-                <div class="slider-container">
+                <div class="category-header-row">
+                    <h2 class="category-title">Perfumería de Celebridad</h2>
+                    <div class="slider-nav-controls">
+                        <button class="slider-btn" onclick="scrollSlider('slider-celebridad', -300)"><i class="fas fa-chevron-left"></i></button>
+                        <button class="slider-btn" onclick="scrollSlider('slider-celebridad', 300)"><i class="fas fa-chevron-right"></i></button>
+                    </div>
+                </div>
+                <div class="slider-container" id="slider-celebridad">
                     <div class="product-card">
                         <div class="product-img-container"><img src="ariana-pink-cloud.webp" alt="Ariana Pink Cloud"></div>
                         <div class="product-info">
@@ -781,8 +855,14 @@
 
             <!-- 4. BODY MISTS -->
             <section id="bodymists" class="category-section">
-                <h2 class="category-title">Body Mists</h2>
-                <div class="slider-container">
+                <div class="category-header-row">
+                    <h2 class="category-title">Body Mists</h2>
+                    <div class="slider-nav-controls">
+                        <button class="slider-btn" onclick="scrollSlider('slider-bodymists', -300)"><i class="fas fa-chevron-left"></i></button>
+                        <button class="slider-btn" onclick="scrollSlider('slider-bodymists', 300)"><i class="fas fa-chevron-right"></i></button>
+                    </div>
+                </div>
+                <div class="slider-container" id="slider-bodymists">
                     <div class="product-card">
                         <div class="product-img-container"><img src="logo-tienda.png" alt="Body Mists"></div>
                         <div class="product-info">
@@ -799,8 +879,14 @@
 
             <!-- 5. ESMALTES MASGLO -->
             <section id="masglo" class="category-section">
-                <h2 class="category-title">Esmaltes Colombianos Masglo</h2>
-                <div class="slider-container">
+                <div class="category-header-row">
+                    <h2 class="category-title">Esmaltes Colombianos Masglo</h2>
+                    <div class="slider-nav-controls">
+                        <button class="slider-btn" onclick="scrollSlider('slider-masglo', -300)"><i class="fas fa-chevron-left"></i></button>
+                        <button class="slider-btn" onclick="scrollSlider('slider-masglo', 300)"><i class="fas fa-chevron-right"></i></button>
+                    </div>
+                </div>
+                <div class="slider-container" id="slider-masglo">
                     <div class="product-card">
                         <div class="product-img-container"><img src="logo-tienda.png" alt="Esmaltes Masglo"></div>
                         <div class="product-info">
@@ -821,6 +907,13 @@
     <script>
         let cart = [];
         function toggleSidebar() { document.body.classList.toggle('sidebar-collapsed'); }
+        
+        // Función para mover los sliders con las flechas estilo Shopify
+        function scrollSlider(sliderId, distance) {
+            let container = document.getElementById(sliderId);
+            container.scrollBy({ left: distance, behavior: 'smooth' });
+        }
+
         function toggleCartDrawer() {
             document.getElementById('cartDrawer').classList.toggle('open');
             document.getElementById('modalOverlay').classList.toggle('open');
@@ -855,8 +948,7 @@
             if(cart.length === 0) { alert("Tu carrito está vacío."); return; }
             let msg = "Hola, quiero realizar este pedido:%0A";
             let total = 0;
-            cart.forEach(i => { total += i.price * i.qty; msg += `- ${i.name} (Cant: ${i.qty}) - $${(i.price*i.qty).toFixed(2)}%0A`; });
-            msg += `%0ATotal: $${total.toFixed(2)}`;
+            cart.front?.forEach ? cart.forEach(i => { total += i.price * i.qty; msg += `- ${i.name} (Cant: ${i.qty}) - $${(i.price*i.qty).toFixed(2)}%0A`; }) : null;
             window.open(`https://wa.me/50583743021?text=${msg}`, '_blank');
         }
     </script>
