@@ -334,48 +334,6 @@
             color: var(--gold-color);
         }
 
-        .has-submenu .submenu-toggle {
-            justify-content: space-between;
-        }
-
-        .has-submenu .submenu-toggle .fa-chevron-down {
-            font-size: 0.75rem;
-            color: #aaaaaa;
-            transition: transform 0.3s ease;
-        }
-
-        .has-submenu.open .submenu-toggle .fa-chevron-down {
-            transform: rotate(180deg);
-            color: var(--primary-color);
-        }
-
-        .submenu {
-            list-style: none;
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease-out;
-            padding-left: 20px;
-            display: flex;
-            flex-direction: column;
-            gap: 3px;
-        }
-
-        .has-submenu.open .submenu {
-            max-height: 220px;
-            margin-top: 6px;
-        }
-
-        .submenu-item a {
-            font-size: 0.85rem !important;
-            padding: 8px 10px !important;
-            color: #cccccc !important;
-        }
-
-        .submenu-item a:hover {
-            color: var(--primary-color) !important;
-            background-color: rgba(255, 42, 133, 0.1) !important;
-        }
-
         .main-content {
             margin-left: var(--sidebar-width);
             flex: 1;
@@ -1216,9 +1174,6 @@
                     <a href="#disenador"><i class="fas fa-spray-can"></i> Perfumería de Diseñador</a>
                 </li>
                 <li class="sidebar-item">
-                    <a href="#nicho"><i class="fas fa-crown"></i> Perfumería Nicho</a>
-                </li>
-                <li class="sidebar-item">
                     <a href="#celebridad"><i class="fas fa-star"></i> Perfumería de Celebridad</a>
                 </li>
                 <li class="sidebar-item">
@@ -1304,13 +1259,13 @@
                 </div>
             </section>
 
-            <!-- 1. PERFUMERÍA ÁRABE -->
+            <!-- 1. PERFUMERÍA ÁRABE (Incluyendo Amber Rouge) -->
             <section id="arabes" class="category-section">
                 <h2 class="category-title">Perfumería Árabe</h2>
                 <div class="slider-container">
                     
                     <div class="product-card" data-name="armaf odyssey mandarin sky" data-price="45.00">
-                        <div class="product-img-container"><img src="ARMAF-ODYSSEY-MANDARIN-SKY-ELIXIR_web...jpg" alt="Odyssey Mandarin Sky"></div>
+                        <div class="product-img-container"><img src="ARMAF-ODYSSEY-MANDARIN-SKY-ELIXIR_web.webp" alt="Odyssey Mandarin Sky"></div>
                         <div class="product-info">
                             <h3 class="product-name">Armaf Odyssey Mandarin Sky</h3>
                             <p class="product-desc">Notas cítricas especiadas y dulces vibrantes.</p>
@@ -1474,6 +1429,22 @@
                         </div>
                     </div>
 
+                    <!-- Movido aquí: Orientica Amber Rouge -->
+                    <div class="product-card" data-name="orientica amber rouge" data-price="95.00">
+                        <div class="product-img-container"><img src="Orientic_amber_rouge_5.0ozEDP_5.0oz.webp" alt="Orientica Amber Rouge"></div>
+                        <div class="product-info">
+                            <h3 class="product-name">Orientica Amber Rouge</h3>
+                            <p class="product-desc">Lujo exclusivo, estela ambarina y azafrán inigualable.</p>
+                            <div class="product-footer">
+                                <div class="product-price-row">
+                                    <span class="product-price">$95.00</span>
+                                    <a href="https://wa.me/50583743021?text=Hola,%20quiero%20consultar%20sobre%20Orientica%20Amber%20Rouge" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Consultar</a>
+                                </div>
+                                <button class="btn-add-cart" onclick="addToCart('Orientica Amber Rouge', 95.00)"><i class="fas fa-cart-plus"></i> Agregar al Carrito</button>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </section>
 
@@ -1483,7 +1454,7 @@
                 <div class="slider-container">
                     
                     <div class="product-card" data-name="stronger with you absolutely armani" data-price="90.00">
-                        <div class="product-img-container"><img src="STRONGER-WITH-YOU-ABSOLUTELY-ARMANI-...jpg" alt="Stronger With You Absolutely"></div>
+                        <div class="product-img-container"><img src="STRONGER-WITH-YOU-ABSOLUTELY-ARMANI-..jpg" alt="Stronger With You Absolutely"></div>
                         <div class="product-info">
                             <h3 class="product-name">Stronger With You Absolutely</h3>
                             <p class="product-desc">Intenso acorde ambarino, ron y vainilla seductora.</p>
@@ -1560,28 +1531,7 @@
                 </div>
             </section>
 
-            <!-- 3. PERFUMERÍA NICHO -->
-            <section id="nicho" class="category-section">
-                <h2 class="category-title">Perfumería Nicho</h2>
-                <div class="slider-container">
-                    <div class="product-card" data-name="orientica amber rouge" data-price="95.00">
-                        <div class="product-img-container"><img src="Orientic_amber_rouge_5.0ozEDP_5.0oz.webp" alt="Orientica Amber Rouge"></div>
-                        <div class="product-info">
-                            <h3 class="product-name">Orientica Amber Rouge</h3>
-                            <p class="product-desc">Lujo exclusivo, estela ambarina y azafrán inigualable.</p>
-                            <div class="product-footer">
-                                <div class="product-price-row">
-                                    <span class="product-price">$95.00</span>
-                                    <a href="https://wa.me/50583743021?text=Hola,%20quiero%20consultar%20sobre%20Orientica%20Amber%20Rouge" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Consultar</a>
-                                </div>
-                                <button class="btn-add-cart" onclick="addToCart('Orientica Amber Rouge', 95.00)"><i class="fas fa-cart-plus"></i> Agregar al Carrito</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- 4. PERFUMERÍA DE CELEBRIDAD -->
+            <!-- 3. PERFUMERÍA DE CELEBRIDAD -->
             <section id="celebridad" class="category-section">
                 <h2 class="category-title">Perfumería de Celebridad</h2>
                 <div class="slider-container">
@@ -1602,7 +1552,7 @@
                 </div>
             </section>
 
-            <!-- 5. BODY MISTS -->
+            <!-- 4. BODY MISTS -->
             <section id="bodymists" class="category-section">
                 <h2 class="category-title">Body Mists</h2>
                 <div class="slider-container">
@@ -1623,7 +1573,7 @@
                 </div>
             </section>
 
-            <!-- 6. ESMALTES COLOMBIANOS MASGLO -->
+            <!-- 5. ESMALTES COLOMBIANOS MASGLO -->
             <section id="masglo" class="category-section">
                 <h2 class="category-title">Esmaltes Colombianos Masglo</h2>
                 <div class="slider-container">
@@ -1706,7 +1656,7 @@
         </div>
     </footer>
 
-    <!-- Scripts de Interacción, Carrito y Autenticación con Descuento y WhatsApp -->
+    <!-- Scripts -->
     <script>
         let cart = [];
         let currentUser = localStorage.getItem('sensacion_user') ? JSON.parse(localStorage.getItem('sensacion_user')) : null;
@@ -1723,7 +1673,6 @@
             }
         }
 
-        /* Control de Autenticación y Menú Desplegable */
         function handleUserBtnClick() {
             if (currentUser) {
                 let dropdown = document.getElementById('userDropdown');
@@ -1770,40 +1719,24 @@
             let email = document.getElementById('regEmail').value;
 
             currentUser = { 
-                name: name, 
-                age: age, 
-                gender: gender, 
-                phone: phone, 
-                country: country, 
-                department: department, 
-                email: email,
+                name: name, age: age, gender: gender, phone: phone, 
+                country: country, department: department, email: email,
                 discountActive: true 
             };
 
             localStorage.setItem('sensacion_user', JSON.stringify(currentUser));
-            
             updateUserUI();
             closeAllModals();
 
-            // Mostrar notificación flotante de descuento al cliente
             let toast = document.getElementById('discountToast');
             toast.classList.add('show');
-            setTimeout(() => {
-                toast.classList.remove('show');
-            }, 6000);
+            setTimeout(() => { toast.classList.remove('show'); }, 6000);
 
-            // Enviar notificación automática a tu WhatsApp con los datos completos del nuevo usuario
             let msg = `¡Hola! Un nuevo cliente se ha registrado en Sensación Aromas Originales:%0A%0A` +
-                      `👤 *Nombre:* ${name}%0A` +
-                      `📅 *Edad:* ${age} años%0A` +
-                      `⚥ *Género:* ${gender}%0A` +
-                      `📱 *Teléfono:* ${phone}%0A` +
-                      `📍 *Ubicación:* ${department}, ${country}%0A` +
-                      `📧 *Correo:* ${email}%0A%0A` +
-                      `🎁 *Estado:* ¡Desbloqueó 5% de descuento por registro!`;
-
-            let url = `https://wa.me/50583743021?text=${msg}`;
-            window.open(url, '_blank');
+                      `👤 *Nombre:* ${name}%0A📅 *Edad:* ${age} años%0A⚥ *Género:* ${gender}%0A` +
+                      `📱 *Teléfono:* ${phone}%0A📍 *Ubicación:* ${department}, ${country}%0A` +
+                      `📧 *Correo:* ${email}%0A%0A🎁 *Estado:* ¡Desbloqueó 5% de descuento por registro!`;
+            window.open(`https://wa.me/50583743021?text=${msg}`, '_blank');
         }
 
         function logoutUser() {
@@ -1817,22 +1750,17 @@
         function updateUserUI() {
             let userDisplay = document.getElementById('userNameDisplay');
             if (currentUser) {
-                userDisplay.innerText = currentUser.name.split(' ')[0]; // Muestra el primer nombre
+                userDisplay.innerText = currentUser.name.split(' ')[0];
             } else {
                 userDisplay.innerText = "Crear Cuenta";
             }
         }
 
-        /* Lógica del Carrito */
         function addToCart(name, price) {
             let existingItem = cart.find(item => item.name === name);
             if (existingItem) {
-                if (existingItem.qty < 2) {
-                    existingItem.qty++;
-                } else {
-                    alert("Solo puedes agregar un máximo de 2 unidades por producto.");
-                    return;
-                }
+                if (existingItem.qty < 2) { existingItem.qty++; } 
+                else { alert("Solo puedes agregar un máximo de 2 unidades por producto."); return; }
             } else {
                 cart.push({ name: name, price: price, qty: 1 });
             }
@@ -1842,12 +1770,8 @@
 
         function changeQty(index, delta) {
             cart[index].qty += delta;
-            if (cart[index].qty > 2) {
-                cart[index].qty = 2;
-            }
-            if (cart[index].qty <= 0) {
-                cart.splice(index, 1);
-            }
+            if (cart[index].qty > 2) cart[index].qty = 2;
+            if (cart[index].qty <= 0) cart.splice(index, 1);
             updateCartUI();
         }
 
@@ -1895,7 +1819,6 @@
 
             badge.innerText = totalItems;
             
-            // Aplicar 5% de descuento si el usuario está registrado con beneficio
             if (currentUser && currentUser.discountActive) {
                 let discountedTotal = totalPrice * 0.95;
                 totalText.innerHTML = `<span style="text-decoration: line-through; color: #888; font-size: 0.9rem; margin-right: 5px;">$${totalPrice.toFixed(2)}</span> <span style="color: var(--primary-color);">$${discountedTotal.toFixed(2)}</span> <small style="display: block; font-size: 0.7rem; color: var(--gold-color);">¡5% OFF de bienvenida aplicado!</small>`;
@@ -1905,10 +1828,7 @@
         }
 
         function checkoutWhatsApp() {
-            if (cart.length === 0) {
-                alert("Tu carrito está vacío.");
-                return;
-            }
+            if (cart.length === 0) { alert("Tu carrito está vacío."); return; }
 
             let clientInfo = currentUser ? `*Cliente:* ${currentUser.name}%0A*Teléfono:* ${currentUser.phone}%0A*Ubicación:* ${currentUser.department}, ${currentUser.country}%0A*Correo:* ${currentUser.email}%0A%0A` : "*Cliente:* Invitado%0A%0A";
             let message = `Hola, ¡quiero realizar el siguiente pedido desde Sensación Aromas Originales!%0A%0A` + clientInfo;
@@ -1929,8 +1849,7 @@
                 message += `%0A*Total estimado:* $${total.toFixed(2)}`;
             }
 
-            let url = `https://wa.me/50583743021?text=${message}`;
-            window.open(url, '_blank');
+            window.open(`https://wa.me/50583743021?text=${message}`, '_blank');
         }
     </script>
 </body>
