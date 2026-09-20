@@ -3,21 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sensación Aromas Originales - Tienda Digital</title>
-    <!-- Fuentes de Google -->
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
-    <!-- FontAwesome para Iconos -->
+    <title>Sensación Aromas Originales | Catálogo Digital</title>
+    <!-- Google Fonts Elegantes (Cormorant Garamond & Montserrat) y FontAwesome -->
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
         :root {
-            --primary: #111111;
-            --accent: #d4af37;
-            --bg-light: #f9f9f9;
-            --text-dark: #222222;
-            --text-light: #666666;
-            --white: #ffffff;
-            --sidebar-width: 260px;
+            --primary-color: #ff2a85;       /* Rosa vibrante y moderno */
+            --primary-dark: #d01b6c;       /* Rosa oscuro para contrastes */
+            --gold-color: #c59b27;         /* Dorado elegante */
+            --bg-dark: #121212;            /* Fondo negro para header y sidebar */
+            --bg-card: #ffffff;            /* Fondo blanco para tarjetas de productos */
+            --bg-body: #f4f5f7;            /* Fondo general claro */
+            --text-dark: #222222;          /* Texto principal oscuro */
+            --text-light: #666666;         /* Texto secundario gris */
+            --whatsapp-color: #25d366;
+            --sidebar-width: 270px;
         }
 
         * {
@@ -25,270 +27,565 @@
             padding: 0;
             box-sizing: border-box;
             font-family: 'Montserrat', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        h1, h2, h3, .store-name, .category-title, .product-name {
+            font-family: 'Cormorant Garamond', serif;
         }
 
         body {
-            background-color: var(--bg-light);
+            background-color: var(--bg-body);
             color: var(--text-dark);
-            overflow-x: hidden;
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
 
-        /* Notificación de Descuento */
-        .discount-toast {
+        /* Cabecera Superior */
+        .main-header {
+            background-color: var(--bg-dark);
+            padding: 10px 25px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
             position: fixed;
-            top: -100px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: var(--primary);
-            color: var(--accent);
-            padding: 12px 24px;
-            border-radius: 30px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-            z-index: 1000;
-            transition: top 0.4s ease;
-            font-weight: 600;
-            border: 1px solid var(--accent);
-        }
-        .discount-toast.show {
-            top: 20px;
-        }
-
-        /* Header Superior */
-        header {
-            background: var(--white);
-            border-bottom: 1px solid #eaeaea;
-            position: sticky;
             top: 0;
-            z-index: 900;
+            left: 0;
+            width: 100%;
+            z-index: 1100;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 15px 30px;
+            gap: 15px;
+            height: 75px;
+            border-bottom: 1px solid rgba(197, 155, 39, 0.3);
         }
 
-        .header-left, .header-right {
+        .header-left-group {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .sidebar-toggle-btn {
+            background: transparent;
+            border: none;
+            color: #ffffff;
+            font-size: 1.2rem;
+            cursor: pointer;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s, color 0.2s;
+        }
+
+        .sidebar-toggle-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--primary-color);
+        }
+
+        .header-brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-container {
+            width: 42px;
+            height: 42px;
+            flex-shrink: 0;
+            border-radius: 50%;
+            overflow: hidden;
+            box-shadow: 0 0 10px rgba(255, 42, 133, 0.4);
+            border: 2px solid var(--gold-color);
+            background: var(--bg-dark);
+        }
+
+        .logo-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .store-name {
+            font-size: 1.25rem;
+            color: #ffffff;
+            margin: 0;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            line-height: 1.1;
+            background: linear-gradient(45deg, #ffffff, #f3d89d);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .store-subtitle {
+            font-size: 0.75rem;
+            color: var(--gold-color);
+            margin: 0;
+            letter-spacing: 1px;
+            font-family: 'Montserrat', sans-serif;
+            text-transform: uppercase;
+        }
+
+        .top-nav-menu {
             display: flex;
             align-items: center;
             gap: 20px;
+            list-style: none;
         }
 
-        .menu-toggle-btn {
-            background: none;
-            border: none;
-            font-size: 1.2rem;
-            cursor: pointer;
-            color: var(--primary);
-        }
-
-        .logo-title {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: var(--primary);
+        .top-nav-menu li a {
+            color: #ffffff;
             text-decoration: none;
-            letter-spacing: 1px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 5px;
         }
 
-        .header-btn {
-            background: none;
-            border: none;
-            cursor: pointer;
-            font-size: 1.1rem;
-            color: var(--primary);
+        .top-nav-menu li a:hover, .top-nav-menu li a.active {
+            color: var(--gold-color);
+        }
+
+        .header-right-actions {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+        }
+
+        /* Contenedor del Botón de Usuario y Menú Desplegable */
+        .user-account-wrapper {
             position: relative;
+        }
+
+        .user-auth-btn {
+            background: transparent;
+            border: 1px solid var(--gold-color);
+            color: #ffffff;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s;
+        }
+
+        .user-auth-btn:hover {
+            background: var(--gold-color);
+            color: var(--bg-dark);
+        }
+
+        .user-dropdown-menu {
+            position: absolute;
+            top: 45px;
+            right: 0;
+            background: #ffffff;
+            color: var(--text-dark);
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+            width: 160px;
+            display: none;
+            flex-direction: column;
+            overflow: hidden;
+            z-index: 1400;
+        }
+
+        .user-dropdown-menu.show {
+            display: flex;
+        }
+
+        .user-dropdown-menu button {
+            background: transparent;
+            border: none;
+            padding: 12px 15px;
+            text-align: left;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            color: #ff4d4d;
             display: flex;
             align-items: center;
             gap: 8px;
-            font-weight: 500;
+            transition: background 0.2s;
+        }
+
+        .user-dropdown-menu button:hover {
+            background: #fdf2f2;
+        }
+
+        .cart-icon-container {
+            position: relative;
+            color: #ffffff;
+            font-size: 1.3rem;
+            cursor: pointer;
+            text-decoration: none;
+            background: transparent;
+            border: none;
         }
 
         .cart-badge {
             position: absolute;
             top: -8px;
             right: -10px;
-            background: var(--accent);
-            color: var(--primary);
-            font-size: 0.75rem;
+            background-color: var(--primary-color);
+            color: white;
+            font-size: 0.65rem;
             font-weight: 700;
-            padding: 2px 6px;
+            width: 18px;
+            height: 18px;
             border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Montserrat', sans-serif;
         }
 
-        /* Layout Principal */
+        .header-social {
+            display: flex;
+            gap: 10px;
+        }
+
+        .header-social a {
+            color: #ffffff;
+            font-size: 1.1rem;
+            transition: color 0.2s;
+            text-decoration: none;
+        }
+
+        .header-social a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Layout con Sidebar */
         .app-layout {
             display: flex;
-            min-height: calc(100vh - 70px);
+            margin-top: 75px;
+            flex: 1;
         }
 
-        /* Sidebar */
         .sidebar {
             width: var(--sidebar-width);
-            background: var(--white);
-            border-right: 1px solid #eaeaea;
-            padding: 20px 0;
-            transition: transform 0.3s ease;
+            background-color: var(--bg-dark);
+            border-right: 1px solid rgba(197, 155, 39, 0.2);
+            position: fixed;
+            top: 75px;
+            bottom: 0;
+            left: 0;
+            overflow-y: auto;
+            padding: 20px 15px;
+            z-index: 1000;
+            box-shadow: 4px 0 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        body.sidebar-collapsed .sidebar {
+            transform: translateX(-100%);
         }
 
         .sidebar-title {
             font-size: 0.8rem;
             text-transform: uppercase;
             letter-spacing: 1.5px;
-            color: var(--text-light);
-            padding: 0 20px 10px;
+            color: var(--gold-color);
+            margin-bottom: 15px;
+            padding-left: 10px;
+            font-weight: 600;
+            font-family: 'Montserrat', sans-serif;
         }
 
         .sidebar-menu {
             list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
         }
 
         .sidebar-item a {
             display: flex;
             align-items: center;
-            justify-content: space-between;
-            padding: 12px 20px;
-            color: var(--text-dark);
+            gap: 12px;
+            padding: 11px 14px;
+            color: #ffffff;
             text-decoration: none;
-            font-size: 0.95rem;
-            transition: background 0.2s;
+            font-size: 0.9rem;
+            font-weight: 500;
+            border-radius: 10px;
+            transition: all 0.3s ease;
         }
 
         .sidebar-item a:hover {
-            background: var(--bg-light);
-            color: var(--accent);
+            background: linear-gradient(135deg, rgba(255, 42, 133, 0.2), rgba(197, 155, 39, 0.15));
+            color: var(--primary-color);
+            transform: translateX(4px);
         }
 
         .sidebar-item a i {
-            margin-right: 10px;
             width: 20px;
+            text-align: center;
+            font-size: 0.95rem;
+            color: var(--gold-color);
+        }
+
+        .has-submenu .submenu-toggle {
+            justify-content: space-between;
+        }
+
+        .has-submenu .submenu-toggle .fa-chevron-down {
+            font-size: 0.75rem;
+            color: #aaaaaa;
+            transition: transform 0.3s ease;
+        }
+
+        .has-submenu.open .submenu-toggle .fa-chevron-down {
+            transform: rotate(180deg);
+            color: var(--primary-color);
         }
 
         .submenu {
             list-style: none;
-            background: #fafafa;
-            display: none;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            padding-left: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
         }
 
         .has-submenu.open .submenu {
-            display: block;
+            max-height: 220px;
+            margin-top: 6px;
         }
 
         .submenu-item a {
-            padding-left: 45px;
-            font-size: 0.9rem;
+            font-size: 0.85rem !important;
+            padding: 8px 10px !important;
+            color: #cccccc !important;
         }
 
-        /* Contenido Principal */
+        .submenu-item a:hover {
+            color: var(--primary-color) !important;
+            background-color: rgba(255, 42, 133, 0.1) !important;
+        }
+
         .main-content {
+            margin-left: var(--sidebar-width);
             flex: 1;
-            padding: 30px;
+            padding: 2.5rem;
+            background-color: var(--bg-body);
+            transition: margin-left 0.3s ease-in-out;
+        }
+
+        body.sidebar-collapsed .main-content {
+            margin-left: 0;
+        }
+
+        .category-section {
+            margin-bottom: 3.5rem;
+            scroll-margin-top: 90px;
         }
 
         .category-title {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 2rem;
-            margin-bottom: 20px;
-            border-bottom: 2px solid var(--accent);
-            display: inline-block;
+            font-size: 1.8rem;
+            color: var(--text-dark);
+            margin-bottom: 1.2rem;
+            border-left: 5px solid var(--primary-color);
+            padding-left: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            background: linear-gradient(90deg, rgba(255, 42, 133, 0.08), transparent);
+            padding-top: 5px;
             padding-bottom: 5px;
+            font-weight: 700;
         }
 
+        /* Carrusel / Slider limpio */
         .slider-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-            gap: 20px;
+            display: flex;
+            overflow-x: auto;
+            gap: 22px;
+            padding: 10px 5px 15px 5px;
+            scroll-snap-type: x mandatory;
+            scrollbar-width: thin;
+            scrollbar-color: var(--primary-color) #e2e8f0;
+            scroll-behavior: smooth;
+            width: 100%;
         }
 
-        /* Tarjeta de Producto */
+        .slider-container::-webkit-scrollbar {
+            height: 8px;
+        }
+
+        .slider-container::-webkit-scrollbar-thumb {
+            background: var(--primary-color);
+            border-radius: 4px;
+        }
+
         .product-card {
-            background: var(--white);
-            border-radius: 8px;
+            flex: 0 0 250px;
+            background: var(--bg-card);
+            border-radius: 14px;
             overflow: hidden;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
             display: flex;
             flex-direction: column;
+            justify-content: space-between;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+            border: 1px solid #e2e8f0;
+            scroll-snap-align: start;
         }
 
         .product-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+            transform: translateY(-6px);
+            box-shadow: 0 10px 25px rgba(255, 42, 133, 0.15);
+            border-color: var(--primary-color);
         }
 
         .product-img-container {
             width: 100%;
             height: 220px;
-            background: #f1f1f1;
+            background: #ffffff;
+            overflow: hidden;
+            position: relative;
             display: flex;
             align-items: center;
             justify-content: center;
-            overflow: hidden;
+            padding: 12px;
         }
 
         .product-img-container img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
+            max-width: 100%;     
+            max-height: 100%;    
+            object-fit: contain; 
+            transition: transform 0.4s ease;
+        }
+
+        .product-card:hover .product-img-container img {
+            transform: scale(1.06);
         }
 
         .product-info {
-            padding: 15px;
+            padding: 1.2rem;
             display: flex;
             flex-direction: column;
-            flex: 1;
-            justify-content: space-between;
+            flex-grow: 1;
         }
 
         .product-name {
-            font-size: 1rem;
-            font-weight: 600;
-            margin-bottom: 5px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 0.4rem;
+            color: var(--text-dark);
+            letter-spacing: 0.3px;
         }
 
         .product-desc {
             font-size: 0.85rem;
             color: var(--text-light);
-            margin-bottom: 15px;
+            margin-bottom: 1rem;
+            flex-grow: 1;
+        }
+
+        .product-footer {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-top: auto;
+        }
+
+        .product-price-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
         .product-price {
-            font-weight: 700;
-            color: var(--primary);
-            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--primary-dark);
+            font-size: 0.95rem;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .btn-order {
+            background-color: var(--whatsapp-color);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 0.8rem;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            transition: all 0.2s;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .btn-order:hover {
+            background-color: #1ebd56;
         }
 
         .btn-add-cart {
-            width: 100%;
-            background: var(--primary);
-            color: var(--white);
+            background-color: var(--primary-color);
+            color: white;
             border: none;
-            padding: 10px;
-            border-radius: 4px;
+            padding: 7px 12px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 600;
             cursor: pointer;
-            font-weight: 500;
-            transition: background 0.2s;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
-            margin-top: 10px;
+            gap: 6px;
+            transition: background 0.2s, transform 0.2s;
+            width: 100%;
         }
 
         .btn-add-cart:hover {
-            background: var(--accent);
-            color: var(--primary);
+            background-color: var(--primary-dark);
+            transform: scale(1.02);
         }
 
-        /* Carrito Drawer Lateral */
+        /* Modal y Drawer Genéricos */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.6);
+            z-index: 1200;
+            display: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal-overlay.open {
+            display: block;
+            opacity: 1;
+        }
+
+        /* Panel Lateral del Carrito */
         .cart-drawer {
             position: fixed;
             top: 0;
             right: -400px;
             width: 380px;
+            max-width: 100%;
             height: 100%;
-            background: var(--white);
-            box-shadow: -5px 0 15px rgba(0,0,0,0.1);
-            z-index: 1100;
-            transition: right 0.3s ease;
+            background: #ffffff;
+            z-index: 1300;
+            box-shadow: -5px 0 25px rgba(0,0,0,0.2);
+            transition: right 0.3s ease-in-out;
             display: flex;
             flex-direction: column;
         }
@@ -298,433 +595,1127 @@
         }
 
         .cart-header {
+            background: var(--bg-dark);
+            color: #ffffff;
             padding: 20px;
-            border-bottom: 1px solid #eaeaea;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            border-bottom: 1px solid rgba(197, 155, 39, 0.3);
+        }
+
+        .cart-header h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.4rem;
+            color: var(--gold-color);
         }
 
         .close-btn {
-            background: none;
+            background: transparent;
             border: none;
+            color: #ffffff;
             font-size: 1.2rem;
             cursor: pointer;
         }
 
         .cart-body {
-            flex: 1;
             padding: 20px;
             overflow-y: auto;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
         }
 
         .cart-item {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 10px 0;
-            border-bottom: 1px solid #f1f1f1;
+            padding-bottom: 12px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .cart-item-info {
+            flex: 1;
+        }
+
+        .cart-item-title {
+            font-weight: 700;
+            font-size: 0.95rem;
+            color: var(--text-dark);
+            margin-bottom: 3px;
+        }
+
+        .cart-item-price {
+            font-size: 0.85rem;
+            color: var(--text-light);
+        }
+
+        .cart-item-controls {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .qty-btn {
+            background: #eee;
+            border: none;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .qty-btn:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .cart-item-qty {
+            font-weight: 600;
+            font-size: 0.9rem;
+            width: 20px;
+            text-align: center;
+        }
+
+        .remove-item {
+            color: #ff4d4d;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 0.9rem;
+            margin-left: 8px;
         }
 
         .cart-footer {
             padding: 20px;
-            border-top: 1px solid #eaeaea;
-            background: var(--bg-light);
+            background: #f9f9f9;
+            border-top: 1px solid #ddd;
         }
 
         .cart-total {
             display: flex;
             justify-content: space-between;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             font-weight: 700;
             margin-bottom: 15px;
+            color: var(--text-dark);
         }
 
         .btn-whatsapp-checkout {
-            display: block;
+            background-color: var(--whatsapp-color);
+            color: white;
+            border: none;
             width: 100%;
-            background: #25d366;
-            color: var(--white);
-            text-align: center;
             padding: 12px;
-            border-radius: 4px;
-            text-decoration: none;
+            border-radius: 10px;
+            font-size: 1rem;
             font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
             transition: background 0.2s;
+            text-decoration: none;
         }
 
         .btn-whatsapp-checkout:hover {
-            background: #1ebe5d;
+            background-color: #1ebd56;
         }
 
-        /* Modal de Autenticación */
-        .modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.5);
-            z-index: 1050;
-            display: none;
-        }
-
-        .modal-overlay.open {
-            display: block;
-        }
-
+        /* Modal de Registro de Cuenta */
         .auth-modal {
             position: fixed;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%) scale(0.9);
-            background: var(--white);
-            padding: 30px;
-            border-radius: 8px;
-            width: 90%;
-            max-width: 400px;
-            z-index: 1150;
-            opacity: 0;
-            visibility: hidden;
+            width: 420px;
+            max-width: 90%;
+            background: #ffffff;
+            z-index: 1300;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            display: none;
+            flex-direction: column;
+            overflow: hidden;
             transition: all 0.3s ease;
         }
 
         .auth-modal.open {
+            display: flex;
             transform: translate(-50%, -50%) scale(1);
-            opacity: 1;
-            visibility: visible;
+        }
+
+        .auth-header {
+            background: var(--bg-dark);
+            color: #ffffff;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .auth-header h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.4rem;
+            color: var(--gold-color);
+        }
+
+        .auth-body {
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            max-height: 80vh;
+            overflow-y: auto;
         }
 
         .form-group {
-            margin-bottom: 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
         }
 
         .form-group label {
-            display: block;
-            margin-bottom: 5px;
-            font-size: 0.9rem;
-            font-weight: 500;
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: var(--text-dark);
         }
 
-        .form-group input {
-            width: 100%;
-            padding: 10px;
+        .form-group input, .form-group select {
+            padding: 9px;
             border: 1px solid #ddd;
-            border-radius: 4px;
-            font-size: 0.95rem;
+            border-radius: 8px;
+            font-size: 0.88rem;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .form-group input:focus, .form-group select:focus {
+            border-color: var(--primary-color);
         }
 
         .btn-submit-auth {
-            width: 100%;
-            background: var(--primary);
-            color: var(--white);
+            background-color: var(--primary-color);
+            color: white;
             border: none;
             padding: 12px;
-            border-radius: 4px;
+            border-radius: 8px;
+            font-size: 1rem;
             font-weight: 600;
             cursor: pointer;
-            margin-top: 10px;
+            transition: background 0.2s;
+            margin-top: 5px;
         }
 
-        .user-dropdown {
-            position: absolute;
-            top: 60px;
-            right: 30px;
-            background: var(--white);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            border-radius: 4px;
+        .btn-submit-auth:hover {
+            background-color: var(--primary-dark);
+        }
+
+        /* Notificación emergente de Bienvenida / Descuento */
+        .discount-toast {
+            position: fixed;
+            top: 90px;
+            right: 20px;
+            background: linear-gradient(135deg, #222222, #333333);
+            color: #ffffff;
+            padding: 16px 20px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            z-index: 1500;
+            border-left: 5px solid var(--gold-color);
             display: none;
-            list-style: none;
-            z-index: 1200;
+            max-width: 320px;
+            animation: slideIn 0.4s ease;
         }
 
-        .user-dropdown.show {
+        .discount-toast.show {
             display: block;
         }
 
-        .user-dropdown li a {
-            display: block;
-            padding: 10px 20px;
-            color: var(--text-dark);
-            text-decoration: none;
-            font-size: 0.9rem;
+        .discount-toast h4 {
+            color: var(--gold-color);
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.2rem;
+            margin-bottom: 4px;
         }
 
-        .user-dropdown li a:hover {
-            background: var(--bg-light);
+        .discount-toast p {
+            font-size: 0.82rem;
+            color: #dddddd;
         }
 
-        /* Footer */
+        @keyframes slideIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        #no-results {
+            text-align: center;
+            padding: 50px;
+            font-size: 1.1rem;
+            color: var(--text-light);
+            display: none;
+        }
+
+        /* Pie de Página */
         footer {
-            background: var(--primary);
-            color: var(--white);
-            padding: 40px 30px 20px;
-            margin-top: 50px;
+            background: linear-gradient(135deg, #ffffff 0%, #fff0f5 50%, #ffcbe0 100%);
+            color: var(--text-dark);
+            padding: 4rem 5% 2rem 5%;
+            margin-left: var(--sidebar-width);
+            border-top: 1px solid #f0d0df;
+            transition: margin-left 0.3s ease-in-out;
+        }
+
+        body.sidebar-collapsed footer {
+            margin-left: 0;
         }
 
         .footer-content-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 30px;
-            margin-bottom: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)) 280px;
+            gap: 40px;
+            align-items: center;
+            margin-bottom: 2.5rem;
         }
 
         .footer-col h3 {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.3rem;
-            color: var(--accent);
-            margin-bottom: 15px;
+            font-size: 1.2rem;
+            color: var(--primary-dark);
+            margin-bottom: 1.2rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 700;
         }
 
         .footer-links {
             list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
         }
 
-        .footer-links li {
-            margin-bottom: 8px;
-        }
-
-        .footer-links a {
-            color: #ccc;
+        .footer-links li a {
+            color: var(--text-light);
             text-decoration: none;
             font-size: 0.9rem;
             transition: color 0.2s;
         }
 
-        .footer-links a:hover {
-            color: var(--accent);
+        .footer-links li a:hover {
+            color: var(--primary-color);
+        }
+
+        .footer-contact-info p {
+            font-size: 0.88rem;
+            color: var(--text-light);
+            margin-bottom: 8px;
+            word-break: break-all;
+        }
+
+        .footer-contact-info strong {
+            color: var(--text-dark);
+        }
+
+        .footer-brand-box {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            background: var(--bg-dark);
+            padding: 16px 20px;
+            border-radius: 16px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+            border: 1px solid rgba(197, 155, 39, 0.4);
+        }
+
+        .footer-logo-container {
+            width: 70px;
+            height: 70px;
+            flex-shrink: 0;
+            border-radius: 50%;
+            overflow: hidden;
+            box-shadow: 0 0 15px rgba(255, 42, 133, 0.5);
+            border: 2px solid var(--gold-color);
+            background: var(--bg-dark);
+        }
+
+        .footer-logo-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .footer-store-name {
+            font-size: 1.25rem;
+            color: #ffffff;
+            margin: 0;
+            font-weight: 700;
+            line-height: 1.2;
+            background: linear-gradient(45deg, #ffffff, #f3d89d);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .footer-store-subtitle {
+            font-size: 0.8rem;
+            color: var(--gold-color);
+            margin: 0;
+            letter-spacing: 0.5px;
+            font-weight: 600;
+            font-family: 'Montserrat', sans-serif;
+            text-transform: uppercase;
         }
 
         .footer-bottom-bar {
-            border-top: 1px solid rgba(255,255,255,0.1);
-            padding-top: 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            border-top: 1px solid rgba(0,0,0,0.08);
+            padding-top: 25px;
             flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .footer-social-icons {
+            display: flex;
             gap: 15px;
         }
 
         .footer-social-icons a {
-            color: var(--white);
-            font-size: 1.1rem;
-            margin-right: 15px;
-            transition: color 0.2s;
+            background: var(--text-dark);
+            color: #ffffff;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: transform 0.2s, background 0.2s;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
 
         .footer-social-icons a:hover {
-            color: var(--accent);
+            transform: translateY(-3px);
+            background: var(--primary-color);
         }
 
         .footer-copyright {
             font-size: 0.85rem;
-            color: #aaa;
+            color: var(--text-light);
+        }
+
+        @media (max-width: 1050px) {
+            .top-nav-menu {
+                display: none;
+            }
+        }
+
+        @media (max-width: 900px) {
+            .sidebar {
+                transform: translateX(-100%);
+            }
+            body.sidebar-open .sidebar {
+                transform: translateX(0);
+            }
+            .app-layout {
+                flex-direction: column;
+                margin-top: 75px;
+            }
+            .main-content, footer {
+                margin-left: 0 !important;
+                padding: 1.5rem;
+            }
+            .footer-content-grid {
+                grid-template-columns: 1fr;
+                gap: 25px;
+                text-align: center;
+            }
+            .footer-brand-box {
+                justify-content: center;
+            }
+            .footer-bottom-bar {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
         }
     </style>
 </head>
 <body>
 
-    <!-- Notificación emergente -->
-    <div class="discount-toast" id="discountToast">
-        🎉 ¡Registro exitoso! 5% de descuento aplicado en tu primera compra.
-    </div>
-
-    <!-- Overlay general -->
-    <div class="modal-overlay" id="modalOverlay" onclick="closeAllModals()"></div>
-
-    <!-- Header -->
-    <header>
-        <div class="header-left">
-            <button class="menu-toggle-btn" onclick="toggleSidebar()"><i class="fas fa-bars"></i></button>
-            <a href="#" class="logo-title">Sensación Aromas</a>
-        </div>
-        <div class="header-right">
-            <button class="header-btn" onclick="handleUserBtnClick()">
-                <i class="fas fa-user"></i> <span id="userNameDisplay">Crear Cuenta</span>
+    <!-- Cabecera Superior -->
+    <header class="main-header">
+        <div class="header-left-group">
+            <button class="sidebar-toggle-btn" onclick="toggleSidebar()" title="Ocultar/Mostrar menú">
+                <i class="fas fa-bars"></i>
             </button>
-            <ul class="user-dropdown" id="userDropdown">
-                <li><a href="#" onclick="logoutUser()">Cerrar Sesión</a></li>
-            </ul>
-            <button class="header-btn" onclick="toggleCartDrawer()">
-                <i class="fas fa-shopping-bag"></i> Carrito
+            <div class="header-brand">
+                <a href="#" class="logo-container">
+                    <img src="logo-tienda.png" alt="Sensación Aromas Originales Logo" class="logo-img">
+                </a>
+                <div>
+                    <h1 class="store-name">Sensación Aromas</h1>
+                    <p class="store-subtitle">Originales</p>
+                </div>
+            </div>
+        </div>
+
+        <ul class="top-nav-menu">
+            <li><a href="#" class="active">Inicio</a></li>
+            <li><a href="#arabes">Hombre</a></li>
+            <li><a href="#arabes">Mujer</a></li>
+            <li><a href="#arabes">Unisex</a></li>
+            <li><a href="#">Tienda</a></li>
+            <li><a href="#mas-vendidos">Más Vendidos</a></li>
+            <li><a href="#arabes">Marcas <i class="fas fa-chevron-down" style="font-size: 0.7rem;"></i></a></li>
+        </ul>
+
+        <div class="header-right-actions">
+            <!-- Botón de Usuario y Menú Desplegable -->
+            <div class="user-account-wrapper">
+                <button class="user-auth-btn" id="userAuthBtn" onclick="handleUserBtnClick()">
+                    <i class="fas fa-user-circle"></i> <span id="userNameDisplay">Crear Cuenta</span>
+                </button>
+                <div class="user-dropdown-menu" id="userDropdown">
+                    <button onclick="logoutUser()"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</button>
+                </div>
+            </div>
+
+            <button class="cart-icon-container" onclick="toggleCartDrawer()" title="Ver Carrito">
+                <i class="fas fa-shopping-cart"></i>
                 <span class="cart-badge" id="cartBadge">0</span>
             </button>
+            <div class="header-social">
+                <a href="https://www.facebook.com/profile.php?id=61576096020955" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.instagram.com/sensancion_a?stkn=OXJqb3ZqdTdha3g5" target="_blank"><i class="fab fa-instagram"></i></a>
+            </div>
         </div>
     </header>
 
-    <!-- Modal de Registro -->
-    <div class="auth-modal" id="authModal">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
-            <h3 style="font-family: 'Cormorant Garamond', serif; font-size: 1.5rem;">Crea tu cuenta</h3>
-            <button class="close-btn" onclick="closeAllModals()"><i class="fas fa-times"></i></button>
-        </div>
-        <form id="registerForm" onsubmit="handleRegister(event)">
-            <div class="form-group">
-                <label for="regName">Nombre Completo</label>
-                <input type="text" id="regName" required placeholder="Tu nombre">
-            </div>
-            <div class="form-group">
-                <label for="regEmail">Correo Electrónico</label>
-                <input type="email" id="regEmail" required placeholder="correo@ejemplo.com">
-            </div>
-            <div class="form-group">
-                <label for="regPhone">Número de Teléfono / WhatsApp</label>
-                <input type="tel" id="regPhone" required placeholder="+505 ...">
-            </div>
-            <button type="submit" class="btn-submit-auth">Registrarse y Obtener 5% Desc.</button>
-        </form>
+    <!-- Notificación Flotante de Descuento -->
+    <div class="discount-toast" id="discountToast">
+        <h4>¡Felicidades! 🎉</h4>
+        <p>Has creado tu cuenta y desbloqueado un <strong>5% de descuento</strong> en tu primera compra.</p>
     </div>
 
-    <!-- Panel Lateral del Carrito -->
+    <!-- Fondo Oscuro General para Modales -->
+    <div class="modal-overlay" id="modalOverlay" onclick="closeAllModals()"></div>
+
+    <!-- Modal de Registro de Cuenta Mejorado -->
+    <div class="auth-modal" id="authModal">
+        <div class="auth-header">
+            <h3>Crear Cuenta Nueva</h3>
+            <button class="close-btn" onclick="closeAllModals()"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="auth-body">
+            <form id="registerForm" onsubmit="handleRegister(event)">
+                <div class="form-group" style="margin-bottom: 8px;">
+                    <label>Nombre completo</label>
+                    <input type="text" id="regName" placeholder="Ej. María Pérez" required>
+                </div>
+                <div style="display: flex; gap: 8px; margin-bottom: 8px;">
+                    <div class="form-group" style="flex: 1;">
+                        <label>Edad</label>
+                        <input type="number" id="regAge" min="15" max="100" placeholder="Ej. 25" required>
+                    </div>
+                    <div class="form-group" style="flex: 1;">
+                        <label>Género</label>
+                        <select id="regGender" required>
+                            <option value="">Selecciona</option>
+                            <option value="Femenino">Femenino</option>
+                            <option value="Masculino">Masculino</option>
+                            <option value="Otro">Otro</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group" style="margin-bottom: 8px;">
+                    <label>Número de Teléfono / WhatsApp</label>
+                    <input type="tel" id="regPhone" placeholder="Ej. +505 8888 8888" required>
+                </div>
+                <div style="display: flex; gap: 8px; margin-bottom: 8px;">
+                    <div class="form-group" style="flex: 1;">
+                        <label>País</label>
+                        <input type="text" id="regCountry" value="Nicaragua" readonly style="background: #f9f9f9; color: #555;">
+                    </div>
+                    <div class="form-group" style="flex: 1;">
+                        <label>Departamento</label>
+                        <select id="regDepartment" required>
+                            <option value="">Selecciona</option>
+                            <option value="Chinandega">Chinandega</option>
+                            <option value="Managua">Managua</option>
+                            <option value="León">León</option>
+                            <option value="Masaya">Masaya</option>
+                            <option value="Granada">Granada</option>
+                            <option value="Carazo">Carazo</option>
+                            <option value="Rivas">Rivas</option>
+                            <option value="Estelí">Estelí</option>
+                            <option value="Madriz">Madriz</option>
+                            <option value="Nueva Segovia">Nueva Segovia</option>
+                            <option value="Matagalpa">Matagalpa</option>
+                            <option value="Jinotega">Jinotega</option>
+                            <option value="Boaco">Boaco</option>
+                            <option value="Chontales">Chontales</option>
+                            <option value="Río San Juan">Río San Juan</option>
+                            <option value="Costa Caribe Norte">Costa Caribe Norte</option>
+                            <option value="Costa Caribe Sur">Costa Caribe Sur</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group" style="margin-bottom: 8px;">
+                    <label>Correo electrónico</label>
+                    <input type="email" id="regEmail" placeholder="tucorreo@gmail.com" required>
+                </div>
+                <div class="form-group" style="margin-bottom: 12px;">
+                    <label>Contraseña</label>
+                    <input type="password" id="regPassword" placeholder="••••••••" required>
+                </div>
+                <button type="submit" class="btn-submit-auth">Crear Cuenta y Obtener 5% OFF</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Drawer / Modal del Carrito de Compras -->
     <div class="cart-drawer" id="cartDrawer">
         <div class="cart-header">
-            <h3 style="font-family: 'Cormorant Garamond', serif; font-size: 1.3rem;">Tu Carrito de Compras</h3>
+            <h3>Tu Carrito de Pedidos</h3>
             <button class="close-btn" onclick="toggleCartDrawer()"><i class="fas fa-times"></i></button>
         </div>
-        <div class="cart-body" id="cartBody">
-            <p style="text-align: center; color: var(--text-light); margin-top: 20px;">Tu carrito está vacío.</p>
+        <div class="cart-body" id="cartItemsContainer">
+            <p style="color: var(--text-light); text-align: center; margin-top: 30px;">Tu carrito está vacío.</p>
         </div>
         <div class="cart-footer">
             <div class="cart-total">
-                <span>Total:</span>
-                <span id="cartTotalAmount">C$ 0.00</span>
+                <span>Total estimado:</span>
+                <span id="cartTotalText">$0.00</span>
             </div>
-            <a href="#" class="btn-whatsapp-checkout" id="whatsappCheckoutBtn" onclick="checkoutWhatsApp(event)">
-                <i class="fab fa-whatsapp"></i> Finalizar Pedido por WhatsApp
-            </a>
+            <button class="btn-whatsapp-checkout" onclick="checkoutWhatsApp()">
+                <i class="fab fa-whatsapp" style="font-size: 1.2rem;"></i> Enviar Pedido por WhatsApp
+            </button>
         </div>
     </div>
 
-    <!-- Layout Principal -->
     <div class="app-layout">
-        <!-- Sidebar -->
-        <aside class="sidebar" id="sidebar">
-            <div class="sidebar-title">Navegación</div>
+        
+        <aside class="sidebar">
+            <p class="sidebar-title">Categorías</p>
             <ul class="sidebar-menu">
-                <li class="sidebar-item"><a href="#"><i class="fas fa-home"></i> Inicio</a></li>
-                <li class="sidebar-item has-submenu" id="menuArabes">
-                    <a href="javascript:void(0);" onclick="toggleSubmenu('menuArabes')">
-                        <span><i class="fas fa-spray-can"></i> Perfumes Árabes</span>
+                <li class="sidebar-item">
+                    <a href="#mas-vendidos"><i class="fas fa-fire"></i> Los Más Vendidos</a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="#arabes"><i class="fas fa-gem"></i> Perfumería Árabe</a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="#disenador"><i class="fas fa-spray-can"></i> Perfumería de Diseñador</a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="#nicho"><i class="fas fa-crown"></i> Perfumería Nicho</a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="#celebridad"><i class="fas fa-star"></i> Perfumería de Celebridad</a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="#bodymists"><i class="fas fa-wind"></i> Body Mists</a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="#masglo"><i class="fas fa-hand-sparkles"></i> Esmaltes Masglo</a>
+                </li>
+                
+                <li class="sidebar-item has-submenu" id="cuidadoMenu">
+                    <a href="javascript:void(0);" class="submenu-toggle" onclick="toggleSubmenu(event)">
+                        <span><i class="fas fa-pump-soap"></i> Cuidado Personal</span>
                         <i class="fas fa-chevron-down"></i>
                     </a>
                     <ul class="submenu">
-                        <li class="submenu-item"><a href="#mas-vendidos">Hombre</a></li>
-                        <li class="submenu-item"><a href="#mas-vendidos">Mujer</a></li>
-                        <li class="submenu-item"><a href="#mas-vendidos">Unisex</a></li>
+                        <li class="submenu-item"><a href="#exfoliantes"><i class="fas fa-circle" style="font-size: 4px;"></i> Exfoliantes corporales</a></li>
+                        <li class="submenu-item"><a href="#geles"><i class="fas fa-circle" style="font-size: 4px;"></i> Gel de duchas</a></li>
+                        <li class="submenu-item"><a href="#aceites"><i class="fas fa-circle" style="font-size: 4px;"></i> Aceites corporales</a></li>
                     </ul>
                 </li>
-                <li class="sidebar-item"><a href="#mas-vendidos"><i class="fas fa-fire"></i> Más Vendidos</a></li>
-                <li class="sidebar-item"><a href="#"><i class="fas fa-store"></i> Tienda Completa</a></li>
-                <li class="sidebar-item"><a href="#"><i class="fas fa-gift"></i> Promociones</a></li>
             </ul>
         </aside>
 
-        <!-- Contenido -->
         <main class="main-content">
-            <section class="category-section" id="mas-vendidos">
-                <h2 class="category-title">Más Vendidos</h2>
+            
+            <div id="no-results">
+                <i class="fas fa-search" style="font-size: 2rem; margin-bottom: 10px; color: var(--primary-color);"></i>
+                <p>No se encontraron productos con ese nombre.</p>
+            </div>
+
+            <!-- LO MÁS VENDIDO -->
+            <section id="mas-vendidos" class="category-section search-section">
+                <h2 class="category-title">Los Más Vendidos</h2>
+                <p style="color: var(--text-light); font-size: 0.9rem; margin-bottom: 1.2rem;">Explora los perfumes más vendidos de nuestra tienda deslizando hacia los lados</p>
+                
                 <div class="slider-container">
-                    <!-- Producto 1 -->
-                    <div class="product-card">
-                        <div class="product-img-container">
-                            <img src="images/lattafa-asad.jpg" alt="Lattafa Asad" onerror="this.src='https://images.unsplash.com/photo-1523293182086-7651a899d37f?auto=format&fit=crop&w=500&q=80'">
-                        </div>
+                    <div class="product-card" data-name="bharara beauty" data-price="45.00">
+                        <div class="product-img-container"><img src="bharara_beauty.webp" alt="Bharara Beauty"></div>
                         <div class="product-info">
-                            <div>
-                                <h3 class="product-name">Lattafa Asad</h3>
-                                <p class="product-desc">Eau de Parfum - 100ml (Hombre)</p>
-                            </div>
-                            <div>
-                                <div class="product-price">C$ 1,450.00</div>
-                                <button class="btn-add-cart" onclick="addToCart('Lattafa Asad', 1450)">
-                                    <i class="fas fa-cart-plus"></i> Agregar
-                                </button>
+                            <h3 class="product-name">Bharara Beauty</h3>
+                            <p class="product-desc">Notas aromáticas y alta fijación.</p>
+                            <div class="product-footer">
+                                <div class="product-price-row">
+                                    <span class="product-price">$45.00</span>
+                                    <a href="https://wa.me/50583743021?text=Hola,%20quiero%20consultar%20sobre%20Bharara%20Beauty" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Consultar</a>
+                                </div>
+                                <button class="btn-add-cart" onclick="addToCart('Bharara Beauty', 45.00)"><i class="fas fa-cart-plus"></i> Agregar al Carrito</button>
                             </div>
                         </div>
                     </div>
-                    <!-- Producto 2 -->
-                    <div class="product-card">
-                        <div class="product-img-container">
-                            <img src="images/victorias-secret-velvet-petals.jpg" alt="Victoria's Secret" onerror="this.src='https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format&fit=crop&w=500&q=80'">
-                        </div>
+
+                    <div class="product-card" data-name="hawas ice men" data-price="50.00">
+                        <div class="product-img-container"><img src="hawas-ice-men_1000x.webp" alt="Hawas Ice Men"></div>
                         <div class="product-info">
-                            <div>
-                                <h3 class="product-name">Victoria's Secret Velvet Petals</h3>
-                                <p class="product-desc">Body Mist - 250ml</p>
+                            <h3 class="product-name">Hawas Ice Men</h3>
+                            <p class="product-desc">Notas ultra frescas y vibrantes.</p>
+                            <div class="product-footer">
+                                <div class="product-price-row">
+                                    <span class="product-price">$50.00</span>
+                                    <a href="https://wa.me/50583743021?text=Hola,%20quiero%20consultar%20sobre%20Hawas%20Ice%20Men" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Consultar</a>
+                                </div>
+                                <button class="btn-add-cart" onclick="addToCart('Hawas Ice Men', 50.00)"><i class="fas fa-cart-plus"></i> Agregar al Carrito</button>
                             </div>
-                            <div>
-                                <div class="product-price">C$ 680.00</div>
-                                <button class="btn-add-cart" onclick="addToCart('Velvet Petals VS', 680)">
-                                    <i class="fas fa-cart-plus"></i> Agregar
-                                </button>
+                        </div>
+                    </div>
+
+                    <div class="product-card" data-name="orientica oud" data-price="55.00">
+                        <div class="product-img-container"><img src="orientica-oud-.webp" alt="Orientica Oud"></div>
+                        <div class="product-info">
+                            <h3 class="product-name">Orientica Oud</h3>
+                            <p class="product-desc">Elegancia y misterio oriental.</p>
+                            <div class="product-footer">
+                                <div class="product-price-row">
+                                    <span class="product-price">$55.00</span>
+                                    <a href="https://wa.me/50583743021?text=Hola,%20quiero%20consultar%20sobre%20Orientica%20Oud" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Consultar</a>
+                                </div>
+                                <button class="btn-add-cart" onclick="addToCart('Orientica Oud', 55.00)"><i class="fas fa-cart-plus"></i> Agregar al Carrito</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="product-card" data-name="armaf odyssey bahamas" data-price="42.00">
+                        <div class="product-img-container"><img src="armaf-odyssey-bahamas_1000x.webp" alt="Armaf Odyssey Bahamas"></div>
+                        <div class="product-info">
+                            <h3 class="product-name">Armaf Odyssey Bahamas</h3>
+                            <p class="product-desc">Aroma tropical fresco y duradero.</p>
+                            <div class="product-footer">
+                                <div class="product-price-row">
+                                    <span class="product-price">$42.00</span>
+                                    <a href="https://wa.me/50583743021?text=Hola,%20quiero%20consultar%20sobre%20Armaf%20Odyssey%20Bahamas" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Consultar</a>
+                                </div>
+                                <button class="btn-add-cart" onclick="addToCart('Armaf Odyssey Bahamas', 42.00)"><i class="fas fa-cart-plus"></i> Agregar al Carrito</button>
                             </div>
                         </div>
                     </div>
                 </div>
             </section>
+
+            <!-- 1. PERFUMERÍA ÁRABE -->
+            <section id="arabes" class="category-section search-section">
+                <h2 class="category-title">Perfumería Árabe</h2>
+                <div class="slider-container">
+                    
+                    <div class="product-card" data-name="stallion 53" data-price="60.00">
+                        <div class="product-img-container"><img src="STALLION-53_1500x.webp" alt="Stallion 53"></div>
+                        <div class="product-info">
+                            <h3 class="product-name">Stallion 53</h3>
+                            <p class="product-desc">Exclusiva fragancia con gran carácter y fijación.</p>
+                            <div class="product-footer">
+                                <div class="product-price-row">
+                                    <span class="product-price">$60.00</span>
+                                    <a href="https://wa.me/50583743021?text=Hola,%20quiero%20consultar%20sobre%20Stallion%2053" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Consultar</a>
+                                </div>
+                                <button class="btn-add-cart" onclick="addToCart('Stallion 53', 60.00)"><i class="fas fa-cart-plus"></i> Agregar al Carrito</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="product-card" data-name="armaf odyssey bahamas" data-price="42.00">
+                        <div class="product-img-container"><img src="armaf-odyssey-bahamas_1000x.webp" alt="Armaf Odyssey Bahamas"></div>
+                        <div class="product-info">
+                            <h3 class="product-name">Armaf Odyssey Bahamas</h3>
+                            <p class="product-desc">Notas tropicales, frescas y de alta proyección.</p>
+                            <div class="product-footer">
+                                <div class="product-price-row">
+                                    <span class="product-price">$42.00</span>
+                                    <a href="https://wa.me/50583743021?text=Hola,%20quiero%20consultar%20sobre%20Armaf%20Odyssey%20Bahamas" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Consultar</a>
+                                </div>
+                                <button class="btn-add-cart" onclick="addToCart('Armaf Odyssey Bahamas', 42.00)"><i class="fas fa-cart-plus"></i> Agregar al Carrito</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="product-card" data-name="bharara beauty" data-price="45.00">
+                        <div class="product-img-container"><img src="bharara_beauty.webp" alt="Bharara Beauty"></div>
+                        <div class="product-info">
+                            <h3 class="product-name">Bharara Beauty</h3>
+                            <p class="product-desc">Notas aromáticas y alta fijación.</p>
+                            <div class="product-footer">
+                                <div class="product-price-row">
+                                    <span class="product-price">$45.00</span>
+                                    <a href="https://wa.me/50583743021?text=Hola,%20quiero%20consultar%20sobre%20Bharara%20Beauty" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Consultar</a>
+                                </div>
+                                <button class="btn-add-cart" onclick="addToCart('Bharara Beauty', 45.00)"><i class="fas fa-cart-plus"></i> Agregar al Carrito</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="product-card" data-name="hawas ice men" data-price="50.00">
+                        <div class="product-img-container"><img src="hawas-ice-men_1000x.webp" alt="Hawas Ice Men"></div>
+                        <div class="product-info">
+                            <h3 class="product-name">Hawas Ice Men</h3>
+                            <p class="product-desc">Notas ultra frescas y vibrantes.</p>
+                            <div class="product-footer">
+                                <div class="product-price-row">
+                                    <span class="product-price">$50.00</span>
+                                    <a href="https://wa.me/50583743021?text=Hola,%20quiero%20consultar%20sobre%20Hawas%20Ice%20Men" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Consultar</a>
+                                </div>
+                                <button class="btn-add-cart" onclick="addToCart('Hawas Ice Men', 50.00)"><i class="fas fa-cart-plus"></i> Agregar al Carrito</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="product-card" data-name="haway tropical" data-price="48.00">
+                        <div class="product-img-container"><img src="haway-tropical-tropical.webp" alt="Haway Tropical"></div>
+                        <div class="product-info">
+                            <h3 class="product-name">Haway Tropical</h3>
+                            <p class="product-desc">Aroma frutal, fresco y cautivador.</p>
+                            <div class="product-footer">
+                                <div class="product-price-row">
+                                    <span class="product-price">$48.00</span>
+                                    <a href="https://wa.me/50583743021?text=Hola,%20quiero%20consultar%20sobre%20Haway%20Tropical" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Consultar</a>
+                                </div>
+                                <button class="btn-add-cart" onclick="addToCart('Haway Tropical', 48.00)"><i class="fas fa-cart-plus"></i> Agregar al Carrito</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="product-card" data-name="orientica oud" data-price="55.00">
+                        <div class="product-img-container"><img src="orientica-oud-.webp" alt="Orientica Oud"></div>
+                        <div class="product-info">
+                            <h3 class="product-name">Orientica Oud</h3>
+                            <p class="product-desc">Elegancia y misterio oriental.</p>
+                            <div class="product-footer">
+                                <div class="product-price-row">
+                                    <span class="product-price">$55.00</span>
+                                    <a href="https://wa.me/50583743021?text=Hola,%20quiero%20consultar%20sobre%20Orientica%20Oud" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Consultar</a>
+                                </div>
+                                <button class="btn-add-cart" onclick="addToCart('Orientica Oud', 55.00)"><i class="fas fa-cart-plus"></i> Agregar al Carrito</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="product-card" data-name="orientica royal" data-price="58.00">
+                        <div class="product-img-container"><img src="orientica-royal.webp" alt="Orientica Royal"></div>
+                        <div class="product-info">
+                            <h3 class="product-name">Orientica Royal</h3>
+                            <p class="product-desc">Sofisticación y notas de lujo inigualables.</p>
+                            <div class="product-footer">
+                                <div class="product-price-row">
+                                    <span class="product-price">$58.00</span>
+                                    <a href="https://wa.me/50583743021?text=Hola,%20quiero%20consultar%20sobre%20Orientica%20Royal" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Consultar</a>
+                                </div>
+                                <button class="btn-add-cart" onclick="addToCart('Orientica Royal', 58.00)"><i class="fas fa-cart-plus"></i> Agregar al Carrito</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="product-card" data-name="orientica velvet" data-price="52.00">
+                        <div class="product-img-container"><img src="orientica-velvet.webp" alt="Orientica Velvet"></div>
+                        <div class="product-info">
+                            <h3 class="product-name">Orientica Velvet</h3>
+                            <p class="product-desc">Textura aromática suave, cálida y envolvente.</p>
+                            <div class="product-footer">
+                                <div class="product-price-row">
+                                    <span class="product-price">$52.00</span>
+                                    <a href="https://wa.me/50583743021?text=Hola,%20quiero%20consultar%20sobre%20Orientica%20Velvet" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Consultar</a>
+                                </div>
+                                <button class="btn-add-cart" onclick="addToCart('Orientica Velvet', 52.00)"><i class="fas fa-cart-plus"></i> Agregar al Carrito</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- 2. PERFUMERÍA DE DISEÑADOR -->
+            <section id="disenador" class="category-section search-section">
+                <h2 class="category-title">Perfumería de Diseñador</h2>
+                <div class="slider-container">
+                    <div class="product-card" data-name="proximamente diseñador" data-price="0.00">
+                        <div class="product-img-container"><img src="logo-tienda.png" alt="Próximamente"></div>
+                        <div class="product-info">
+                            <h3 class="product-name">Próximamente</h3>
+                            <p class="product-desc">Nuevas fragancias de diseñador en camino.</p>
+                            <div class="product-footer">
+                                <div class="product-price-row">
+                                    <span class="product-price">Consultar</span>
+                                    <a href="https://wa.me/50583743021?text=Hola,%20consulto%20sobre%20perfumes%20de%20diseñador" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Consultar</a>
+                                </div>
+                                <button class="btn-add-cart" onclick="addToCart('Próximamente Diseñador', 0.00)"><i class="fas fa-cart-plus"></i> Agregar al Carrito</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 3. PERFUMERÍA NICHO -->
+            <section id="nicho" class="category-section search-section">
+                <h2 class="category-title">Perfumería Nicho</h2>
+                <div class="slider-container">
+                    <div class="product-card" data-name="proximamente nicho" data-price="0.00">
+                        <div class="product-img-container"><img src="logo-tienda.png" alt="Próximamente"></div>
+                        <div class="product-info">
+                            <h3 class="product-name">Próximamente</h3>
+                            <p class="product-desc">Colección de alta perfumería exclusiva.</p>
+                            <div class="product-footer">
+                                <div class="product-price-row">
+                                    <span class="product-price">Consultar</span>
+                                    <a href="https://wa.me/50583743021?text=Hola,%20consulto%20sobre%20perfumes%20nicho" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Consultar</a>
+                                </div>
+                                <button class="btn-add-cart" onclick="addToCart('Próximamente Nicho', 0.00)"><i class="fas fa-cart-plus"></i> Agregar al Carrito</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 4. PERFUMERÍA DE CELEBRIDAD -->
+            <section id="celebridad" class="category-section search-section">
+                <h2 class="category-title">Perfumería de Celebridad</h2>
+                <div class="slider-container">
+                    <div class="product-card" data-name="proximamente celebridad" data-price="0.00">
+                        <div class="product-img-container"><img src="logo-tienda.png" alt="Próximamente"></div>
+                        <div class="product-info">
+                            <h3 class="product-name">Próximamente</h3>
+                            <p class="product-desc">Fragancias de tus artistas favoritos.</p>
+                            <div class="product-footer">
+                                <div class="product-price-row">
+                                    <span class="product-price">Consultar</span>
+                                    <a href="https://wa.me/50583743021?text=Hola,%20consulto%20sobre%20perfumes%20de%20celebridad" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Consultar</a>
+                                </div>
+                                <button class="btn-add-cart" onclick="addToCart('Próximamente Celebridad', 0.00)"><i class="fas fa-cart-plus"></i> Agregar al Carrito</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 5. BODY MISTS -->
+            <section id="bodymists" class="category-section search-section">
+                <h2 class="category-title">Body Mists</h2>
+                <div class="slider-container">
+                    <div class="product-card" data-name="victoria secret bath body works body mist" data-price="25.00">
+                        <div class="product-img-container"><img src="logo-tienda.png" alt="Próximamente"></div>
+                        <div class="product-info">
+                            <h3 class="product-name">Colección Body Mists</h3>
+                            <p class="product-desc">Victoria's Secret, Bath & Body Works y más.</p>
+                            <div class="product-footer">
+                                <div class="product-price-row">
+                                    <span class="product-price">$25.00</span>
+                                    <a href="https://wa.me/50583743021?text=Hola,%20quiero%20ver%20body%20mists" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Consultar</a>
+                                </div>
+                                <button class="btn-add-cart" onclick="addToCart('Colección Body Mists', 25.00)"><i class="fas fa-cart-plus"></i> Agregar al Carrito</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 6. ESMALTES COLOMBIANOS MASGLO -->
+            <section id="masglo" class="category-section search-section">
+                <h2 class="category-title">Esmaltes Colombianos Masglo</h2>
+                <div class="slider-container">
+                    <div class="product-card" data-name="masglo esmalte base top coat" data-price="12.00">
+                        <div class="product-img-container"><img src="logo-tienda.png" alt="Próximamente"></div>
+                        <div class="product-info">
+                            <h3 class="product-name">Línea Masglo</h3>
+                            <p class="product-desc">Esmaltes, bases fortalecedoras y top coats.</p>
+                            <div class="product-footer">
+                                <div class="product-price-row">
+                                    <span class="product-price">$12.00</span>
+                                    <a href="https://wa.me/50583743021?text=Hola,%20quiero%20consultar%20sobre%20esmaltes%20Masglo" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Consultar</a>
+                                </div>
+                                <button class="btn-add-cart" onclick="addToCart('Línea Masglo', 12.00)"><i class="fas fa-cart-plus"></i> Agregar al Carrito</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 7. CUIDADO PERSONAL -->
+            <section id="cuidado-personal" class="category-section search-section">
+                <h2 class="category-title">Cuidado Personal</h2>
+                
+                <div id="exfoliantes" style="margin-bottom: 2.5rem; scroll-margin-top: 90px;">
+                    <h3 style="font-size: 1.3rem; color: var(--primary-dark); margin-bottom: 1rem; font-family: 'Cormorant Garamond', serif; font-weight: 700;"><i class="fas fa-spa"></i> Exfoliantes para el cuerpo</h3>
+                    <div class="slider-container">
+                        <div class="product-card" data-name="exfoliante corporal scrub" data-price="20.00">
+                            <div class="product-img-container"><img src="logo-tienda.png" alt="Exfoliantes"></div>
+                            <div class="product-info">
+                                <h3 class="product-name">Exfoliantes Corporales</h3>
+                                <p class="product-desc">Suavidad y renovación para tu piel.</p>
+                                <div class="product-footer">
+                                    <div class="product-price-row">
+                                        <span class="product-price">$20.00</span>
+                                        <a href="https://wa.me/50583743021?text=Hola,%20quiero%20ver%20exfoliantes%20corporales" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Consultar</a>
+                                    </div>
+                                    <button class="btn-add-cart" onclick="addToCart('Exfoliantes Corporales', 20.00)"><i class="fas fa-cart-plus"></i> Agregar al Carrito</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="geles" style="margin-bottom: 2.5rem; scroll-margin-top: 90px;">
+                    <h3 style="font-size: 1.3rem; color: var(--primary-dark); margin-bottom: 1rem; font-family: 'Cormorant Garamond', serif; font-weight: 700;"><i class="fas fa-shower"></i> Gel de duchas</h3>
+                    <div class="slider-container">
+                        <div class="product-card" data-name="gel de duchas shower gel" data-price="18.00">
+                            <div class="product-img-container"><img src="logo-tienda.png" alt="Gel de duchas"></div>
+                            <div class="product-info">
+                                <h3 class="product-name">Geles de Ducha</h3>
+                                <p class="product-desc">Limpieza perfumada y espumosa.</p>
+                                <div class="product-footer">
+                                    <div class="product-price-row">
+                                        <span class="product-price">$18.00</span>
+                                        <a href="https://wa.me/50583743021?text=Hola,%20quiero%20ver%20gel%20de%20duchas" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Consultar</a>
+                                    </div>
+                                    <button class="btn-add-cart" onclick="addToCart('Geles de Ducha', 18.00)"><i class="fas fa-cart-plus"></i> Agregar al Carrito</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="aceites" style="margin-bottom: 2rem; scroll-margin-top: 90px;">
+                    <h3 style="font-size: 1.3rem; color: var(--primary-dark); margin-bottom: 1rem; font-family: 'Cormorant Garamond', serif; font-weight: 700;"><i class="fas fa-oil-can"></i> Aceites corporales</h3>
+                    <div class="slider-container">
+                        <div class="product-card" data-name="aceite corporal oil" data-price="22.00">
+                            <div class="product-img-container"><img src="logo-tienda.png" alt="Aceites corporales"></div>
+                            <div class="product-info">
+                                <h3 class="product-name">Aceites Corporales</h3>
+                                <p class="product-desc">Hidratación profunda y brillo sedoso.</p>
+                                <div class="product-footer">
+                                    <div class="product-price-row">
+                                        <span class="product-price">$22.00</span>
+                                        <a href="https://wa.me/50583743021?text=Hola,%20quiero%20ver%20aceites%20corporales" class="btn-order" target="_blank"><i class="fab fa-whatsapp"></i> Consultar</a>
+                                    </div>
+                                    <button class="btn-add-cart" onclick="addToCart('Aceites Corporales', 22.00)"><i class="fas fa-cart-plus"></i> Agregar al Carrito</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+
         </main>
     </div>
 
-    <!-- Footer -->
+    <!-- Pie de Página -->
     <footer>
         <div class="footer-content-grid">
             <div class="footer-col">
-                <h3>Sensación Aromas</h3>
-                <p style="font-size: 0.9rem; color: #ccc;">Tu destino ideal para encontrar fragancias originales y exclusivas en Nicaragua.</p>
-            </div>
-            <div class="footer-col">
-                <h3>Enlaces Rápidos</h3>
+                <h3>Categorías</h3>
                 <ul class="footer-links">
-                    <li><a href="#">Inicio</a></li>
-                    <li><a href="#mas-vendidos">Catálogo</a></li>
-                    <li><a href="#">Contacto</a></li>
+                    <li><a href="#mas-vendidos">Los Más Vendidos</a></li>
+                    <li><a href="#arabes">Perfumería Árabe</a></li>
+                    <li><a href="#disenador">Perfumería de Diseñador</a></li>
+                    <li><a href="#bodymists">Body Mists</a></li>
+                    <li><a href="#masglo">Esmaltes Masglo</a></li>
                 </ul>
             </div>
+
             <div class="footer-col">
                 <h3>Contacto</h3>
-                <p style="font-size: 0.9rem; color: #ccc; margin-bottom: 5px;"><strong>WhatsApp:</strong> +505 8888-8888</p>
-                <p style="font-size: 0.9rem; color: #ccc;"><strong>Ubicación:</strong> Nicaragua</p>
+                <div class="footer-contact-info">
+                    <p><strong>Email:</strong></p>
+                    <p>bellezaycuidadopersonal@gmail.com</p>
+                    <p style="margin-top: 8px;"><strong>Teléfono:</strong></p>
+                    <p>+505 8374 3021</p>
+                    <p style="margin-top: 8px;"><strong>Dirección:</strong></p>
+                    <p>Chinandega, Nicaragua</p>
+                </div>
+            </div>
+
+            <div class="footer-col">
+                <h3>Información</h3>
+                <ul class="footer-links">
+                    <li><a href="#">Acerca de Nosotros</a></li>
+                    <li><a href="#">Política de Privacidad</a></li>
+                    <li><a href="#">Términos y Condiciones</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <div class="footer-brand-box">
+                    <div class="footer-logo-container">
+                        <img src="logo-tienda.png" alt="Sensación Aromas Originales Logo" class="footer-logo-img">
+                    </div>
+                    <div>
+                        <h2 class="footer-store-name">Sensación Aromas</h2>
+                        <p class="footer-store-subtitle">Originales</p>
+                    </div>
+                </div>
             </div>
         </div>
+
         <div class="footer-bottom-bar">
             <div class="footer-social-icons">
                 <a href="https://www.facebook.com/profile.php?id=61576096020955" target="_blank"><i class="fab fa-facebook-f"></i></a>
                 <a href="https://www.instagram.com/sensancion_a?stkn=OXJqb3ZqdTdha3g5" target="_blank"><i class="fab fa-instagram"></i></a>
             </div>
-            <p class="footer-copyright">&copy; 2026 Sensación Aromas Originales. Todos los derechos reservados.</p>
+            <div class="footer-copyright">
+                <p>&copy; 2026 Sensación Aromas Originales. Todos los derechos reservados.</p>
+            </div>
         </div>
     </footer>
 
-    <!-- JavaScript -->
+    <!-- Scripts de Interacción, Carrito y Autenticación con Descuento y WhatsApp -->
     <script>
         let cart = [];
-        let currentUser = null;
+        let currentUser = localStorage.getItem('sensacion_user') ? JSON.parse(localStorage.getItem('sensacion_user')) : null;
+
+        window.onload = function() {
+            updateUserUI();
+        }
 
         function toggleSidebar() {
-            const sidebar = document.getElementById('sidebar');
-            sidebar.style.display = sidebar.style.display === 'none' ? 'block' : 'none';
-        }
-
-        function toggleSubmenu(id) {
-            const menu = document.getElementById(id);
-            menu.classList.toggle('open');
-        }
-
-        function toggleCartDrawer() {
-            const drawer = document.getElementById('cartDrawer');
-            const overlay = document.getElementById('modalOverlay');
-            drawer.classList.toggle('open');
-            overlay.classList.toggle('open');
-        }
-
-        function handleUserBtnClick() {
-            if (!currentUser) {
-                document.getElementById('authModal').classList.add('open');
-                document.getElementById('modalOverlay').classList.add('open');
+            if (window.innerWidth <= 900) {
+                document.body.classList.toggle('sidebar-open');
             } else {
-                const dropdown = document.getElementById('userDropdown');
-                dropdown.classList.toggle('show');
+                document.body.classList.toggle('sidebar-collapsed');
             }
+        }
+
+        function toggleSubmenu(event) {
+            event.preventDefault();
+            let parent = document.getElementById('cuidadoMenu');
+            parent.classList.toggle('open');
+        }
+
+        /* Control de Autenticación y Menú Desplegable */
+        function handleUserBtnClick() {
+            if (currentUser) {
+                let dropdown = document.getElementById('userDropdown');
+                dropdown.classList.toggle('show');
+            } else {
+                openAuthModal();
+            }
+        }
+
+        function openAuthModal() {
+            document.getElementById('authModal').classList.add('open');
+            document.getElementById('modalOverlay').classList.add('open');
+            document.getElementById('userDropdown').classList.remove('show');
         }
 
         function closeAllModals() {
@@ -734,113 +1725,190 @@
             document.getElementById('userDropdown').classList.remove('show');
         }
 
+        function toggleCartDrawer() {
+            let drawer = document.getElementById('cartDrawer');
+            let overlay = document.getElementById('modalOverlay');
+            document.getElementById('userDropdown').classList.remove('show');
+            if (drawer.classList.contains('open')) {
+                drawer.classList.remove('open');
+                overlay.classList.remove('open');
+            } else {
+                drawer.classList.add('open');
+                overlay.classList.add('open');
+            }
+        }
+
         function handleRegister(event) {
             event.preventDefault();
-            const name = document.getElementById('regName').value;
-            currentUser = name;
+            let name = document.getElementById('regName').value;
+            let age = document.getElementById('regAge').value;
+            let gender = document.getElementById('regGender').value;
+            let phone = document.getElementById('regPhone').value;
+            let country = document.getElementById('regCountry').value;
+            let department = document.getElementById('regDepartment').value;
+            let email = document.getElementById('regEmail').value;
+
+            currentUser = { 
+                name: name, 
+                age: age, 
+                gender: gender, 
+                phone: phone, 
+                country: country, 
+                department: department, 
+                email: email,
+                discountActive: true 
+            };
+
+            localStorage.setItem('sensacion_user', JSON.stringify(currentUser));
             
-            document.getElementById('userNameDisplay').innerText = name.split(' ')[0];
+            updateUserUI();
             closeAllModals();
 
-            const toast = document.getElementById('discountToast');
+            // Mostrar notificación flotante de descuento al cliente
+            let toast = document.getElementById('discountToast');
             toast.classList.add('show');
             setTimeout(() => {
                 toast.classList.remove('show');
-            }, 5000);
+            }, 6000);
+
+            // Enviar notificación automática a tu WhatsApp con los datos completos del nuevo usuario
+            let msg = `¡Hola! Un nuevo cliente se ha registrado en Sensación Aromas Originales:%0A%0A` +
+                      `👤 *Nombre:* ${name}%0A` +
+                      `📅 *Edad:* ${age} años%0A` +
+                      `⚥ *Género:* ${gender}%0A` +
+                      `📱 *Teléfono:* ${phone}%0A` +
+                      `📍 *Ubicación:* ${department}, ${country}%0A` +
+                      `📧 *Correo:* ${email}%0A%0A` +
+                      `🎁 *Estado:* ¡Desbloqueó 5% de descuento por registro!`;
+
+            let url = `https://wa.me/50583743021?text=${msg}`;
+            window.open(url, '_blank');
         }
 
         function logoutUser() {
             currentUser = null;
-            document.getElementById('userNameDisplay').innerText = "Crear Cuenta";
+            localStorage.removeItem('sensacion_user');
+            updateUserUI();
             document.getElementById('userDropdown').classList.remove('show');
+            alert("Has cerrado sesión correctamente.");
         }
 
-        function addToCart(name, price) {
-            const existingItem = cart.find(item => item.name === name);
-            if (existingItem) {
-                existingItem.qty += 1;
+        function updateUserUI() {
+            let userDisplay = document.getElementById('userNameDisplay');
+            if (currentUser) {
+                userDisplay.innerText = currentUser.name.split(' ')[0]; // Muestra el primer nombre
             } else {
-                cart.push({ name, price, qty: 1 });
+                userDisplay.innerText = "Crear Cuenta";
+            }
+        }
+
+        /* Lógica del Carrito */
+        function addToCart(name, price) {
+            let existingItem = cart.find(item => item.name === name);
+            if (existingItem) {
+                if (existingItem.qty < 2) {
+                    existingItem.qty++;
+                } else {
+                    alert("Solo puedes agregar un máximo de 2 unidades por producto.");
+                    return;
+                }
+            } else {
+                cart.push({ name: name, price: price, qty: 1 });
             }
             updateCartUI();
-        }
-
-        function updateCartUI() {
-            const cartBadge = document.getElementById('cartBadge');
-            const cartBody = document.getElementById('cartBody');
-            const cartTotalAmount = document.getElementById('cartTotalAmount');
-
-            const totalCount = cart.reduce((sum, item) => sum + item.qty, 0);
-            cartBadge.innerText = totalCount;
-
-            if (cart.length === 0) {
-                cartBody.innerHTML = `<p style="text-align: center; color: var(--text-light); margin-top: 20px;">Tu carrito está vacío.</p>`;
-                cartTotalAmount.innerText = "C$ 0.00";
-                return;
-            }
-
-            let html = '';
-            let totalSum = 0;
-
-            cart.forEach((item, index) => {
-                const subtotal = item.price * item.qty;
-                totalSum += subtotal;
-                html += `
-                    <div class="cart-item">
-                        <div>
-                            <div style="font-weight: 600; font-size: 0.9rem;">${item.name}</div>
-                            <div style="font-size: 0.8rem; color: var(--text-light);">C$ ${item.price.toFixed(2)} x ${item.qty}</div>
-                        </div>
-                        <div style="display: flex; align-items: center; gap: 8px;">
-                            <button onclick="changeQty(${index}, -1)" style="padding: 2px 6px; cursor: pointer;">-</button>
-                            <span>${item.qty}</span>
-                            <button onclick="changeQty(${index}, 1)" style="padding: 2px 6px; cursor: pointer;">+</button>
-                            <button onclick="removeItem(${index})" style="background: none; border: none; color: #ff4d4d; cursor: pointer;"><i class="fas fa-trash"></i></button>
-                        </div>
-                    </div>
-                `;
-            });
-
-            cartBody.innerHTML = html;
-            cartTotalAmount.innerText = `C$ ${totalSum.toFixed(2)}`;
+            toggleCartDrawer();
         }
 
         function changeQty(index, delta) {
             cart[index].qty += delta;
+            if (cart[index].qty > 2) {
+                cart[index].qty = 2;
+            }
             if (cart[index].qty <= 0) {
                 cart.splice(index, 1);
             }
             updateCartUI();
         }
 
-        function removeItem(index) {
+        function removeFromCart(index) {
             cart.splice(index, 1);
             updateCartUI();
         }
 
-        function checkoutWhatsApp(event) {
-            event.preventDefault();
+        function updateCartUI() {
+            let container = document.getElementById('cartItemsContainer');
+            let badge = document.getElementById('cartBadge');
+            let totalText = document.getElementById('cartTotalText');
+
+            container.innerHTML = '';
+            let totalItems = 0;
+            let totalPrice = 0;
+
+            if (cart.length === 0) {
+                container.innerHTML = '<p style="color: var(--text-light); text-align: center; margin-top: 30px;">Tu carrito está vacío.</p>';
+                badge.innerText = '0';
+                totalText.innerText = '$0.00';
+                return;
+            }
+
+            cart.forEach((item, index) => {
+                totalItems += item.qty;
+                totalPrice += item.price * item.qty;
+
+                let itemDiv = document.createElement('div');
+                itemDiv.className = 'cart-item';
+                itemDiv.innerHTML = `
+                    <div class="cart-item-info">
+                        <div class="cart-item-title">${item.name}</div>
+                        <div class="cart-item-price">$${item.price.toFixed(2)} c/u</div>
+                    </div>
+                    <div class="cart-item-controls">
+                        <button class="qty-btn" onclick="changeQty(${index}, -1)">-</button>
+                        <span class="cart-item-qty">${item.qty}</span>
+                        <button class="qty-btn" onclick="changeQty(${index}, 1)">+</button>
+                        <button class="remove-item" onclick="removeFromCart(${index})"><i class="fas fa-trash"></i></button>
+                    </div>
+                `;
+                container.appendChild(itemDiv);
+            });
+
+            badge.innerText = totalItems;
+            
+            // Aplicar 5% de descuento si el usuario está registrado con beneficio
+            if (currentUser && currentUser.discountActive) {
+                let discountedTotal = totalPrice * 0.95;
+                totalText.innerHTML = `<span style="text-decoration: line-through; color: #888; font-size: 0.9rem; margin-right: 5px;">$${totalPrice.toFixed(2)}</span> <span style="color: var(--primary-color);">$${discountedTotal.toFixed(2)}</span> <small style="display: block; font-size: 0.7rem; color: var(--gold-color);">¡5% OFF de bienvenida aplicado!</small>`;
+            } else {
+                totalText.innerText = `$${totalPrice.toFixed(2)}`;
+            }
+        }
+
+        function checkoutWhatsApp() {
             if (cart.length === 0) {
                 alert("Tu carrito está vacío.");
                 return;
             }
 
-            let message = "¡Hola! Me gustaría hacer el siguiente pedido desde el catálogo digital:\n\n";
+            let clientInfo = currentUser ? `*Cliente:* ${currentUser.name}%0A*Teléfono:* ${currentUser.phone}%0A*Ubicación:* ${currentUser.department}, ${currentUser.country}%0A*Correo:* ${currentUser.email}%0A%0A` : "*Cliente:* Invitado%0A%0A";
+            let message = `Hola, ¡quiero realizar el siguiente pedido desde Sensación Aromas Originales!%0A%0A` + clientInfo;
             let total = 0;
 
             cart.forEach(item => {
                 let subtotal = item.price * item.qty;
                 total += subtotal;
-                message += `- ${item.qty}x ${item.name} (C$ ${subtotal.toFixed(2)})\n`;
+                message += `• *${item.name}* (Cant: ${item.qty}) - $${subtotal.toFixed(2)}%0A`;
             });
 
-            message += `\n*Total a pagar: C$ ${total.toFixed(2)}*`;
-            if (currentUser) {
-                message += `\nCliente registrado: ${currentUser}`;
+            if (currentUser && currentUser.discountActive) {
+                let finalTotal = total * 0.95;
+                message += `%0A*Subtotal:* $${total.toFixed(2)}`;
+                message += `%0A*Descuento (5% Bienvenida):* -$${(total * 0.05).toFixed(2)}`;
+                message += `%0A*Total con descuento:* $${finalTotal.toFixed(2)}`;
+            } else {
+                message += `%0A*Total estimado:* $${total.toFixed(2)}`;
             }
 
-            const phone = "50588888888"; // Reemplaza con tu número de WhatsApp
-            const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+            let url = `https://wa.me/50583743021?text=${message}`;
             window.open(url, '_blank');
         }
     </script>
