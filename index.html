@@ -1,24 +1,584 @@
-<div class="form-group" style="margin-bottom: 8px;">
-                    <label for="regName">Nombre Completo</label>
-                    <input type="text" id="regName" required placeholder="Tu nombre">
-                </div>
-                <div class="form-group" style="margin-bottom: 8px;">
-                    <label for="regEmail">Correo Electrónico</label>
-                    <input type="email" id="regEmail" required placeholder="correo@ejemplo.com">
-                </div>
-                <div class="form-group" style="margin-bottom: 12px;">
-                    <label for="regPhone">Número de Teléfono / WhatsApp</label>
-                    <input type="tel" id="regPhone" required placeholder="+505 ...">
-                </div>
-                <button type="submit" class="btn-submit-auth">Registrarse y Obtener 5% Desc.</button>
-            </form>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sensación Aromas Originales - Tienda Digital</title>
+    <!-- Fuentes de Google -->
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- FontAwesome para Iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary: #111111;
+            --accent: #d4af37;
+            --bg-light: #f9f9f9;
+            --text-dark: #222222;
+            --text-light: #666666;
+            --white: #ffffff;
+            --sidebar-width: 260px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            overflow-x: hidden;
+        }
+
+        /* Notificación de Descuento */
+        .discount-toast {
+            position: fixed;
+            top: -100px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--primary);
+            color: var(--accent);
+            padding: 12px 24px;
+            border-radius: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            z-index: 1000;
+            transition: top 0.4s ease;
+            font-weight: 600;
+            border: 1px solid var(--accent);
+        }
+        .discount-toast.show {
+            top: 20px;
+        }
+
+        /* Header Superior */
+        header {
+            background: var(--white);
+            border-bottom: 1px solid #eaeaea;
+            position: sticky;
+            top: 0;
+            z-index: 900;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 30px;
+        }
+
+        .header-left, .header-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .menu-toggle-btn {
+            background: none;
+            border: none;
+            font-size: 1.2rem;
+            cursor: pointer;
+            color: var(--primary);
+        }
+
+        .logo-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+            letter-spacing: 1px;
+        }
+
+        .header-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1.1rem;
+            color: var(--primary);
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 500;
+        }
+
+        .cart-badge {
+            position: absolute;
+            top: -8px;
+            right: -10px;
+            background: var(--accent);
+            color: var(--primary);
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 2px 6px;
+            border-radius: 50%;
+        }
+
+        /* Layout Principal */
+        .app-layout {
+            display: flex;
+            min-height: calc(100vh - 70px);
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: var(--sidebar-width);
+            background: var(--white);
+            border-right: 1px solid #eaeaea;
+            padding: 20px 0;
+            transition: transform 0.3s ease;
+        }
+
+        .sidebar-title {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--text-light);
+            padding: 0 20px 10px;
+        }
+
+        .sidebar-menu {
+            list-style: none;
+        }
+
+        .sidebar-item a {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 20px;
+            color: var(--text-dark);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: background 0.2s;
+        }
+
+        .sidebar-item a:hover {
+            background: var(--bg-light);
+            color: var(--accent);
+        }
+
+        .sidebar-item a i {
+            margin-right: 10px;
+            width: 20px;
+        }
+
+        .submenu {
+            list-style: none;
+            background: #fafafa;
+            display: none;
+        }
+
+        .has-submenu.open .submenu {
+            display: block;
+        }
+
+        .submenu-item a {
+            padding-left: 45px;
+            font-size: 0.9rem;
+        }
+
+        /* Contenido Principal */
+        .main-content {
+            flex: 1;
+            padding: 30px;
+        }
+
+        .category-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            margin-bottom: 20px;
+            border-bottom: 2px solid var(--accent);
+            display: inline-block;
+            padding-bottom: 5px;
+        }
+
+        .slider-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 20px;
+        }
+
+        /* Tarjeta de Producto */
+        .product-card {
+            background: var(--white);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            transition: transform 0.2s, box-shadow 0.2s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+        }
+
+        .product-img-container {
+            width: 100%;
+            height: 220px;
+            background: #f1f1f1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .product-img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .product-info {
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            justify-content: space-between;
+        }
+
+        .product-name {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .product-desc {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            margin-bottom: 15px;
+        }
+
+        .product-price {
+            font-weight: 700;
+            color: var(--primary);
+            font-size: 1.1rem;
+        }
+
+        .btn-add-cart {
+            width: 100%;
+            background: var(--primary);
+            color: var(--white);
+            border: none;
+            padding: 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: background 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .btn-add-cart:hover {
+            background: var(--accent);
+            color: var(--primary);
+        }
+
+        /* Carrito Drawer Lateral */
+        .cart-drawer {
+            position: fixed;
+            top: 0;
+            right: -400px;
+            width: 380px;
+            height: 100%;
+            background: var(--white);
+            box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+            z-index: 1100;
+            transition: right 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .cart-drawer.open {
+            right: 0;
+        }
+
+        .cart-header {
+            padding: 20px;
+            border-bottom: 1px solid #eaeaea;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+
+        .cart-body {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #f1f1f1;
+        }
+
+        .cart-footer {
+            padding: 20px;
+            border-top: 1px solid #eaeaea;
+            background: var(--bg-light);
+        }
+
+        .cart-total {
+            display: flex;
+            justify-content: space-between;
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .btn-whatsapp-checkout {
+            display: block;
+            width: 100%;
+            background: #25d366;
+            color: var(--white);
+            text-align: center;
+            padding: 12px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background 0.2s;
+        }
+
+        .btn-whatsapp-checkout:hover {
+            background: #1ebe5d;
+        }
+
+        /* Modal de Autenticación */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 1050;
+            display: none;
+        }
+
+        .modal-overlay.open {
+            display: block;
+        }
+
+        .auth-modal {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.9);
+            background: var(--white);
+            padding: 30px;
+            border-radius: 8px;
+            width: 90%;
+            max-width: 400px;
+            z-index: 1150;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .auth-modal.open {
+            transform: translate(-50%, -50%) scale(1);
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 0.95rem;
+        }
+
+        .btn-submit-auth {
+            width: 100%;
+            background: var(--primary);
+            color: var(--white);
+            border: none;
+            padding: 12px;
+            border-radius: 4px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .user-dropdown {
+            position: absolute;
+            top: 60px;
+            right: 30px;
+            background: var(--white);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            border-radius: 4px;
+            display: none;
+            list-style: none;
+            z-index: 1200;
+        }
+
+        .user-dropdown.show {
+            display: block;
+        }
+
+        .user-dropdown li a {
+            display: block;
+            padding: 10px 20px;
+            color: var(--text-dark);
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        .user-dropdown li a:hover {
+            background: var(--bg-light);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary);
+            color: var(--white);
+            padding: 40px 30px 20px;
+            margin-top: 50px;
+        }
+
+        .footer-content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .footer-col h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.3rem;
+            color: var(--accent);
+            margin-bottom: 15px;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 8px;
+        }
+
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+
+        .footer-bottom-bar {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .footer-social-icons a {
+            color: var(--white);
+            font-size: 1.1rem;
+            margin-right: 15px;
+            transition: color 0.2s;
+        }
+
+        .footer-social-icons a:hover {
+            color: var(--accent);
+        }
+
+        .footer-copyright {
+            font-size: 0.85rem;
+            color: #aaa;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Notificación emergente -->
+    <div class="discount-toast" id="discountToast">
+        🎉 ¡Registro exitoso! 5% de descuento aplicado en tu primera compra.
+    </div>
+
+    <!-- Overlay general -->
+    <div class="modal-overlay" id="modalOverlay" onclick="closeAllModals()"></div>
+
+    <!-- Header -->
+    <header>
+        <div class="header-left">
+            <button class="menu-toggle-btn" onclick="toggleSidebar()"><i class="fas fa-bars"></i></button>
+            <a href="#" class="logo-title">Sensación Aromas</a>
         </div>
+        <div class="header-right">
+            <button class="header-btn" onclick="handleUserBtnClick()">
+                <i class="fas fa-user"></i> <span id="userNameDisplay">Crear Cuenta</span>
+            </button>
+            <ul class="user-dropdown" id="userDropdown">
+                <li><a href="#" onclick="logoutUser()">Cerrar Sesión</a></li>
+            </ul>
+            <button class="header-btn" onclick="toggleCartDrawer()">
+                <i class="fas fa-shopping-bag"></i> Carrito
+                <span class="cart-badge" id="cartBadge">0</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Modal de Registro -->
+    <div class="auth-modal" id="authModal">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+            <h3 style="font-family: 'Cormorant Garamond', serif; font-size: 1.5rem;">Crea tu cuenta</h3>
+            <button class="close-btn" onclick="closeAllModals()"><i class="fas fa-times"></i></button>
+        </div>
+        <form id="registerForm" onsubmit="handleRegister(event)">
+            <div class="form-group">
+                <label for="regName">Nombre Completo</label>
+                <input type="text" id="regName" required placeholder="Tu nombre">
+            </div>
+            <div class="form-group">
+                <label for="regEmail">Correo Electrónico</label>
+                <input type="email" id="regEmail" required placeholder="correo@ejemplo.com">
+            </div>
+            <div class="form-group">
+                <label for="regPhone">Número de Teléfono / WhatsApp</label>
+                <input type="tel" id="regPhone" required placeholder="+505 ...">
+            </div>
+            <button type="submit" class="btn-submit-auth">Registrarse y Obtener 5% Desc.</button>
+        </form>
     </div>
 
     <!-- Panel Lateral del Carrito -->
     <div class="cart-drawer" id="cartDrawer">
         <div class="cart-header">
-            <h3>Tu Carrito de Compras</h3>
+            <h3 style="font-family: 'Cormorant Garamond', serif; font-size: 1.3rem;">Tu Carrito de Compras</h3>
             <button class="close-btn" onclick="toggleCartDrawer()"><i class="fas fa-times"></i></button>
         </div>
         <div class="cart-body" id="cartBody">
@@ -37,20 +597,20 @@
 
     <!-- Layout Principal -->
     <div class="app-layout">
-        <!-- Sidebar de Navegación / Categorías -->
+        <!-- Sidebar -->
         <aside class="sidebar" id="sidebar">
             <div class="sidebar-title">Navegación</div>
             <ul class="sidebar-menu">
                 <li class="sidebar-item"><a href="#"><i class="fas fa-home"></i> Inicio</a></li>
                 <li class="sidebar-item has-submenu" id="menuArabes">
-                    <a href="javascript:void(0);" class="submenu-toggle" onclick="toggleSubmenu('menuArabes')">
+                    <a href="javascript:void(0);" onclick="toggleSubmenu('menuArabes')">
                         <span><i class="fas fa-spray-can"></i> Perfumes Árabes</span>
                         <i class="fas fa-chevron-down"></i>
                     </a>
                     <ul class="submenu">
-                        <li class="submenu-item"><a href="#arabes">Hombre</a></li>
-                        <li class="submenu-item"><a href="#arabes">Mujer</a></li>
-                        <li class="submenu-item"><a href="#arabes">Unisex</a></li>
+                        <li class="submenu-item"><a href="#mas-vendidos">Hombre</a></li>
+                        <li class="submenu-item"><a href="#mas-vendidos">Mujer</a></li>
+                        <li class="submenu-item"><a href="#mas-vendidos">Unisex</a></li>
                     </ul>
                 </li>
                 <li class="sidebar-item"><a href="#mas-vendidos"><i class="fas fa-fire"></i> Más Vendidos</a></li>
@@ -59,26 +619,25 @@
             </ul>
         </aside>
 
-        <!-- Contenido Principal -->
+        <!-- Contenido -->
         <main class="main-content">
-            <!-- Sección Más Vendidos / Catálogo de Ejemplo -->
             <section class="category-section" id="mas-vendidos">
                 <h2 class="category-title">Más Vendidos</h2>
                 <div class="slider-container">
                     <!-- Producto 1 -->
                     <div class="product-card">
                         <div class="product-img-container">
-                            <img src="perfume-ejemplo.png" alt="Perfume Árabe">
+                            <img src="images/lattafa-asad.jpg" alt="Lattafa Asad" onerror="this.src='https://images.unsplash.com/photo-1523293182086-7651a899d37f?auto=format&fit=crop&w=500&q=80'">
                         </div>
                         <div class="product-info">
-                            <h3 class="product-name">Lattafa Asad</h3>
-                            <p class="product-desc">Eau de Parfum - 100ml (Hombre)</p>
-                            <div class="product-footer">
-                                <div class="product-price-row">
-                                    <span class="product-price">C$ 1,450.00</span>
-                                </div>
+                            <div>
+                                <h3 class="product-name">Lattafa Asad</h3>
+                                <p class="product-desc">Eau de Parfum - 100ml (Hombre)</p>
+                            </div>
+                            <div>
+                                <div class="product-price">C$ 1,450.00</div>
                                 <button class="btn-add-cart" onclick="addToCart('Lattafa Asad', 1450)">
-                                    <i class="fas fa-cart-plus"></i> Agregar al Carrito
+                                    <i class="fas fa-cart-plus"></i> Agregar
                                 </button>
                             </div>
                         </div>
@@ -86,17 +645,17 @@
                     <!-- Producto 2 -->
                     <div class="product-card">
                         <div class="product-img-container">
-                            <img src="perfume-ejemplo2.png" alt="Perfume Mujer">
+                            <img src="images/victorias-secret-velvet-petals.jpg" alt="Victoria's Secret" onerror="this.src='https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format&fit=crop&w=500&q=80'">
                         </div>
                         <div class="product-info">
-                            <h3 class="product-name">Victoria's Secret Velvet Petals</h3>
-                            <p class="product-desc">Body Mist - 250ml</p>
-                            <div class="product-footer">
-                                <div class="product-price-row">
-                                    <span class="product-price">C$ 680.00</span>
-                                </div>
+                            <div>
+                                <h3 class="product-name">Victoria's Secret Velvet Petals</h3>
+                                <p class="product-desc">Body Mist - 250ml</p>
+                            </div>
+                            <div>
+                                <div class="product-price">C$ 680.00</div>
                                 <button class="btn-add-cart" onclick="addToCart('Velvet Petals VS', 680)">
-                                    <i class="fas fa-cart-plus"></i> Agregar al Carrito
+                                    <i class="fas fa-cart-plus"></i> Agregar
                                 </button>
                             </div>
                         </div>
@@ -106,12 +665,12 @@
         </main>
     </div>
 
-    <!-- Pie de Página -->
+    <!-- Footer -->
     <footer>
         <div class="footer-content-grid">
             <div class="footer-col">
                 <h3>Sensación Aromas</h3>
-                <p style="font-size: 0.9rem; color: var(--text-light);">Tu destino ideal para encontrar fragancias originales y exclusivas en Nicaragua.</p>
+                <p style="font-size: 0.9rem; color: #ccc;">Tu destino ideal para encontrar fragancias originales y exclusivas en Nicaragua.</p>
             </div>
             <div class="footer-col">
                 <h3>Enlaces Rápidos</h3>
@@ -121,19 +680,10 @@
                     <li><a href="#">Contacto</a></li>
                 </ul>
             </div>
-            <div class="footer-col footer-contact-info">
+            <div class="footer-col">
                 <h3>Contacto</h3>
-                <p><strong>WhatsApp:</strong> +505 8888-8888</p>
-                <p><strong>Ubicación:</strong> Nicaragua</p>
-            </div>
-            <div class="footer-brand-box">
-                <div class="footer-logo-container">
-                    <img src="logo-tienda.png" alt="Logo" class="footer-logo-img">
-                </div>
-                <div>
-                    <h4 class="footer-store-name">Sensación</h4>
-                    <p class="footer-store-subtitle">Aromas Originales</p>
-                </div>
+                <p style="font-size: 0.9rem; color: #ccc; margin-bottom: 5px;"><strong>WhatsApp:</strong> +505 8888-8888</p>
+                <p style="font-size: 0.9rem; color: #ccc;"><strong>Ubicación:</strong> Nicaragua</p>
             </div>
         </div>
         <div class="footer-bottom-bar">
@@ -145,14 +695,14 @@
         </div>
     </footer>
 
-    <!-- JavaScript Funcional -->
+    <!-- JavaScript -->
     <script>
         let cart = [];
         let currentUser = null;
 
         function toggleSidebar() {
-            document.body.classList.toggle('sidebar-collapsed');
-            document.body.classList.toggle('sidebar-open');
+            const sidebar = document.getElementById('sidebar');
+            sidebar.style.display = sidebar.style.display === 'none' ? 'block' : 'none';
         }
 
         function toggleSubmenu(id) {
@@ -192,7 +742,6 @@
             document.getElementById('userNameDisplay').innerText = name.split(' ')[0];
             closeAllModals();
 
-            // Mostrar notificación de descuento
             const toast = document.getElementById('discountToast');
             toast.classList.add('show');
             setTimeout(() => {
@@ -238,15 +787,15 @@
                 totalSum += subtotal;
                 html += `
                     <div class="cart-item">
-                        <div class="cart-item-info">
-                            <div class="cart-item-title">${item.name}</div>
-                            <div class="cart-item-price">C$ ${item.price.toFixed(2)} x ${item.qty}</div>
+                        <div>
+                            <div style="font-weight: 600; font-size: 0.9rem;">${item.name}</div>
+                            <div style="font-size: 0.8rem; color: var(--text-light);">C$ ${item.price.toFixed(2)} x ${item.qty}</div>
                         </div>
-                        <div class="cart-item-controls">
-                            <button class="qty-btn" onclick="changeQty(${index}, -1)">-</button>
-                            <span class="cart-item-qty">${item.qty}</span>
-                            <button class="qty-btn" onclick="changeQty(${index}, 1)">+</button>
-                            <button class="remove-item" onclick="removeItem(${index})"><i class="fas fa-trash"></i></button>
+                        <div style="display: flex; align-items: center; gap: 8px;">
+                            <button onclick="changeQty(${index}, -1)" style="padding: 2px 6px; cursor: pointer;">-</button>
+                            <span>${item.qty}</span>
+                            <button onclick="changeQty(${index}, 1)" style="padding: 2px 6px; cursor: pointer;">+</button>
+                            <button onclick="removeItem(${index})" style="background: none; border: none; color: #ff4d4d; cursor: pointer;"><i class="fas fa-trash"></i></button>
                         </div>
                     </div>
                 `;
@@ -290,7 +839,7 @@
                 message += `\nCliente registrado: ${currentUser}`;
             }
 
-            const phone = "50588888888"; // Reemplaza con tu número real de WhatsApp
+            const phone = "50588888888"; // Reemplaza con tu número de WhatsApp
             const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
             window.open(url, '_blank');
         }
